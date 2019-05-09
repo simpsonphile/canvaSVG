@@ -1,0 +1,57 @@
+
+/* Colors
+========================================================================== */
+$color_white:       #fff;
+$color_black:       #000000;
+$color_gray:        #272727;
+$color_red:         #d3531a;
+
+$scotch-colors: (
+    'black': (
+        $color_black
+    ),
+    'white': (
+        $color_white
+    ),
+    'gray': (
+        $color_gray
+    )
+);
+
+/* Fonts
+========================================================================== */
+$font_normal:          Arial, sans-serif;
+
+/* Animations
+========================================================================== */
+$transition_speed:      200ms;
+
+/* Sizes
+========================================================================== */
+$gutter:                20px;
+
+$size_inner:            1260px + ($gutter * 2);
+
+/* Breakpoints
+========================================================================== */
+$breakpoint_laptop: 1620px;
+$breakpoint_laptop_small: 1280px;
+$breakpoint_tablet: 1200px;
+$breakpoint_tablet_middle: 980px;
+$breakpoint_mobile: 670px;
+$breakpoint_mobile_small: 480px;
+
+$breakpoints: (
+    l: $breakpoint_laptop,
+    l-s: $breakpoint_laptop_small,
+    t: $breakpoint_tablet,
+    t-m: $breakpoint_tablet_middle,
+    m: $breakpoint_mobile,
+    m-s: $breakpoint_mobile_small
+);
+
+/* body {
+    @include media("<=t") {
+        background: blue;
+    }
+} */

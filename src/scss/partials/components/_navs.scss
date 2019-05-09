@@ -1,0 +1,32 @@
+.c-toolkit {
+  position: fixed;
+
+  flex-wrap: wrap;
+  justify-content: space-between;
+  display: flex;
+
+  width: 8rem;
+
+  background: white;
+}
+
+.c-toolkit__btn {
+  flex: 0 0 49%;
+
+  margin-bottom: 2%;
+  width: 3.6rem;
+  height: 3.6rem;
+
+  background: lavender;
+  color: orangered;
+
+  &.is-active {
+    border: 2px solid red;
+  }
+}
+
+.c-toolkit__btn--fig {
+  background: pink;
+  color: green;
+}
+

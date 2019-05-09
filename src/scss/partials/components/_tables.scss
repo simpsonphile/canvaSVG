@@ -1,0 +1,38 @@
+
+.c-table {
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table,
+    tr,
+    td,
+    th,
+    tbody,
+    thead {
+        @include media("<=m") {
+            display: block;
+        }
+    }
+
+    .c-table__head {
+        @include media("<=m") {
+            display: none;
+        }
+    }
+
+    .c-table__cell {
+        @include media("<=m") {
+            width: auto;
+        }
+
+        &--btn {
+            text-align: right;
+
+            @include media("<=m") {
+                text-align: left;
+            }
+        }
+    }
+}

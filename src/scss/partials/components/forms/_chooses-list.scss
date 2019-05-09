@@ -1,0 +1,22 @@
+.f-chooses-list {
+    @extend %helper-reset-list;
+
+    &__item {
+        margin-bottom: 17px;
+    }
+}
+
+.f-chooses-list {
+    &--inline {
+        @extend %display-flex;
+        @extend %align-items-center;
+        @extend %justify-content-flex-start;
+
+        margin-left: -5px;
+        margin-right: -5px;
+
+        .f-chooses-list__item {
+            padding: 0 5px;
+        }
+    }
+}

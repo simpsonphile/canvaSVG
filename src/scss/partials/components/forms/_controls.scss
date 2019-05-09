@@ -1,0 +1,163 @@
+.f-control-wrapper,
+.f-control {
+    position: relative;
+    z-index: 2;
+}
+
+/* Default - type: text, textarea, select
+   ========================================================================== */
+.f-control {
+    &--default {
+        font-size: 1.6rem;
+
+        @include media("<=l") {
+            font-size: 1.4rem;
+        }
+    }
+}
+
+/* Sizes left/right - type: text, textarea, select
+   ========================================================================== */
+.f-control {
+    &--ph-1 {
+        padding: 20px 30px;
+
+        @include media("<=l") {
+            padding: 15px;
+        }
+
+        &.f-control--select {
+            select {
+                padding: 0 40px 0 30px;
+
+                @include media("<=l") {
+                    padding: 0 30px 0 15px;
+                }
+            }
+        }
+    }
+}
+
+/* Sizes height - type: text, textarea, select
+   ========================================================================== */
+.f-control {
+    &--sh-1 {
+
+    }
+}
+
+/* Is error
+   ========================================================================== */
+.f-control.is-error {
+    border-color: $color_black;
+
+    &.f-control--checkbox,
+    &.f-control--radio {
+        &,
+        a {
+            color: $color_black;
+        }
+    }
+}
+
+/* Selects
+   ========================================================================== */
+.f-control {
+    &--select {
+        position: relative;
+        padding: 0;
+
+        @include media("<=l") {
+            padding: 0;
+        }
+
+        select {
+            width: 100%;
+            height: 100%;
+            border: none;
+            color: inherit;
+            box-shadow: none;
+            background-color: transparent;
+            background-image: none;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .f-control__ico {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+
+            transform: translateY(-50%);
+
+            pointer-events: none;
+        }
+    }
+}
+
+/* Radio / checkbox - base
+   ========================================================================== */
+.f-control--choose {
+    cursor: pointer;
+    
+    position: relative;
+
+    input {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+    }
+
+    .f-control__indicator:after {
+        position: absolute;
+        display: none;
+        content: '';
+    }
+
+    input:checked + .f-control__indicator:after {
+        display: block;
+    }
+
+    .parsley-errors-list {
+        position: absolute;
+        top: calc(100% + 10px);
+    }
+}
+
+/* Checkbox
+   ========================================================================== */
+.f-control--choose--default {
+    display: block;
+
+    padding-left: 25px;
+
+    @include media("<=l") {
+        font-size: 1.4rem;
+    }
+
+    .f-control__label {
+        line-height: 1.2;
+    }
+
+    .f-control__indicator {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 18px;
+        height: 18px;
+
+        border: 1px solid $color_gray;
+        background: $color_white;
+    }
+
+    .f-control__indicator:after {
+        top: 2px;
+        left: 5px;
+        width: 7px;
+        height: 9px;
+        transform: rotate(45deg);
+        border: solid $color_black;
+        border-width: 0 2px 2px 0;
+    }
+}

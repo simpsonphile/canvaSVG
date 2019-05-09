@@ -1,0 +1,42 @@
+.c-btn-wrapper {
+    @extend %helper-clear-margins;
+    
+    margin-bottom: 20px;
+}
+
+.c-btn {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+
+    font-size: inherit;
+
+    border: 0;
+    background: none;
+
+    line-height: 1.3;
+
+    &__wrap {
+        @extend %display-flex;
+        @extend %align-items-center;
+        @extend %justify-content-center;
+
+        height: 100%;
+    }
+
+    &__ico {
+        flex-shrink: 0;
+
+        margin-left: 10px;
+
+        font-size: 0;
+
+        text-align: center;
+
+        &:first-child {
+            margin-left: 0;
+            margin-right: 10px;
+        }
+    }
+}

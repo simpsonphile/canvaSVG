@@ -1,0 +1,25 @@
+.o-ico-wrapper,
+.o-ico {
+    position: relative;
+    display: block;
+}
+
+.o-ico {
+    font-size: 0;
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/**
+ * Sizes
+ * xs
+ * xxs
+ * s
+ * m
+ * l
+ * xl
+ * xxl
+ */
