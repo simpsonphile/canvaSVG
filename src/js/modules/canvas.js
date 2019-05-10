@@ -5,6 +5,8 @@ import { AppLogic } from '../clasess/AppLogic'
 
 import { Modal } from '../clasess/Modal'
 
+import { ColorWheel } from '../clasess/ColorWheel'
+
 const appLogic = new AppLogic()
 
 /* Initialize appWindow */
@@ -18,6 +20,10 @@ toolkit.init()
 /* Initialize modals */
 const modal = new Modal()
 modal.init()
+
+/* Initialize colorPicker */
+const colorWheel = new ColorWheel(appLogic)
+colorWheel.init()
 
 /* Initialize and run AnimationLoop and logicLoop */
 const appLoop = new AppLoop(30, appWindow)

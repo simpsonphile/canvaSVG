@@ -11,9 +11,9 @@
     <body>
         <main class="l-main">
             <nav class="c-toolkit">
-    <button class="c-btn c-btn--toolkit c-toolkit__btn js-fill">c</button>
+    <button class="c-btn c-btn--toolkit c-toolkit__btn js-modal-trigger js-color-for" data-modal="color" data-color-for="fill">c</button>
     <button class="c-btn c-btn--toolkit c-toolkit__btn js-stroke-width">sw</button>
-    <button class="c-btn c-btn--toolkit c-toolkit__btn js-stroke">sc</button>
+    <button class="c-btn c-btn--toolkit c-toolkit__btn js-modal-trigger js-color-for" data-modal="color" data-color-for="stroke">sc</button>
     <button class="c-btn c-btn--toolkit c-toolkit__btn c-toolkit__btn--fig js-fig" data-fig="arc">c</button>
     <button class="c-btn c-btn--toolkit c-toolkit__btn c-toolkit__btn--fig js-fig" data-fig="rec">r</button>
     <button class="c-btn c-btn--toolkit c-toolkit__btn c-toolkit__btn--fig js-fig" data-fig="line">line</button>
@@ -22,6 +22,12 @@
     <button class="c-btn c-btn--toolkit c-toolkit__btn c-toolkit__btn js-generate-svg js-modal-trigger" data-modal="generate-svg">svg</button>
     <button class="c-btn c-btn--toolkit c-toolkit__btn c-toolkit__btn js-reset-canvas">reset</button>
 </nav>
+            <div class="js-canvas-container c-canvas-container">
+    <canvas class="js-canvas c-canvas"></canvas>
+</div>            <div class="c-settings u-hidden js-fill-settings">
+
+            </div>
+
             <div class="c-modal js-modal u-hidden" data-modal="generate-svg">
   <span class="c-modal__bg"></span>
   <div class="c-modal__container">
@@ -42,13 +48,26 @@
   <button class="c-btn c-modal__btn js-copy">copy</button>
     </div>
   </div>
-</div>            <div class="js-canvas-container c-canvas-container">
-    <canvas class="js-canvas c-canvas"></canvas>
-</div>            <div class="c-settings u-hidden js-fill-settings">
+</div>            <div class="c-modal js-modal u-hidden" data-modal="color">
+  <span class="c-modal__bg"></span>
+  <div class="c-modal__container">
+    <div class="c-modal__top">
+      <h2 class="t-head c-modal__title">
+          Pick Color
+      </h2>
 
-            </div>
+      <button class="c-btn c-modal__close js-modal-close">&times;</button>
+    </div>
 
-            
+    <div class="c-modal__content js-modal-content">
+        <div class="js-color-wheel"></div>
+    </div>
+
+    <div class="c-modal__bot js-modal-bottom">
+        <button class="c-btn c-modal__btn js-modal-close">close</button>
+    </div>
+  </div>
+</div>            
         </main>
 
         <script defer src="./static/js/app.js"></script>

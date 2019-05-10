@@ -66,5 +66,8 @@
     "ignore": [
       "src/js/vendor/*.js"
     ]
+  },
+  "dependencies": {
+    "reinvented-color-wheel": "^0.2.4"
   }
 }

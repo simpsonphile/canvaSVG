@@ -10,12 +10,13 @@
     <body>
         <main class="l-main">
             {% include "partials/layouts/toolkit.twig" %}
-            {% include "partials/layouts/modal-generate-svg.twig" with {"modalID": "generate-svg"} %}
             {% include "partials/layouts/canvas.twig" %}
             <div class="c-settings u-hidden js-fill-settings">
 
             </div>
 
+            {% include "partials/layouts/modal-generate-svg.twig" with {"modalID": "generate-svg"} %}
+            {% include "partials/layouts/modal-color.twig" with {"modalID": "color"} %}
             
         </main>
 

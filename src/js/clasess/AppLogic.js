@@ -12,6 +12,7 @@ export class AppLogic {
 
   init () {
     this.sw = 5 //  strokeWidth
+    this.colorFor = undefined
     this.sc = 'orange' //  strokeColor
     this.fc = 'green' //  fillColor
 
@@ -68,6 +69,14 @@ export class AppLogic {
   changeMode (nMode) {
     this.resetDrawingVars()
     this.mode = nMode
+  }
+
+  changeColor (color) {
+    if (this.colorFor === 'fill') {
+      this.fc = color
+    } else if (this.colorFor === 'stroke') {
+      this.sc = color
+    }
   }
 
   generateSvg () {
