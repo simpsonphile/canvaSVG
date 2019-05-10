@@ -1,5 +1,8 @@
-export class Rectangle {
-  constructor (x, y, w, h, sw, sc, fc) {
+import { Figure } from './Figure'
+
+export class Rectangle extends Figure {
+  constructor (x, y, w, h, sw, sc, fc, scale) {
+    super()
     this.x = parseInt(x)
     this.y = parseInt(y)
     this.w = parseInt(w)
@@ -7,32 +10,22 @@ export class Rectangle {
     this.sw = parseInt(sw)
     this.sc = sc
     this.fc = fc
+
+    this.scale = scale
   }
 
-  returnHTML () {
-    let x, y, w, h, sw, sc, fc
-    if (this.x) x = `x="${this.x}"`
-    if (this.y) y = `y="${this.y}"`
-    if (this.w) w = `width="${this.w}"`
-    if (this.h) h = `height="${this.h}"`
-    if (this.sw) sw = `stroke-width="${this.sw}"`
-    if (this.sc) sc = `stroke="${this.sc}"`
-    if (this.fc) fc = `fill="${this.fc}"`
-
-    const HTML = `
-      <rect ${x} ${y} ${w} ${h} ${sw} ${sc} ${fc}></rect>
-    `
-
-    return HTML
+  generateFigureHTML () {
+    return `<rect x="${this.scaleVal(this.x)}"
+                  y="${this.scaleVal(this.y)}"
+                  width="${this.scaleVal(this.w)}"
+                  height="${this.scaleVal(this.h)}"
+                  stroke-width="${this.sw}"
+                  stroke="${this.sc}"
+                  fill="${this.fc}">
+            </rect>`
   }
 
-  draw (ctx) {
-    ctx.beginPath()
+  drawFigure (ctx) {
     ctx.rect(this.x, this.y, this.w, this.h)
-    ctx.strokeStyle = this.sc
-    ctx.lineWidth = this.sw
-    ctx.stroke()
-    ctx.fillStyle = this.fc
-    ctx.fill()
   }
 }

@@ -1,12 +1,12 @@
 export class AppWindow {
   constructor (app) {
+    this.app = app
+
     this.canvas = document.querySelector('.js-canvas')
     this.canvasContainer = document.querySelector('j.s-canvas-container')
-    this.width = 20
-    this.height = 20
+    this.width = this.app.svg.width
+    this.height = this.app.svg.height
     this.ctx = this.canvas.getContext('2d')
-
-    this.app = app
   }
 
   resize () {
@@ -23,6 +23,13 @@ export class AppWindow {
 
     this.canvas.height = this.scale * this.height
     this.canvas.width = this.scale * this.width
+
+    this.app.scale = this.scale
+    console.log(this.app.scale)
+  }
+
+  returnScale () {
+    return this.scale
   }
 
   returnPoint (event) {
@@ -45,6 +52,12 @@ export class AppWindow {
 
     this.canvas.addEventListener('mousemove', function (event) {
       self.app.computeMouseMove(self.returnPoint(event))
+    })
+
+    document.addEventListener('keypress', function (event) {
+      if (event.keyCode === 32) {
+        self.app.computeSpace()
+      }
     })
   }
 

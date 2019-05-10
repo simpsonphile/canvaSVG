@@ -1,0 +1,20 @@
+<div class="c-modal js-modal u-hidden" data-modal="{{modalID}}">
+  <span class="c-modal__bg"></span>
+  <div class="c-modal__container">
+    <div class="c-modal__top">
+      <h2 class="t-head c-modal__title">
+        {% block modalTop %}  {% endblock %}
+      </h2>
+
+      <button class="c-btn c-modal__close js-modal-close">&times;</button>
+    </div>
+
+    <div class="c-modal__content js-modal-content">
+      {% block modalContent %}  {% endblock %}
+    </div>
+
+    <div class="c-modal__bot js-modal-bottom">
+      {% block modalBot %}  {% endblock %}
+    </div>
+  </div>
+</div>

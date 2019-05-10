@@ -5,6 +5,8 @@ export class Toolkit {
     this.figBtns = document.querySelectorAll('.js-fig')
 
     this.svgBtn = document.querySelector('.js-generate-svg')
+
+    this.resetCanvasBtn = document.querySelector('.js-reset-canvas')
   }
 
   resetFigBtns () {
@@ -24,6 +26,10 @@ export class Toolkit {
 
     this.svgBtn.addEventListener('click', event => {
       this.app.generateSvg()
+    })
+
+    this.resetCanvasBtn.addEventListener('click', event => {
+      this.app.init()
     })
   }
 }

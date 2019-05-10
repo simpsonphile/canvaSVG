@@ -1,0 +1,67 @@
+.c-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+  align-items: center;
+  justify-content: center;
+
+  display: flex;
+
+  padding: 5rem;
+
+}
+
+.c-modal__bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+
+  background: rgba($color_black, .85);
+}
+
+.c-modal__container {
+  position: relative;
+
+  width: 100%;
+  max-width: 80rem;
+
+  background: $color_white;
+  box-shadow: 1px 1px 1px 1px rgba($color_black, .33);
+}
+
+.c-modal__top {
+  position: relative;
+  align-items: center;
+  justify-content: center;
+
+  display: flex;
+
+  border-bottom: 1px solid black;
+  padding: 2rem;
+}
+
+.c-modal__close {
+  position: absolute;
+  right: 2rem;
+
+  font-size: 2rem;
+}
+
+.c-modal__content {
+  border-bottom: 1px solid black;
+  padding: 2rem;
+}
+
+.c-modal__bot {
+  justify-content: center;
+
+  display: flex;
+
+  padding: 2rem;
+}
