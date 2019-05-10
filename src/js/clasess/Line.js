@@ -14,10 +14,10 @@ export class Line extends Figure {
   }
 
   generateFigureHTML () {
-    return `<line x1="${this.scaleVal(this.x1)}"
-                  y1="${this.scaleVal(this.y1)}"
-                  x2="${this.scaleVal(this.x2)}"
-                  y2="${this.scaleVal(this.y2)}"
+    return `<line x1="${this.scaleForSvg(this.x1)}"
+                  y1="${this.scaleForSvg(this.y1)}"
+                  x2="${this.scaleForSvg(this.x2)}"
+                  y2="${this.scaleForSvg(this.y2)}"
                   stroke-width="${this.sw}"
                   stroke="${this.sc}">
             </line>`

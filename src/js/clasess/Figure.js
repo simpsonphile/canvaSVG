@@ -6,7 +6,7 @@ export class Figure {
 
   generateFigureHTML () {}
 
-  scaleVal (val) {
+  scaleForSvg (val) {
     return Math.floor(val / this.scale)
   }
 

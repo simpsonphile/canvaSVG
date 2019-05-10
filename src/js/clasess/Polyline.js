@@ -14,7 +14,7 @@ export class Polyline extends Figure {
     let genPoints = ''
 
     this.points.forEach(cor => {
-      genPoints += `${this.scaleVal(cor.x)},${this.scaleVal(cor.y)} `
+      genPoints += `${this.scaleForSvg(cor.x)},${this.scaleForSvg(cor.y)} `
     })
 
     return genPoints

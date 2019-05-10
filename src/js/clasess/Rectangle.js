@@ -15,10 +15,10 @@ export class Rectangle extends Figure {
   }
 
   generateFigureHTML () {
-    return `<rect x="${this.scaleVal(this.x)}"
-                  y="${this.scaleVal(this.y)}"
-                  width="${this.scaleVal(this.w)}"
-                  height="${this.scaleVal(this.h)}"
+    return `<rect x="${this.scaleForSvg(this.x)}"
+                  y="${this.scaleForSvg(this.y)}"
+                  width="${this.scaleForSvg(this.w)}"
+                  height="${this.scaleForSvg(this.h)}"
                   stroke-width="${this.sw}"
                   stroke="${this.sc}"
                   fill="${this.fc}">

@@ -14,9 +14,9 @@ export class Circle extends Figure {
 
   generateFigureHTML () {
     return `
-      <circle cx="${this.scaleVal(this.cx)}"
-              cy="${this.scaleVal(this.cy)}"
-              r="${this.scaleVal(this.r)}"
+      <circle cx="${this.scaleForSvg(this.cx)}"
+              cy="${this.scaleForSvg(this.cy)}"
+              r="${this.scaleForSvg(this.r)}"
               stroke-width="${this.sw}"
               stroke="${this.sc}"
               fill="${this.fc}">
