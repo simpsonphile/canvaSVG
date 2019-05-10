@@ -25,7 +25,6 @@ export class AppWindow {
     this.canvas.width = this.scale * this.width
 
     this.app.scale = this.scale
-    console.log(this.app.scale)
   }
 
   returnScale () {
@@ -42,9 +41,15 @@ export class AppWindow {
   init () {
     const self = this
 
-    document.addEventListener('DOMContentLoaded', this.resize())
-    document.addEventListener('resize', this.resize())
-    document.addEventListener('orientationchange', this.resize())
+    window.addEventListener('DOMContentLoaded', function () {
+      self.resize()
+    })
+    window.addEventListener('resize', function () {
+      self.resize()
+    })
+    window.addEventListener('orientationchange', function () {
+      self.resize()
+    })
 
     this.canvas.addEventListener('click', function (event) {
       self.app.computeClick(self.returnPoint(event))
