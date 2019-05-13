@@ -17,7 +17,6 @@ export class ColorWheel {
     const self = this
     self.app.pickerColor = this.wheel.hex
     this.wheel.onChange = function (color) {
-      console.log(color._hex)
       self.app.changeColor(color._hex)
     }
   }

@@ -13,8 +13,8 @@ export class AppLogic {
   init () {
     this.sw = 5 //  strokeWidth
     this.colorFor = undefined
-    this.sc = 'orange' //  strokeColor
-    this.fc = 'green' //  fillColor
+    this.sc = '#ff0000' //  strokeColor
+    this.fc = '#00ff00' //  fillColor
 
     this.mode = ''
     this.step = 0
@@ -69,6 +69,15 @@ export class AppLogic {
   changeMode (nMode) {
     this.resetDrawingVars()
     this.mode = nMode
+  }
+
+  prepWheel (colorFor, wheel) {
+    this.colorFor = colorFor
+    if (colorFor === 'fill') {
+      wheel.hex = this.fc
+    } else if (colorFor === 'stroke') {
+      wheel.hex = this.sc
+    }
   }
 
   changeColor (color) {

@@ -1,11 +1,12 @@
 export class Toolkit {
-  constructor (app) {
+  constructor (app, colorWheel) {
     this.app = app
+    this.wheel = colorWheel
 
     this.figBtns = document.querySelectorAll('.js-fig')
     this.svgBtn = document.querySelector('.js-generate-svg')
     this.resetCanvasBtn = document.querySelector('.js-reset-canvas')
-    this.colorBtns = document.querySelectorAll('.js-color-wheel')
+    this.colorBtns = document.querySelectorAll('.js-color-for')
   }
 
   resetFigBtns () {
@@ -33,10 +34,8 @@ export class Toolkit {
 
     this.colorBtns.forEach(btn => {
       btn.addEventListener('click', event => {
-        console.log(btn.dataset.colorFor)
-        this.app.colorFor = btn.dataset.colorFor
+        this.app.prepWheel(btn.dataset.colorFor, this.wheel.wheel)
       })
     })
   }
-
 }
