@@ -6,8 +6,10 @@ export class Modal {
 
   init () {
     this.modals.forEach(modal => {
-      modal.querySelector('.js-modal-close').addEventListener('click', event => {
-        modal.classList.add('u-hidden')
+      modal.querySelectorAll('.js-modal-close').forEach(modalClose => {
+        modalClose.addEventListener('click', event => {
+          modal.classList.add('u-hidden')
+        })
       })
     })
 
