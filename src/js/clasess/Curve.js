@@ -40,6 +40,7 @@ export class Curve extends Figure {
   }
 
   drawFigure (ctx) {
-    ctx.bezierCurveTo(parseInt(this.x), parseInt(this.y), parseInt(this.x1), parseInt(this.x2), parseInt(this.x2), parseInt(this.y2))
+    ctx.moveTo(parseInt(this.x), parseInt(this.y))
+    ctx.quadraticCurveTo(parseInt(this.x1), parseInt(this.x2), parseInt(this.x2), parseInt(this.y2))
   }
 }

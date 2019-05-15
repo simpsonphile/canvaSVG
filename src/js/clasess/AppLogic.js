@@ -4,6 +4,7 @@ import { Rectangle } from '../clasess/Rectangle'
 import { Polyline } from '../clasess/Polyline'
 import { Line } from '../clasess/Line'
 import { Curve } from './Curve'
+import { HelperDot } from './HelperDot'
 
 export class AppLogic {
   constructor () {
@@ -33,6 +34,7 @@ export class AppLogic {
     this.curPos = undefined
     this.shadowFig = {}
     this.drawShadow = false
+    this.helperDots = []
   }
 
   reset () {
@@ -118,12 +120,8 @@ export class AppLogic {
 
   /* Curve functions */
   computeCurve () {
-    if (this.step === 1) {
-      //  helper dot
-    }
-
-    if (this.step === 2) {
-      //  helper dot
+    if (this.step <= 2) {
+      this.helperDots.push(new HelperDot(this.clicks[this.step - 1].x, this.clicks[this.step - 1].y))
     }
 
     if (this.step === 3) {

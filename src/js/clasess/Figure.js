@@ -22,11 +22,12 @@ export class Figure {
 
   draw (ctx) {
     ctx.beginPath()
-    this.drawFigure(ctx)
+    ctx.fillStyle = this.fc
     ctx.strokeStyle = this.sc
     ctx.lineWidth = this.sw
+    this.drawFigure(ctx)
     ctx.stroke()
-    ctx.fillStyle = this.fc
     ctx.fill()
+    ctx.closePath()
   }
 }

@@ -75,5 +75,9 @@ export class AppWindow {
     if (this.app.drawShadow) {
       this.app.shadowFig.draw(this.ctx)
     }
+
+    this.app.helperDots.forEach(dot => {
+      dot.draw(this.ctx)
+    })
   }
 }
