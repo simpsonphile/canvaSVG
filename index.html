@@ -2,7 +2,7 @@
 <html lang="en" class="no-js">
     <head>
         <meta charset="utf-8">
-        <title> Home </title>
+        <title>SVGCanva</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
         <link rel="stylesheet" href="./static/css/grid.css">
@@ -13,6 +13,7 @@
             <nav class="c-toolkit">
     <button class="c-btn c-btn--toolkit c-toolkit__btn js-modal-trigger js-color-for" data-modal="color" data-color-for="fill">c</button>
     <button class="c-btn c-btn--toolkit c-toolkit__btn js-modal-trigger js-color-for" data-modal="color" data-color-for="stroke">sc</button>
+    <button class="c-btn c-btn--toolkit c-toolkit__btn js-modal-trigger js-color-for" data-modal="color" data-color-for="bg">bg</button>
     <button class="c-btn c-btn--toolkit c-toolkit__btn js-stroke-width">sw</button>
     <button class="c-btn c-btn--toolkit c-toolkit__btn c-toolkit__btn--fig js-fig" data-fig="arc">c</button>
     <button class="c-btn c-btn--toolkit c-toolkit__btn c-toolkit__btn--fig js-fig" data-fig="rec">r</button>
@@ -24,11 +25,7 @@
 </nav>
             <div class="js-canvas-container c-canvas-container">
     <canvas class="js-canvas c-canvas"></canvas>
-</div>            <div class="c-settings u-hidden js-fill-settings">
-
-            </div>
-
-            <div class="c-modal js-modal u-hidden" data-modal="generate-svg">
+</div>            <div class="c-modal js-modal u-hidden" data-modal="generate-svg">
   <span class="c-modal__bg"></span>
   <div class="c-modal__container">
     <div class="c-modal__top">
@@ -67,8 +64,7 @@
         <button class="c-btn c-modal__btn js-modal-close">close</button>
     </div>
   </div>
-</div>            
-        </main>
+</div>        </main>
 
         <script defer src="./static/js/app.js"></script>
     </body>

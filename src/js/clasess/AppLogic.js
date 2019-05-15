@@ -15,7 +15,7 @@ export class AppLogic {
     this.colorFor = undefined
     this.sc = '#ff0000' //  strokeColor
     this.fc = '#00ff00' //  fillColor
-
+    this.bg = '#ffffff' //  svg background
     this.mode = ''
     this.step = 0
     this.clicks = []
@@ -77,6 +77,8 @@ export class AppLogic {
       wheel.hex = this.fc
     } else if (colorFor === 'stroke') {
       wheel.hex = this.sc
+    } else if (colorFor === 'bg') {
+      wheel.hex = this.bg
     }
   }
 
@@ -85,17 +87,20 @@ export class AppLogic {
       this.fc = color
     } else if (this.colorFor === 'stroke') {
       this.sc = color
+    } else if (this.colorFor === 'bg') {
+      this.bg = color
     }
   }
 
   generateSvg () {
-    let svgHTML = `<svg viewBox="0 0 ${this.svg.width} ${this.svg.height}">`
+    let svgHTML = `<svg viewBox="0 0 ${this.svg.width} ${this.svg.height}"
+                        style="background-color: ${this.bg}">`
 
     this.figures.forEach(fig => {
       svgHTML += fig.returnHTML()
     })
 
-    svgHTML += '</svg>'
+    svgHTML += '\n</svg>'
 
     document.querySelector('.js-generated-svg-code').innerHTML = svgHTML
   }

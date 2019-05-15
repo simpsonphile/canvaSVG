@@ -2,7 +2,7 @@
 <html lang="en" class="no-js">
     <head>
         <meta charset="utf-8">
-        <title>{% block title %} {{ index.title }} {% endblock %}</title>
+        <title>SVGCanva</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
         {% include "head/head-links.twig" %}
@@ -11,13 +11,8 @@
         <main class="l-main">
             {% include "partials/layouts/toolkit.twig" %}
             {% include "partials/layouts/canvas.twig" %}
-            <div class="c-settings u-hidden js-fill-settings">
-
-            </div>
-
             {% include "partials/layouts/modal-generate-svg.twig" with {"modalID": "generate-svg"} %}
             {% include "partials/layouts/modal-color.twig" with {"modalID": "color"} %}
-            
         </main>
 
         <script defer src="./static/js/app.js"></script>

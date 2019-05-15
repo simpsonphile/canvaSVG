@@ -13,6 +13,10 @@ const appLogic = new AppLogic()
 const appWindow = new AppWindow(appLogic)
 appWindow.init()
 
+/* Initialize and run AnimationLoop and logicLoop */
+const appLoop = new AppLoop(30, appWindow)
+appLoop.start()
+
 /* Initialize colorPicker */
 const colorWheel = new ColorWheel(appLogic)
 colorWheel.init()
@@ -24,7 +28,3 @@ toolkit.init()
 /* Initialize modals */
 const modal = new Modal()
 modal.init()
-
-/* Initialize and run AnimationLoop and logicLoop */
-const appLoop = new AppLoop(30, appWindow)
-appLoop.start()
