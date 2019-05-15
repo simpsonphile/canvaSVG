@@ -30,7 +30,7 @@ export class Rectangle extends Figure {
                   y="${this.scaleForSvg(this.y)}"
                   width="${this.scaleForSvg(this.w)}"
                   height="${this.scaleForSvg(this.h)}"
-                  stroke-width="${parseInt(this.sw)}"
+                  stroke-width="${this.sw}"
                   stroke="${this.sc}"
                   fill="${this.fc}">
             </rect>`

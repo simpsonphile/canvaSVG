@@ -1,5 +1,6 @@
 export class Toolkit {
-  constructor (app, colorWheel) {
+  constructor (app, colorWheel, appWindow) {
+    this.appWindow = appWindow
     this.app = app
     this.wheel = colorWheel
 
@@ -7,6 +8,8 @@ export class Toolkit {
     this.svgBtn = document.querySelector('.js-generate-svg')
     this.resetCanvasBtn = document.querySelector('.js-reset-canvas')
     this.colorBtns = document.querySelectorAll('.js-color-for')
+
+    this.canvasSizeInputs = document.querySelectorAll('.js-canvas-size')
   }
 
   resetFigBtns () {
@@ -29,12 +32,19 @@ export class Toolkit {
     })
 
     this.resetCanvasBtn.addEventListener('click', event => {
-      this.app.init()
+      this.app.reset()
     })
 
     this.colorBtns.forEach(btn => {
       btn.addEventListener('click', event => {
         this.app.prepWheel(btn.dataset.colorFor, this.wheel.wheel)
+      })
+    })
+
+    this.canvasSizeInputs.forEach(input => {
+      input.addEventListener('change', event => {
+        this.app.updateDimensions(input.dataset.canvasSize, input.value)
+        this.appWindow.resize()
       })
     })
   }

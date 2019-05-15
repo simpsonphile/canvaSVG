@@ -28,7 +28,7 @@ export class Line extends Figure {
                   y1="${this.scaleForSvg(this.y1)}"
                   x2="${this.scaleForSvg(this.x2)}"
                   y2="${this.scaleForSvg(this.y2)}"
-                  stroke-width="${parseInt(this.sw)}"
+                  stroke-width="${this.sw}"
                   stroke="${this.sc}">
             </line>`
   }

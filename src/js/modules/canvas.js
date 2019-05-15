@@ -22,7 +22,7 @@ const colorWheel = new ColorWheel(appLogic)
 colorWheel.init()
 
 /* Initialize toolkit */
-const toolkit = new Toolkit(appLogic, colorWheel)
+const toolkit = new Toolkit(appLogic, colorWheel, appWindow)
 toolkit.init()
 
 /* Initialize modals */

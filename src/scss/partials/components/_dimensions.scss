@@ -1,0 +1,17 @@
+.c-dimensions {
+  display: flex;
+
+  &::before {
+    content: "(";
+  }
+
+  &::after {
+    content: ")";
+  }
+}
+
+.c-dimensions__input {
+  margin: 0 .5rem;
+  width: 3.5rem;
+  border: none;
+}

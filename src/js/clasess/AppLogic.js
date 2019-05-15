@@ -11,7 +11,7 @@ export class AppLogic {
   }
 
   init () {
-    this.sw = 5 //  strokeWidth
+    this.sw = 1 //  strokeWidth
     this.colorFor = undefined
     this.sc = '#ff0000' //  strokeColor
     this.fc = '#00ff00' //  fillColor
@@ -25,8 +25,6 @@ export class AppLogic {
       width: 100,
       height: 100
     }
-
-    this.scale = undefined
   }
 
   resetDrawingVars () {
@@ -35,6 +33,11 @@ export class AppLogic {
     this.curPos = undefined
     this.shadowFig = {}
     this.drawShadow = false
+  }
+
+  reset () {
+    this.resetDrawingVars()
+    this.figures = []
   }
 
   computeClick (click) {
@@ -90,6 +93,14 @@ export class AppLogic {
     this.figures.forEach(fig => {
       fig.rescale(this.scale)
     })
+  }
+
+  updateDimensions (type, size) {
+    if (type === 'width') {
+      this.svg.width = size
+    } else if (type === 'height') {
+      this.svg.height = size
+    }
   }
 
   generateSvg () {

@@ -33,7 +33,7 @@ export class Curve extends Figure {
                       ${this.scaleForSvg(this.y1)}
                       ${this.scaleForSvg(this.x2)}
                       ${this.scaleForSvg(this.y2)}"
-                  stroke-width="${parseInt(this.sw)}"
+                  stroke-width="${this.sw}"
                   stroke="${this.sc}"
                   fill="none">
             </path>`

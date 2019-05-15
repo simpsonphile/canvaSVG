@@ -14,7 +14,6 @@ export class Polyline extends Figure {
     const toScale = nScale / this.scale
     this.scale = nScale
 
-    this.sw *= toScale
     this.points = this.points.map(cor => {
       return {x: cor.x * toScale, y: cor.y * toScale}
     })
@@ -32,7 +31,7 @@ export class Polyline extends Figure {
 
   generateFigureHTML () {
     return `<polyline points="${this.generatePoints(this.points)}"
-                      stroke-width="${parseInt(this.sw)}"
+                      stroke-width="${this.sw}"
                       stroke="${this.sc}"
                       fill="none">
             </polyline>`
