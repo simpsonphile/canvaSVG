@@ -3,15 +3,26 @@ import { Figure } from './Figure'
 export class Rectangle extends Figure {
   constructor (x, y, w, h, sw, sc, fc, scale) {
     super()
-    this.x = parseInt(x)
-    this.y = parseInt(y)
-    this.w = parseInt(w)
-    this.h = parseInt(h)
-    this.sw = parseInt(sw)
+    this.x = x
+    this.y = y
+    this.w = w
+    this.h = h
+    this.sw = sw
     this.sc = sc
     this.fc = fc
 
     this.scale = scale
+  }
+
+  rescale (nScale) {
+    const toScale = nScale / this.scale
+    this.scale = nScale
+
+    this.x *= toScale
+    this.y *= toScale
+    this.w *= toScale
+    this.h *= toScale
+    this.sw *= toScale
   }
 
   generateFigureHTML () {
@@ -19,13 +30,13 @@ export class Rectangle extends Figure {
                   y="${this.scaleForSvg(this.y)}"
                   width="${this.scaleForSvg(this.w)}"
                   height="${this.scaleForSvg(this.h)}"
-                  stroke-width="${this.sw}"
+                  stroke-width="${parseInt(this.sw)}"
                   stroke="${this.sc}"
                   fill="${this.fc}">
             </rect>`
   }
 
   drawFigure (ctx) {
-    ctx.rect(this.x, this.y, this.w, this.h)
+    ctx.rect(parseInt(this.x), parseInt(this.y), parseInt(this.w), parseInt(this.h))
   }
 }

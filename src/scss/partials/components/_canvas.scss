@@ -1,10 +1,19 @@
 .c-canvas-container {
+  position: relative;
   align-items: center;
   justify-content: center;
   
   display: flex;
+
+  height: 100vh;
 }
 
 .c-canvas {
   border: 1px solid black;
+}
+
+.c-canvas__size {
+  position: absolute;
+  top: 0;
+  right: 0;
 }

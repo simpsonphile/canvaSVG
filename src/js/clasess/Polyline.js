@@ -10,6 +10,16 @@ export class Polyline extends Figure {
     this.scale = scale
   }
 
+  rescale (nScale) {
+    const toScale = nScale / this.scale
+    this.scale = nScale
+
+    this.sw *= toScale
+    this.points = this.points.map(cor => {
+      return {x: cor.x * toScale, y: cor.y * toScale}
+    })
+  }
+
   generatePoints () {
     let genPoints = ''
 
@@ -22,7 +32,7 @@ export class Polyline extends Figure {
 
   generateFigureHTML () {
     return `<polyline points="${this.generatePoints(this.points)}"
-                      stroke-width="${this.sw}"
+                      stroke-width="${parseInt(this.sw)}"
                       stroke="${this.sc}"
                       fill="none">
             </polyline>`
@@ -31,10 +41,10 @@ export class Polyline extends Figure {
   drawFigure (ctx) {
     this.points.forEach((cor, index) => {
       if (index === 0) {
-        ctx.moveTo(cor.x, cor.y)
+        ctx.moveTo(parseInt(cor.x), parseInt(cor.y))
       } else {
-        ctx.lineTo(cor.x, cor.y)
-        ctx.moveTo(cor.x, cor.y)
+        ctx.lineTo(parseInt(cor.x), parseInt(cor.y))
+        ctx.moveTo(parseInt(cor.x), parseInt(cor.y))
       }
     })
   }

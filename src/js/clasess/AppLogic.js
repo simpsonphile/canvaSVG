@@ -17,12 +17,7 @@ export class AppLogic {
     this.fc = '#00ff00' //  fillColor
     this.bg = '#ffffff' //  svg background
     this.mode = ''
-    this.step = 0
-    this.clicks = []
-    this.curPos = undefined
-
-    this.drawShadow = false
-    this.shadowFig = {}
+    this.resetDrawingVars()
 
     this.figures = []
 
@@ -38,7 +33,6 @@ export class AppLogic {
     this.step = 0
     this.clicks = []
     this.curPos = undefined
-    this.figData = {}
     this.shadowFig = {}
     this.drawShadow = false
   }
@@ -90,6 +84,12 @@ export class AppLogic {
     } else if (this.colorFor === 'bg') {
       this.bg = color
     }
+  }
+
+  rescale () {
+    this.figures.forEach(fig => {
+      fig.rescale(this.scale)
+    })
   }
 
   generateSvg () {

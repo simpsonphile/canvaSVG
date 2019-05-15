@@ -1,13 +1,12 @@
 .c-toolkit {
   position: fixed;
-
+  z-index: 2;
   flex-wrap: wrap;
   justify-content: space-between;
+
   display: flex;
 
   width: 8rem;
-
-  background: white;
 }
 
 .c-toolkit__btn {

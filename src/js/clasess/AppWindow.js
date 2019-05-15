@@ -4,14 +4,12 @@ export class AppWindow {
 
     this.canvas = document.querySelector('.js-canvas')
     this.canvasContainer = document.querySelector('j.s-canvas-container')
-    this.width = this.app.svg.width
-    this.height = this.app.svg.height
     this.ctx = this.canvas.getContext('2d')
   }
 
   resize () {
-    const scaleOfHeight = window.innerHeight / this.height
-    const scaleOfWidth = window.innerWidth / this.width
+    const scaleOfHeight = window.innerHeight / this.app.svg.height
+    const scaleOfWidth = window.innerWidth / this.app.svg.width
 
     if (scaleOfHeight > scaleOfWidth) {
       this.scale = scaleOfWidth
@@ -21,10 +19,11 @@ export class AppWindow {
 
     this.scale *= 0.95
 
-    this.canvas.height = this.scale * this.height
-    this.canvas.width = this.scale * this.width
+    this.canvas.height = this.scale * this.app.svg.height
+    this.canvas.width = this.scale * this.app.svg.width
 
     this.app.scale = this.scale
+    this.app.rescale()
   }
 
   returnScale () {
