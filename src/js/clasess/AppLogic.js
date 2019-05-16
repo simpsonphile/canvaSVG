@@ -4,6 +4,7 @@ import { Rectangle } from '../clasess/Rectangle'
 import { Polyline } from '../clasess/Polyline'
 import { Line } from '../clasess/Line'
 import { Curve } from './Curve'
+import { SCurve } from './SCurve'
 import { HelperDot } from './HelperDot'
 
 export class AppLogic {
@@ -51,6 +52,7 @@ export class AppLogic {
     if (this.mode === 'poly') this.computePoly()
     if (this.mode === 'line') this.computeLine()
     if (this.mode === 'curve') this.computeCurve()
+    if (this.mode === 'scurve') this.computeSCurve()
   }
 
   computeMouseMove (curPos) {
@@ -59,10 +61,12 @@ export class AppLogic {
     if (this.mode === 'poly') this.symulatePoly(curPos)
     if (this.mode === 'line') this.symulateLine(curPos)
     if (this.mode === 'curve') this.symulateCurve(curPos)
+    if (this.mode === 'scurve') this.symulateSCurve(curPos)
   }
 
   computeSpace () {
     if (this.mode === 'poly') this.computePoly(true)
+    if (this.mode === 'scurve') this.computeSCurve(true)
   }
 
   changeMode (nMode) {
@@ -116,6 +120,29 @@ export class AppLogic {
     svgHTML += '\n</svg>'
 
     document.querySelector('.js-generated-svg-code').innerHTML = svgHTML
+  }
+
+  /* SCurve functions */
+
+  computeSCurve (stop) {
+    if (this.step === 1 || this.step % 2 === 0) {
+      this.helperDots.push(new HelperDot(this.clicks[this.step - 1].x, this.clicks[this.step - 1].y))
+    } else {
+      this.helperDots.shift()
+    }
+
+    if (stop && this.step > 2) {
+      this.figures.push(new SCurve(this.clicks, this.sw, this.sc, this.scale))
+      this.resetDrawingVars()
+    }
+  }
+
+  symulateSCurve (curPos) {
+    if (this.step >= 2) {
+      this.drawShadow = true
+      const points = [...this.clicks, curPos]
+      this.shadowFig = new SCurve(points, this.sw, this.sc, this.scale)
+    }
   }
 
   /* Curve functions */
