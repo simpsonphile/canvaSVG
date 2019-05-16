@@ -21,13 +21,13 @@ export class Figure {
   drawFigure (ctx) {}
 
   draw (ctx) {
+    ctx.save()
     ctx.beginPath()
-    ctx.fillStyle = this.fc
-    ctx.strokeStyle = this.sc
-    ctx.lineWidth = this.sw
     this.drawFigure(ctx)
+    ctx.strokeStyle = this.sc
     ctx.stroke()
+    ctx.fillStyle = this.fc
     ctx.fill()
-    ctx.closePath()
+    ctx.restore()
   }
 }
