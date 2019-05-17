@@ -1,5 +1,7 @@
 export const DE = {
   figBtns: document.querySelectorAll('.js-fig'),
+  historyUndoBtn: document.querySelector('.js-history-undo'),
+  historyRedoBtn: document.querySelector('.js-history-redo'),
   svgBtn: document.querySelector('.js-generate-svg'),
   copyBtn: document.querySelector('.js-copy'),
   svgCode: document.querySelector('.js-generated-svg-code'),

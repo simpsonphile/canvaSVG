@@ -22,6 +22,7 @@ export class AppLogic {
     this.resetDrawingVars()
 
     this.figures = []
+    this.figuresHistory = []
 
     this.svg = {
       width: 100,
@@ -88,6 +89,29 @@ export class AppLogic {
       this.fc = color
     } else if (this.colorFor === 'stroke') {
       this.sc = color
+    }
+  }
+
+  changeHistory (action) { // will do later
+    if (action === 'undo') {
+
+    } else if (action === 'redo') {
+
+    }
+
+    this.manageHistoryBtns()
+  }
+  manageHistoryBtns () {
+    if (this.figures === this.figuresHistory) {
+      DE.historyRedoBtn.classList.add('is-disabled')
+    } else {
+      DE.historyRedoBtn.classList.remove('is-disabled')
+    }
+
+    if (this.figures.length === 0) {
+      DE.historyUndoBtn.classList.add('is-disabled')
+    } else {
+      DE.historyRedoBtn.classList.remove('is-disabled')
     }
   }
 

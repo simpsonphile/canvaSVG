@@ -47,5 +47,13 @@ export class Toolkit {
         this.appWindow.resize()
       })
     })
+
+    DE.historyUndoBtn.addEventListener('click', event => {
+      this.app.changeHistory('undo')
+    })
+
+    DE.historyRedoBtn.addEventListener('click', event => {
+      this.app.changeHistory('redo')
+    })
   }
 }
