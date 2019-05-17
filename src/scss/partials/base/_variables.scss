@@ -3,8 +3,17 @@
 ========================================================================== */
 $color_white:       #fff;
 $color_black:       #000000;
+$color_black_2:     #161925;
 $color_gray:        #272727;
 $color_red:         #d3531a;
+
+$color_violet:      #F237EF;
+
+$color_orange:      #FC5252;
+
+$color_blue:        #324376;
+$color_blue_2:      #586BA4;
+
 
 $scotch-colors: (
     'black': (
@@ -20,7 +29,7 @@ $scotch-colors: (
 
 /* Fonts
 ========================================================================== */
-$font_normal:          Arial, sans-serif;
+$font_normal:          'Exo 2', sans-serif;
 
 /* Animations
 ========================================================================== */
