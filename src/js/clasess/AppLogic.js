@@ -120,7 +120,7 @@ export class AppLogic {
 
     svgHTML += '\n</svg>'
 
-    document.querySelector('.js-generated-svg-code').innerHTML = svgHTML
+    DE.svgCode.innerHTML = svgHTML
   }
 
   /* SCurve functions */
