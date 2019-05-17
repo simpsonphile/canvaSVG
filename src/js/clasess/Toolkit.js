@@ -6,6 +6,7 @@ export class Toolkit {
 
     this.figBtns = document.querySelectorAll('.js-fig')
     this.svgBtn = document.querySelector('.js-generate-svg')
+    this.copyBtn = document.querySelector('.js-copy')
     this.resetCanvasBtn = document.querySelector('.js-reset-canvas')
     this.colorBtns = document.querySelectorAll('.js-color-for')
 
@@ -29,6 +30,11 @@ export class Toolkit {
 
     this.svgBtn.addEventListener('click', event => {
       this.app.generateSvg()
+    })
+
+    this.copyBtn.addEventListener('click', event => {
+      document.querySelector('.js-generated-svg-code').select()
+      document.execCommand('copy')
     })
 
     this.resetCanvasBtn.addEventListener('click', event => {
