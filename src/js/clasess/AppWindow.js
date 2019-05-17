@@ -3,8 +3,10 @@ export class AppWindow {
     this.app = app
 
     this.canvas = document.querySelector('.js-canvas')
-    this.canvasContainer = document.querySelector('j.s-canvas-container')
+    this.canvasContainer = document.querySelector('js-canvas-container')
     this.ctx = this.canvas.getContext('2d')
+
+    this.cursorPosIndi = document.querySelector('.js-cursor-pos')
   }
 
   resize () {
@@ -37,6 +39,17 @@ export class AppWindow {
     }
   }
 
+  updateCursor (event) {
+    this.cursorPosIndi.style.display = `block`
+    this.cursorPosIndi.style.left = `${event.layerX}px`
+    this.cursorPosIndi.style.top = `${event.layerY}px`
+
+    const x = Math.floor(event.layerX / this.scale)
+    const y = Math.floor(event.layerY / this.scale)
+
+    this.cursorPosIndi.innerHTML = `(${x}, ${y})`
+  }
+
   init () {
     const self = this
 
@@ -56,6 +69,11 @@ export class AppWindow {
 
     this.canvas.addEventListener('mousemove', function (event) {
       self.app.computeMouseMove(self.returnPoint(event))
+      self.updateCursor(event)
+    })
+
+    this.canvas.addEventListener('mouseout', function () {
+      self.cursorPosIndi.style.display = 'none'
     })
 
     document.addEventListener('keypress', function (event) {
