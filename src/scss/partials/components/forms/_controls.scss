@@ -110,7 +110,7 @@
         width: 5rem;
         height: 2.5rem;
         text-indent: -9999px;
-        background: $color_violet;
+        background: $color_blue;
         display: block;
         border-radius: 2.5rem;
         position: relative;
@@ -129,7 +129,7 @@
     }
 
     input:checked + label {
-        background: $color_blue;
+        background: $color_violet;
     }
 
     input:checked + label:after {

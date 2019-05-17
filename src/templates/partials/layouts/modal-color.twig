@@ -6,6 +6,12 @@
 
 {% block modalContent %}
   <div class="js-color-wheel"></div>
+
+  <span class="f-control--toggle c-hint" data-hint-txt="when enabled shapes will be filled with color">
+      <input type="checkbox" class="js-toggle-fill" id="js-toggle-fill">
+      <label for="js-toggle-fill">Toggle fill</label>
+      <span class="f-control--toggle__txt">Fill Mode</span>
+  </span>
 {% endblock %}
 
 {% block modalBot %}

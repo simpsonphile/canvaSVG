@@ -3,12 +3,7 @@ import { DE } from '../utility'
 export class AppWindow {
   constructor (app) {
     this.app = app
-
-    // this.canvas = document.querySelector('.js-canvas')
-    // this.canvasContainer = document.querySelector('js-canvas-container')
     this.ctx = DE.canvas.getContext('2d')
-
-    // this.cursorPosIndi = document.querySelector('.js-cursor-pos')
   }
 
   resize () {
