@@ -4,11 +4,15 @@ export class HelperDot {
     this.y = y
   }
 
-  draw (ctx) {
+  draw (ctx, specialColor) {
     ctx.save()
     ctx.beginPath()
-    ctx.fillStyle = 'red'
-    ctx.arc(parseInt(this.x), parseInt(this.y), 2, 0, 2 * Math.PI)
+    if (specialColor) {
+      ctx.fillStyle = 'green'
+    } else {
+      ctx.fillStyle = 'red'
+    }
+    ctx.arc(parseInt(this.x), parseInt(this.y), 4, 0, 2 * Math.PI)
     ctx.fill()
     ctx.closePath()
     ctx.restore()

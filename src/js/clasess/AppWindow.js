@@ -94,8 +94,12 @@ export class AppWindow {
       this.app.shadowFig.draw(this.ctx)
     }
 
-    this.app.helperDots.forEach(dot => {
-      dot.draw(this.ctx)
+    this.app.helperDots.forEach((dot, index) => {
+      let specialColor = false
+      if (index >= this.app.helperDots.length - 2) {
+        specialColor = true
+      }
+      dot.draw(this.ctx, specialColor)
     })
   }
 }

@@ -127,8 +127,6 @@ export class AppLogic {
   computeSCurve (stop) {
     if (this.step === 1 || this.step % 2 === 0) {
       this.helperDots.push(new HelperDot(this.clicks[this.step - 1].x, this.clicks[this.step - 1].y))
-    } else {
-      this.helperDots.shift()
     }
 
     if (stop && this.step > 2) {
