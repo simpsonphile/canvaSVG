@@ -16,9 +16,8 @@ export class AppLogic {
   init () {
     this.sw = 1 //  strokeWidth
     this.colorFor = undefined
-    this.sc = '#ff0000' //  strokeColor
-    this.fc = '#00ff00' //  fillColor
-    this.bg = '#ffffff' //  svg background
+    this.sc = '#ffffff' //  strokeColor
+    this.fc = '#ffffff' //  fillColor
     this.mode = ''
     this.resetDrawingVars()
 

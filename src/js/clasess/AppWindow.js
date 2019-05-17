@@ -101,7 +101,7 @@ export class AppWindow {
       if (index >= this.app.helperDots.length - 2) {
         specialColor = true
       }
-      dot.draw(this.ctx, specialColor)
+      dot.draw(this.ctx, specialColor, this.scale)
     })
   }
 }
