@@ -81,8 +81,6 @@ export class AppLogic {
       wheel.hex = this.fc
     } else if (colorFor === 'stroke') {
       wheel.hex = this.sc
-    } else if (colorFor === 'bg') {
-      wheel.hex = this.bg
     }
   }
 
@@ -91,8 +89,6 @@ export class AppLogic {
       this.fc = color
     } else if (this.colorFor === 'stroke') {
       this.sc = color
-    } else if (this.colorFor === 'bg') {
-      this.bg = color
     }
   }
 
@@ -111,8 +107,7 @@ export class AppLogic {
   }
 
   generateSvg () {
-    let svgHTML = `<svg viewBox="0 0 ${this.svg.width} ${this.svg.height}"
-                        style="background-color: ${this.bg}">`
+    let svgHTML = `<svg viewBox="0 0 ${this.svg.width} ${this.svg.height}">`
 
     this.figures.forEach(fig => {
       svgHTML += fig.returnHTML()
