@@ -75,8 +75,8 @@
     },
 
     "svgsprites": {
-      "src": "svg",
-      "dest": ".",
+      "src": "img/svg-sprites",
+      "dest": "img/",
       "extensions": ["svg"]
     },
 

@@ -6,7 +6,15 @@
         {% block modalTop %}  {% endblock %}
       </h2>
 
-      <button class="c-btn c-modal__close js-modal-close">&times;</button>
+      <button class="c-btn c-modal__close js-modal-close">
+        <span class="c-btn__wrap">
+            <span class="c-btn__ico c-btn__ico--solo">
+                <svg class="o-ico o-ico--tool">
+                    <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#close"></use>
+                </svg>
+            </span>
+        </span>
+      </button>
     </div>
 
     <div class="c-modal__content js-modal-content">

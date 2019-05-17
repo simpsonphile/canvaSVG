@@ -11,19 +11,135 @@
     <body>
         <main class="l-main">
             <nav class="c-toolkit">
-    <button class="c-btn c-btn--toolkit c-btn--t3 c-hint js-modal-trigger js-color-for" data-hint-txt="Change fill color" data-modal="color" data-color-for="fill">c</button>
-    <button class="c-btn c-btn--toolkit c-btn--t3 c-hint js-modal-trigger js-color-for" data-hint-txt="Change stroke color" data-modal="color" data-color-for="stroke">sc</button>
-    <button class="c-btn c-btn--toolkit c-btn--t3 c-hint js-stroke-width" data-hint-txt="Change stroke width">sw</button>
-    <button class="c-btn c-btn--toolkit c-btn--t2 c-hint js-fig" data-fig="arc" data-hint-txt="Elipse shape">c</button>
-    <button class="c-btn c-btn--toolkit c-btn--t2 c-hint js-fig" data-fig="rec" data-hint-txt="Rectangle shape">r</button>
-    <button class="c-btn c-btn--toolkit c-btn--t2 c-hint js-fig" data-fig="line" data-hint-txt="Line shape">line</button>
-    <button class="c-btn c-btn--toolkit c-btn--t2 c-hint js-fig" data-fig="poly" data-hint-txt="Polyline shape">poly</button>
-    <button class="c-btn c-btn--toolkit c-btn--t2 c-hint js-fig" data-fig="curve" data-hint-txt="Bezier Curve shape">curve</button>
-    <button class="c-btn c-btn--toolkit c-btn--t2 c-hint js-fig" data-fig="scurve" data-hint-txt="Elipse shape">S</button>
-    <button class="c-btn c-btn--toolkit c-btn--t3 c-hint js-generate-svg js-modal-trigger" data-modal="generate-svg" data-hint-txt="Generate svg code">svg</button>
-    <button class="c-btn c-btn--toolkit c-btn--t3 c-hint js-reset-canvas" data-hint-txt="Clear canvas">reset</button>
-    <button class="c-btn c-btn--toolkit c-btn--t3 c-hint js-history-undo is-disabled" data-hint-txt="Undo last figure">UNDO</button>
-    <button class="c-btn c-btn--toolkit c-btn--t3 c-hint js-history-redo is-disabled" data-hint-txt="Redo last undone figure">REDO</button>
+    <button class="c-btn c-btn--toolkit c-btn--t3 c-hint js-modal-trigger js-color-for" data-hint-txt="Change fill color" data-modal="color" data-color-for="fill">
+        <span class="c-btn__wrap">
+            <span class="c-btn__ico c-btn__ico--solo">
+                <svg class="o-ico o-ico--tool">
+                    <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#fill"></use>
+                </svg>
+            </span>
+        </span>
+    </button>
+
+    <button class="c-btn c-btn--toolkit c-btn--t3 c-hint js-modal-trigger js-color-for" data-hint-txt="Change stroke color" data-modal="color" data-color-for="stroke">
+        <span class="c-btn__wrap">
+            <span class="c-btn__ico c-btn__ico--solo">
+                <svg class="o-ico o-ico--tool">
+                    <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#border-color"></use>
+                </svg>
+            </span>
+        </span>
+    </button>
+
+    <button class="c-btn c-btn--toolkit c-btn--t3 c-hint js-stroke-width" data-hint-txt="Change stroke width">
+        <span class="c-btn__wrap">
+            <span class="c-btn__ico c-btn__ico--solo">
+                <svg class="o-ico o-ico--tool">
+                    <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#width"></use>
+                </svg>
+            </span>
+        </span>
+    </button>
+
+    <button class="c-btn c-btn--toolkit c-btn--t2 c-hint js-fig" data-fig="arc" data-hint-txt="Elipse shape">
+        <span class="c-btn__wrap">
+            <span class="c-btn__ico c-btn__ico--solo">
+                <svg class="o-ico o-ico--tool">
+                    <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#circle"></use>
+                </svg>
+            </span>
+        </span>
+    </button>
+
+    <button class="c-btn c-btn--toolkit c-btn--t2 c-hint js-fig" data-fig="rec" data-hint-txt="Rectangle shape">
+        <span class="c-btn__wrap">
+            <span class="c-btn__ico c-btn__ico--solo">
+                <svg class="o-ico o-ico--tool">
+                    <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#rect"></use>
+                </svg>
+            </span>
+        </span>
+    </button>
+
+    <button class="c-btn c-btn--toolkit c-btn--t2 c-hint js-fig" data-fig="line" data-hint-txt="Line shape">
+        <span class="c-btn__wrap">
+            <span class="c-btn__ico c-btn__ico--solo">
+                <svg class="o-ico o-ico--tool">
+                    <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#line"></use>
+                </svg>
+            </span>
+        </span>
+    </button>
+
+    <button class="c-btn c-btn--toolkit c-btn--t2 c-hint js-fig" data-fig="poly" data-hint-txt="Polyline shape">
+        <span class="c-btn__wrap">
+            <span class="c-btn__ico c-btn__ico--solo">
+                <svg class="o-ico o-ico--tool">
+                    <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#polyline"></use>
+                </svg>
+            </span>
+        </span>
+    </button>
+
+    <button class="c-btn c-btn--toolkit c-btn--t2 c-hint js-fig" data-fig="curve" data-hint-txt="Bezier Curve shape">
+        <span class="c-btn__wrap">
+            <span class="c-btn__ico c-btn__ico--solo">
+                <svg class="o-ico o-ico--tool">
+                    <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#curved-line"></use>
+                </svg>
+            </span>
+        </span>
+    </button>
+
+    <button class="c-btn c-btn--toolkit c-btn--t2 c-hint js-fig" data-fig="scurve" data-hint-txt="Bezier curve path">
+        <span class="c-btn__wrap">
+            <span class="c-btn__ico c-btn__ico--solo">
+                <svg class="o-ico o-ico--tool">
+                    <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#scribble"></use>
+                </svg>
+            </span>
+        </span>
+    </button>
+
+    <button class="c-btn c-btn--toolkit c-btn--t3 c-hint js-generate-svg js-modal-trigger" data-modal="generate-svg" data-hint-txt="Generate svg code">
+        <span class="c-btn__wrap">
+            <span class="c-btn__ico c-btn__ico--solo">
+                <svg class="o-ico o-ico--tool">
+                    <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#code"></use>
+                </svg>
+            </span>
+        </span>
+    </button>
+
+    <button class="c-btn c-btn--toolkit c-btn--t3 c-hint js-reset-canvas" data-hint-txt="Clear canvas">
+        <span class="c-btn__wrap">
+            <span class="c-btn__ico c-btn__ico--solo">
+                <svg class="o-ico o-ico--tool">
+                    <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#delete"></use>
+                </svg>
+            </span>
+        </span>
+    </button>
+
+    <button class="c-btn c-btn--toolkit c-btn--t3 c-hint js-history-undo is-disabled" data-hint-txt="Undo last figure">
+        <span class="c-btn__wrap">
+            <span class="c-btn__ico c-btn__ico--solo">
+                <svg class="o-ico o-ico--tool">
+                    <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#undo"></use>
+                </svg>
+            </span>
+        </span>
+    </button>
+
+    <button class="c-btn c-btn--toolkit c-btn--t3 c-hint js-history-redo is-disabled" data-hint-txt="Redo last undone figure">
+        <span class="c-btn__wrap">
+            <span class="c-btn__ico c-btn__ico--solo">
+                <svg class="o-ico o-ico--tool">
+                    <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#redo"></use>
+                </svg>
+            </span>
+        </span>
+    </button>
 
     <div class="f-control--toggle">
         <input type="checkbox" class="js-toggle-fill" id="js-toggle-fill">
@@ -50,7 +166,15 @@
           Generated SVG Code
       </h2>
 
-      <button class="c-btn c-modal__close js-modal-close">&times;</button>
+      <button class="c-btn c-modal__close js-modal-close">
+        <span class="c-btn__wrap">
+            <span class="c-btn__ico c-btn__ico--solo">
+                <svg class="o-ico o-ico--tool">
+                    <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#close"></use>
+                </svg>
+            </span>
+        </span>
+      </button>
     </div>
 
     <div class="c-modal__content js-modal-content">
@@ -70,7 +194,15 @@
           Pick Color
       </h2>
 
-      <button class="c-btn c-modal__close js-modal-close">&times;</button>
+      <button class="c-btn c-modal__close js-modal-close">
+        <span class="c-btn__wrap">
+            <span class="c-btn__ico c-btn__ico--solo">
+                <svg class="o-ico o-ico--tool">
+                    <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#close"></use>
+                </svg>
+            </span>
+        </span>
+      </button>
     </div>
 
     <div class="c-modal__content js-modal-content">
