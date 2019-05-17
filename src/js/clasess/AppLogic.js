@@ -42,6 +42,7 @@ export class AppLogic {
   reset () {
     this.resetDrawingVars()
     this.figures = []
+    this.figuresHistory = []
   }
 
   computeClick (click) {
@@ -54,6 +55,8 @@ export class AppLogic {
     if (this.mode === 'line') this.computeLine()
     if (this.mode === 'curve') this.computeCurve()
     if (this.mode === 'scurve') this.computeSCurve()
+
+    this.manageHistoryBtns()
   }
 
   computeMouseMove (curPos) {
@@ -92,17 +95,18 @@ export class AppLogic {
     }
   }
 
-  changeHistory (action) { // will do later
-    if (action === 'undo') {
-
-    } else if (action === 'redo') {
-
+  changeHistory (action) {
+    if (action === 'undo' && this.figures.length > 0) {
+      this.figuresHistory.push(this.figures.pop())
+    } else if (action === 'redo' && this.figuresHistory.length > 0) {
+      this.figures.push(this.figuresHistory.pop())
     }
 
     this.manageHistoryBtns()
   }
+
   manageHistoryBtns () {
-    if (this.figures === this.figuresHistory) {
+    if (this.figuresHistory.length === 0) {
       DE.historyRedoBtn.classList.add('is-disabled')
     } else {
       DE.historyRedoBtn.classList.remove('is-disabled')
@@ -111,7 +115,7 @@ export class AppLogic {
     if (this.figures.length === 0) {
       DE.historyUndoBtn.classList.add('is-disabled')
     } else {
-      DE.historyRedoBtn.classList.remove('is-disabled')
+      DE.historyUndoBtn.classList.remove('is-disabled')
     }
   }
 
@@ -150,6 +154,7 @@ export class AppLogic {
 
     if (stop && this.step > 2) {
       this.figures.push(new SCurve(this.clicks, this.sw, this.sc, this.scale))
+      
       this.resetDrawingVars()
     }
   }
@@ -170,6 +175,7 @@ export class AppLogic {
 
     if (this.step === 3) {
       this.figures.push(new Curve(this.clicks[0].x, this.clicks[0].y, this.clicks[1].x, this.clicks[1].y, this.clicks[2].x, this.clicks[2].y, this.sw, this.sc, this.scale))
+      
       this.resetDrawingVars()
     }
   }
@@ -185,6 +191,7 @@ export class AppLogic {
   computeLine () {
     if (this.step === 2) {
       this.figures.push(new Line(this.clicks[0].x, this.clicks[0].y, this.clicks[1].x, this.clicks[1].y, this.sw, this.sc, this.scale))
+      
       this.resetDrawingVars()
     }
   }
@@ -200,6 +207,7 @@ export class AppLogic {
   computePoly (stop) {
     if (stop && this.step > 1) {
       this.figures.push(new Polyline(this.clicks, this.sw, this.sc, this.scale))
+      
       this.resetDrawingVars()
     }
   }
@@ -224,7 +232,7 @@ export class AppLogic {
       )
 
       this.figures.push(new Circle(this.clicks[0].x, this.clicks[0].y, r, this.sw, this.sc, this.fc, this.scale))
-
+      
       this.resetDrawingVars()
     }
   }
@@ -260,7 +268,7 @@ export class AppLogic {
       )
 
       this.figures.push(new Rectangle(this.clicks[0].x, this.clicks[0].y, w, h, this.sw, this.sc, this.fc, this.scale))
-
+      
       this.resetDrawingVars()
     }
   }
