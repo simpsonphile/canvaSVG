@@ -1,0 +1,29 @@
+.c-hint {
+  position: relative;
+
+  &::after {
+    content: attr(data-hint-txt);
+
+    position: absolute;
+    top: 0;
+    left: calc(100% + .5rem);
+    z-index: 99;
+
+    display: none;
+    pointer-events: none;
+
+    width: 15rem;
+    border-radius: .4rem;
+    border: 1px solid silver;
+    padding: .5rem;
+
+    font-size: 1.1rem;
+    text-align: left;
+
+    background-image: linear-gradient(125deg, $color_blue, $color_blue_2);
+  }
+
+  &:hover::after {
+    display: block;
+  }
+}

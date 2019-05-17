@@ -81,7 +81,6 @@ export class AppLogic {
 
   toggleFillMode () {
     this.fillMode = !this.fillMode
-    console.log(this.fillMode)
   }
 
   prepWheel (colorFor, wheel) {
@@ -197,7 +196,7 @@ export class AppLogic {
   computeLine () {
     if (this.step === 2) {
       this.figures.push(new Line(this.clicks[0].x, this.clicks[0].y, this.clicks[1].x, this.clicks[1].y, this.sw, this.sc, this.scale))
-      
+
       this.resetDrawingVars()
     }
   }
@@ -213,7 +212,7 @@ export class AppLogic {
   computePoly (stop) {
     if (stop && this.step > 1) {
       this.figures.push(new Polyline(this.clicks, this.sw, this.sc, this.scale))
-      
+
       this.resetDrawingVars()
     }
   }
@@ -222,6 +221,7 @@ export class AppLogic {
     if (this.step > 0) {
       this.drawShadow = true
       const points = [...this.clicks, curPos]
+      this.helperDots.push(new HelperDot(this.clicks[this.step - 1].x, this.clicks[this.step - 1].y))
       this.shadowFig = new Polyline(points, this.sw, this.sc)
     }
   }
@@ -238,7 +238,7 @@ export class AppLogic {
       )
 
       this.figures.push(new Circle(this.clicks[0].x, this.clicks[0].y, r, this.sw, this.sc, this.fc, this.scale, this.fillMode))
-      
+
       this.resetDrawingVars()
     }
   }
@@ -274,7 +274,7 @@ export class AppLogic {
       )
 
       this.figures.push(new Rectangle(this.clicks[0].x, this.clicks[0].y, w, h, this.sw, this.sc, this.fc, this.scale, this.fillMode))
-      
+
       this.resetDrawingVars()
     }
   }
