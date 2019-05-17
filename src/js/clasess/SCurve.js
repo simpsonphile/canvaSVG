@@ -1,12 +1,12 @@
 import { Figure } from './Figure'
 
 export class SCurve extends Figure {
-  constructor (points, sw, sc, scale, fc) {
+  constructor (points, sw, sc, scale) {
     super()
     this.points = points
     this.sw = sw
     this.sc = sc
-    this.fc = fc || 'transparent'
+    this.fc = 'transparent'
     this.scale = scale
   }
 

@@ -1,14 +1,14 @@
 import { Figure } from './Figure'
 
 export class Circle extends Figure {
-  constructor (cx, cy, r, sw, sc, fc, scale) {
+  constructor (cx, cy, r, sw, sc, fc, scale, fillMode) {
     super()
     this.cx = cx
     this.cy = cy
     this.r = r
     this.sw = sw
     this.sc = sc
-    this.fc = fc
+    this.fc = fillMode ? fc : 'transparent'
     this.scale = scale
   }
 
@@ -35,5 +35,6 @@ export class Circle extends Figure {
 
   drawFigure (ctx) {
     ctx.arc(parseInt(this.cx), parseInt(this.cy), parseInt(this.r), 0, 2 * Math.PI)
+    ctx.fillStyle = this.fc
   }
 }

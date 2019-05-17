@@ -18,6 +18,7 @@ export class AppLogic {
     this.colorFor = undefined
     this.sc = '#ffffff' //  strokeColor
     this.fc = '#ffffff' //  fillColor
+    this.fillMode = false
     this.mode = ''
     this.resetDrawingVars()
 
@@ -76,6 +77,11 @@ export class AppLogic {
   changeMode (nMode) {
     this.resetDrawingVars()
     this.mode = nMode
+  }
+
+  toggleFillMode () {
+    this.fillMode = !this.fillMode
+    console.log(this.fillMode)
   }
 
   prepWheel (colorFor, wheel) {
@@ -154,7 +160,7 @@ export class AppLogic {
 
     if (stop && this.step > 2) {
       this.figures.push(new SCurve(this.clicks, this.sw, this.sc, this.scale))
-      
+
       this.resetDrawingVars()
     }
   }
@@ -231,7 +237,7 @@ export class AppLogic {
         this.clicks[1].y
       )
 
-      this.figures.push(new Circle(this.clicks[0].x, this.clicks[0].y, r, this.sw, this.sc, this.fc, this.scale))
+      this.figures.push(new Circle(this.clicks[0].x, this.clicks[0].y, r, this.sw, this.sc, this.fc, this.scale, this.fillMode))
       
       this.resetDrawingVars()
     }
@@ -246,7 +252,7 @@ export class AppLogic {
         curPos.x,
         curPos.y
       )
-      this.shadowFig = new Circle(this.clicks[0].x, this.clicks[0].y, r, this.sw, this.sc, this.fc, this.scale)
+      this.shadowFig = new Circle(this.clicks[0].x, this.clicks[0].y, r, this.sw, this.sc, this.fc, this.scale, this.fillMode)
     }
   }
 
@@ -267,7 +273,7 @@ export class AppLogic {
         this.clicks[1].y
       )
 
-      this.figures.push(new Rectangle(this.clicks[0].x, this.clicks[0].y, w, h, this.sw, this.sc, this.fc, this.scale))
+      this.figures.push(new Rectangle(this.clicks[0].x, this.clicks[0].y, w, h, this.sw, this.sc, this.fc, this.scale, this.fillMode))
       
       this.resetDrawingVars()
     }
@@ -290,7 +296,7 @@ export class AppLogic {
         curPos.y
       )
 
-      this.shadowFig = new Rectangle(this.clicks[0].x, this.clicks[0].y, w, h, this.sw, this.sc, this.fc, this.scale)
+      this.shadowFig = new Rectangle(this.clicks[0].x, this.clicks[0].y, w, h, this.sw, this.sc, this.fc, this.scale, this.fillMode)
     }
   }
 }

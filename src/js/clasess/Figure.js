@@ -22,11 +22,11 @@ export class Figure {
 
   draw (ctx) {
     ctx.save()
+    ctx.fillStyle = 'transparent'
     ctx.beginPath()
     this.drawFigure(ctx)
     ctx.strokeStyle = this.sc
     ctx.stroke()
-    ctx.fillStyle = this.fc
     ctx.fill()
     ctx.restore()
   }

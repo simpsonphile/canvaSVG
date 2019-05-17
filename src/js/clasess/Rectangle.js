@@ -1,7 +1,7 @@
 import { Figure } from './Figure'
 
 export class Rectangle extends Figure {
-  constructor (x, y, w, h, sw, sc, fc, scale) {
+  constructor (x, y, w, h, sw, sc, fc, scale, fillMode) {
     super()
     this.x = x
     this.y = y
@@ -9,7 +9,7 @@ export class Rectangle extends Figure {
     this.h = h
     this.sw = sw
     this.sc = sc
-    this.fc = fc
+    this.fc = fillMode ? fc : 'transparent'
 
     this.scale = scale
   }
@@ -37,6 +37,7 @@ export class Rectangle extends Figure {
   }
 
   drawFigure (ctx) {
+    ctx.fillStyle = this.fc
     ctx.rect(parseInt(this.x), parseInt(this.y), parseInt(this.w), parseInt(this.h))
   }
 }

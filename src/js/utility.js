@@ -10,7 +10,8 @@ export const DE = {
   canvasSizeInputs: document.querySelectorAll('.js-canvas-size'),
   canvas: document.querySelector('.js-canvas'),
   canvasContainer: document.querySelector('js-canvas-container'),
-  cursorPosIndi: document.querySelector('.js-cursor-pos')
+  cursorPosIndi: document.querySelector('.js-cursor-pos'),
+  toggleFillMode: document.querySelectorAll('.js-toggle-fill')
 }
 
 export function vectorLength (x1, y1, x2, y2) {
