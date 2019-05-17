@@ -8,6 +8,10 @@
   height: 100vh;
 }
 
+.c-canvas-wrapper {
+  position: relative;
+}
+
 .c-canvas {
   border: 1px solid $color_white;
 

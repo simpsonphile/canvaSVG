@@ -7,7 +7,12 @@ fieldset {
 input,
 textarea {
     display: block;
+
     width: 100%;
+
+    background: rgba($color_black, .1);
+
+    color: $color_white;
 }
 
 input[type="text"],

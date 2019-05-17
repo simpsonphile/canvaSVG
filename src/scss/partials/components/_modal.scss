@@ -30,9 +30,6 @@
 
   width: 100%;
   max-width: 80rem;
-
-  background: $color_white;
-  box-shadow: 1px 1px 1px 1px rgba($color_black, .33);
 }
 
 .c-modal__top {
@@ -42,8 +39,10 @@
 
   display: flex;
 
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid $color_white;
   padding: 2rem;
+
+  background: linear-gradient(125deg, $color_blue, darken($color_blue, 15));
 }
 
 .c-modal__close {
@@ -54,8 +53,10 @@
 }
 
 .c-modal__content {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid $color_white;
   padding: 2rem;
+
+  background: $color_blue_2;
 }
 
 .c-modal__bot {
@@ -64,4 +65,10 @@
   display: flex;
 
   padding: 2rem;
+
+  background: linear-gradient(125deg, $color_blue, darken($color_blue, 15));
+}
+
+.c-modal__btn {
+  margin: 0 .5rem;
 }

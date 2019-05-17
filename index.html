@@ -11,28 +11,29 @@
     <body>
         <main class="l-main">
             <nav class="c-toolkit">
-    <button class="c-btn c-btn--toolkit c-toolkit__btn js-modal-trigger js-color-for" data-modal="color" data-color-for="fill">c</button>
-    <button class="c-btn c-btn--toolkit c-toolkit__btn js-modal-trigger js-color-for" data-modal="color" data-color-for="stroke">sc</button>
-    <button class="c-btn c-btn--toolkit c-toolkit__btn js-stroke-width">sw</button>
-    <button class="c-btn c-btn--toolkit c-toolkit__btn c-toolkit__btn--fig js-fig" data-fig="arc">c</button>
-    <button class="c-btn c-btn--toolkit c-toolkit__btn c-toolkit__btn--fig js-fig" data-fig="rec">r</button>
-    <button class="c-btn c-btn--toolkit c-toolkit__btn c-toolkit__btn--fig js-fig" data-fig="line">line</button>
-    <button class="c-btn c-btn--toolkit c-toolkit__btn c-toolkit__btn--fig js-fig" data-fig="poly">poly</button>
-    <button class="c-btn c-btn--toolkit c-toolkit__btn c-toolkit__btn--fig js-fig" data-fig="curve">curve</button>
-    <button class="c-btn c-btn--toolkit c-toolkit__btn c-toolkit__btn--fig js-fig" data-fig="scurve">S</button>
-    <button class="c-btn c-btn--toolkit c-toolkit__btn c-toolkit__btn js-generate-svg js-modal-trigger" data-modal="generate-svg">svg</button>
-    <button class="c-btn c-btn--toolkit c-toolkit__btn c-toolkit__btn js-reset-canvas">reset</button>
+    <button class="c-btn c-btn--toolkit c-btn--t3 js-modal-trigger js-color-for" data-modal="color" data-color-for="fill">c</button>
+    <button class="c-btn c-btn--toolkit c-btn--t3 js-modal-trigger js-color-for" data-modal="color" data-color-for="stroke">sc</button>
+    <button class="c-btn c-btn--toolkit c-btn--t3 js-stroke-width">sw</button>
+    <button class="c-btn c-btn--toolkit c-btn--t2 js-fig" data-fig="arc">c</button>
+    <button class="c-btn c-btn--toolkit c-btn--t2 js-fig" data-fig="rec">r</button>
+    <button class="c-btn c-btn--toolkit c-btn--t2 js-fig" data-fig="line">line</button>
+    <button class="c-btn c-btn--toolkit c-btn--t2 js-fig" data-fig="poly">poly</button>
+    <button class="c-btn c-btn--toolkit c-btn--t2 js-fig" data-fig="curve">curve</button>
+    <button class="c-btn c-btn--toolkit c-btn--t2 js-fig" data-fig="scurve">S</button>
+    <button class="c-btn c-btn--toolkit c-btn--t3 js-generate-svg js-modal-trigger" data-modal="generate-svg">svg</button>
+    <button class="c-btn c-btn--toolkit c-btn--t3 js-reset-canvas">reset</button>
 </nav>
             <div class="js-canvas-container c-canvas-container">
-    <canvas class="js-canvas c-canvas"></canvas>
+    <span class="c-canvas-wrapper">
+        <canvas class="js-canvas c-canvas"></canvas>
+        <span class="c-cursor-pos js-cursor-pos"></span>
+    </span>
 
     <div class="c-canvas__size c-dimensions">
         <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="c-dimensions__input js-canvas-size" data-canvas-size="width" value="100">
         <span>,</span>
         <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="c-dimensions__input js-canvas-size" data-canvas-size="height" value="100">
     </div>
-
-    <span class="c-cursor-pos js-cursor-pos"></span>
 </div>            <div class="c-modal js-modal u-hidden" data-modal="generate-svg">
   <span class="c-modal__bg"></span>
   <div class="c-modal__container">
@@ -49,8 +50,8 @@
     </div>
 
     <div class="c-modal__bot js-modal-bottom">
-        <button class="c-btn c-modal__btn js-modal-close">OK</button>
-  <button class="c-btn c-modal__btn js-copy">copy</button>
+        <button class="c-btn c-btn--primary c-btn--t1 c-modal__btn js-modal-close">OK</button>
+  <button class="c-btn c-btn--primary c-btn--t1 c-modal__btn js-copy">copy</button>
     </div>
   </div>
 </div>            <div class="c-modal js-modal u-hidden" data-modal="color">
@@ -69,7 +70,7 @@
     </div>
 
     <div class="c-modal__bot js-modal-bottom">
-        <button class="c-btn c-modal__btn js-modal-close">OK</button>
+        <button class="c-btn c-btn--primary c-btn--t2 c-modal__btn js-modal-close">OK</button>
     </div>
   </div>
 </div>        </main>

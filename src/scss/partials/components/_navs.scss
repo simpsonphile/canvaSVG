@@ -6,27 +6,5 @@
 
   display: flex;
 
-  width: 8rem;
+  width: 10rem;
 }
-
-.c-toolkit__btn {
-  flex: 0 0 49%;
-
-  margin-bottom: 2%;
-  width: 3.6rem;
-  height: 3.6rem;
-
-  background-image: linear-gradient(120deg, $color_violet, $color_orange);
-  color: $color_white;
-}
-
-.c-toolkit__btn--fig {
-  background-image: linear-gradient(120deg, $color_blue, $color_blue_2);
-  color: $color_white;
-
-  &.is-active {
-    background-image: linear-gradient(120deg, lighten($color_blue, 15), lighten($color_blue_2, 15));
-    border: 1px solid $color_white;
-  }
-}
-
