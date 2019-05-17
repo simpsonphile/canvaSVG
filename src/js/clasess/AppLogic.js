@@ -1,4 +1,3 @@
-import { maths } from '../clasess/Math'
 import { Circle } from '../clasess/Circle'
 import { Rectangle } from '../clasess/Rectangle'
 import { Polyline } from '../clasess/Polyline'
@@ -6,6 +5,8 @@ import { Line } from '../clasess/Line'
 import { Curve } from './Curve'
 import { SCurve } from './SCurve'
 import { HelperDot } from './HelperDot'
+
+import { DE, vectorLength } from '../utility'
 
 export class AppLogic {
   constructor () {
@@ -197,7 +198,7 @@ export class AppLogic {
 
   computeArc () {
     if (this.step === 2) {
-      const r = maths.vectorLength(
+      const r = vectorLength(
         this.clicks[0].x,
         this.clicks[0].y,
         this.clicks[1].x,
@@ -213,7 +214,7 @@ export class AppLogic {
   symulateArc (curPos) {
     if (this.step === 1) {
       this.drawShadow = true
-      const r = maths.vectorLength(
+      const r = vectorLength(
         this.clicks[0].x,
         this.clicks[0].y,
         curPos.x,
@@ -226,14 +227,14 @@ export class AppLogic {
   /* rec functions */
   computeRec () {
     if (this.step === 2) {
-      const w = maths.vectorLength(
+      const w = vectorLength(
         this.clicks[0].x,
         0,
         this.clicks[1].x,
         0
       )
 
-      const h = maths.vectorLength(
+      const h = vectorLength(
         0,
         this.clicks[0].y,
         0,
@@ -249,14 +250,14 @@ export class AppLogic {
   symulateRec (curPos) {
     if (this.step === 1) {
       this.drawShadow = true
-      const w = maths.vectorLength(
+      const w = vectorLength(
         this.clicks[0].x,
         0,
         curPos.x,
         0
       )
 
-      const h = maths.vectorLength(
+      const h = vectorLength(
         0,
         this.clicks[0].y,
         0,

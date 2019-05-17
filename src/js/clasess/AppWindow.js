@@ -1,12 +1,14 @@
+import { DE } from '../utility'
+
 export class AppWindow {
   constructor (app) {
     this.app = app
 
-    this.canvas = document.querySelector('.js-canvas')
-    this.canvasContainer = document.querySelector('js-canvas-container')
-    this.ctx = this.canvas.getContext('2d')
+    // this.canvas = document.querySelector('.js-canvas')
+    // this.canvasContainer = document.querySelector('js-canvas-container')
+    this.ctx = DE.canvas.getContext('2d')
 
-    this.cursorPosIndi = document.querySelector('.js-cursor-pos')
+    // this.cursorPosIndi = document.querySelector('.js-cursor-pos')
   }
 
   resize () {
@@ -21,8 +23,8 @@ export class AppWindow {
 
     this.scale *= 0.95
 
-    this.canvas.height = this.scale * this.app.svg.height
-    this.canvas.width = this.scale * this.app.svg.width
+    DE.canvas.height = this.scale * this.app.svg.height
+    DE.canvas.width = this.scale * this.app.svg.width
 
     this.app.scale = this.scale
     this.app.rescale()
@@ -40,14 +42,14 @@ export class AppWindow {
   }
 
   updateCursor (event) {
-    this.cursorPosIndi.style.display = `block`
-    this.cursorPosIndi.style.left = `${event.layerX}px`
-    this.cursorPosIndi.style.top = `${event.layerY}px`
+    DE.cursorPosIndi.style.display = `block`
+    DE.cursorPosIndi.style.left = `${event.layerX}px`
+    DE.cursorPosIndi.style.top = `${event.layerY}px`
 
     const x = Math.floor(event.layerX / this.scale)
     const y = Math.floor(event.layerY / this.scale)
 
-    this.cursorPosIndi.innerHTML = `(${x}, ${y})`
+    DE.cursorPosIndi.innerHTML = `(${x}, ${y})`
   }
 
   init () {
@@ -63,17 +65,17 @@ export class AppWindow {
       self.resize()
     })
 
-    this.canvas.addEventListener('click', function (event) {
+    DE.canvas.addEventListener('click', function (event) {
       self.app.computeClick(self.returnPoint(event))
     })
 
-    this.canvas.addEventListener('mousemove', function (event) {
+    DE.canvas.addEventListener('mousemove', function (event) {
       self.app.computeMouseMove(self.returnPoint(event))
       self.updateCursor(event)
     })
 
-    this.canvas.addEventListener('mouseout', function () {
-      self.cursorPosIndi.style.display = 'none'
+    DE.canvas.addEventListener('mouseout', function () {
+      DE.cursorPosIndi.style.display = 'none'
     })
 
     document.addEventListener('keypress', function (event) {
@@ -84,7 +86,7 @@ export class AppWindow {
   }
 
   draw () {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+    this.ctx.clearRect(0, 0, DE.canvas.width, DE.canvas.height)
 
     this.app.figures.forEach(fig => {
       fig.draw(this.ctx)
