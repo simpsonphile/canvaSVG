@@ -176,6 +176,10 @@ export class AppLogic {
 
   /* Curve functions */
   computeCurve () {
+    if (this.step === 1) {
+      this.helperDots.push(new HelperDot(this.clicks[this.step - 1].x, this.clicks[this.step - 1].y))
+    }
+
     if (this.step <= 2) {
       this.helperDots.push(new HelperDot(this.clicks[this.step - 1].x, this.clicks[this.step - 1].y))
     }
@@ -237,6 +241,10 @@ export class AppLogic {
   /* arc functions */
 
   computeArc () {
+    if (this.step === 1) {
+      this.helperDots.push(new HelperDot(this.clicks[this.step - 1].x, this.clicks[this.step - 1].y))
+    }
+    
     if (this.step === 2) {
       const rx = vectorLength(
         this.clicks[0].x,
@@ -290,6 +298,10 @@ export class AppLogic {
 
   /* rec functions */
   computeRec () {
+    if (this.step === 1) {
+      this.helperDots.push(new HelperDot(this.clicks[this.step - 1].x, this.clicks[this.step - 1].y))
+    }
+
     if (this.step === 2) {
       const w = vectorLength(
         this.clicks[0].x,
