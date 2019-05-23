@@ -1,4 +1,4 @@
-import { Circle } from '../clasess/Circle'
+import { Ellipse } from '../clasess/Ellipse'
 import { Rectangle } from '../clasess/Rectangle'
 import { Polyline } from '../clasess/Polyline'
 import { Line } from '../clasess/Line'
@@ -15,7 +15,7 @@ export class AppLogic {
 
   init () {
     this.keyMapDown = []
-    
+
     this.sw = 1 //  strokeWidth
     this.colorFor = undefined
     this.sc = '#ffffff' //  strokeColor
@@ -232,14 +232,25 @@ export class AppLogic {
 
   computeArc () {
     if (this.step === 2) {
-      const r = vectorLength(
+      const rx = vectorLength(
         this.clicks[0].x,
-        this.clicks[0].y,
+        0,
         this.clicks[1].x,
+        0
+      )
+
+      const ry = vectorLength(
+        0,
+        this.clicks[0].y,
+        0,
         this.clicks[1].y
       )
 
-      this.figures.push(new Circle(this.clicks[0].x, this.clicks[0].y, r, this.sw, this.sc, this.fc, this.scale, this.fillMode))
+      if (this.keyMapDown[16]) {
+        this.figures.push(new Ellipse(this.clicks[0].x, this.clicks[0].y, rx, rx, this.sw, this.sc, this.fc, this.scale, this.fillMode))
+      } else {
+        this.figures.push(new Ellipse(this.clicks[0].x, this.clicks[0].y, rx, ry, this.sw, this.sc, this.fc, this.scale, this.fillMode))
+      }
 
       this.resetDrawingVars()
     }
@@ -248,13 +259,26 @@ export class AppLogic {
   symulateArc (curPos) {
     if (this.step === 1) {
       this.drawShadow = true
-      const r = vectorLength(
+
+      const rx = vectorLength(
         this.clicks[0].x,
-        this.clicks[0].y,
+        0,
         curPos.x,
+        0
+      )
+
+      const ry = vectorLength(
+        0,
+        this.clicks[0].y,
+        0,
         curPos.y
       )
-      this.shadowFig = new Circle(this.clicks[0].x, this.clicks[0].y, r, this.sw, this.sc, this.fc, this.scale, this.fillMode)
+
+      if (this.keyMapDown[16]) {
+        this.shadowFig = new Ellipse(this.clicks[0].x, this.clicks[0].y, rx, rx, this.sw, this.sc, this.fc, this.scale, this.fillMode)
+      } else {
+        this.shadowFig = new Ellipse(this.clicks[0].x, this.clicks[0].y, rx, ry, this.sw, this.sc, this.fc, this.scale, this.fillMode)
+      }
     }
   }
 

@@ -1,11 +1,12 @@
 import { Figure } from './Figure'
 
-export class Circle extends Figure {
-  constructor (cx, cy, r, sw, sc, fc, scale, fillMode) {
+export class Ellipse extends Figure {
+  constructor (cx, cy, rx, ry, sw, sc, fc, scale, fillMode) {
     super()
     this.cx = cx
     this.cy = cy
-    this.r = r
+    this.rx = rx
+    this.ry = ry
     this.sw = sw
     this.sc = sc
     this.fc = fillMode ? fc : 'transparent'
@@ -18,23 +19,25 @@ export class Circle extends Figure {
 
     this.cx *= toScale
     this.cy *= toScale
-    this.r *= toScale
+    this.rx *= toScale
+    this.ry *= toScale
   }
 
   generateFigureHTML () {
     return `
-      <circle cx="${this.scaleForSvg(this.cx)}"
+      <ellipse cx="${this.scaleForSvg(this.cx)}"
               cy="${this.scaleForSvg(this.cy)}"
-              r="${this.scaleForSvg(this.r)}"
+              rx="${this.scaleForSvg(this.rx)}"
+              ry="${this.scaleForSvg(this.ry)}"
               stroke-width="${this.sw}"
               stroke="${this.sc}"
               fill="${this.fc}">
-      </circle>
+      </ellipse>
       `
   }
 
   drawFigure (ctx) {
-    ctx.arc(parseInt(this.cx), parseInt(this.cy), parseInt(this.r), 0, 2 * Math.PI)
+    ctx.ellipse(parseInt(this.cx), parseInt(this.cy), parseInt(this.rx), parseInt(this.ry), 0, 0, 2 * Math.PI)
     ctx.fillStyle = this.fc
   }
 }
