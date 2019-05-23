@@ -14,6 +14,8 @@ export class AppLogic {
   }
 
   init () {
+    this.keyMapDown = []
+    
     this.sw = 1 //  strokeWidth
     this.colorFor = undefined
     this.sc = '#ffffff' //  strokeColor
@@ -272,8 +274,11 @@ export class AppLogic {
         0,
         this.clicks[1].y
       )
-
-      this.figures.push(new Rectangle(this.clicks[0].x, this.clicks[0].y, w, h, this.sw, this.sc, this.fc, this.scale, this.fillMode))
+      if (this.keyMapDown[16]) {
+        this.figures.push(new Rectangle(this.clicks[0].x, this.clicks[0].y, w, w, this.sw, this.sc, this.fc, this.scale, this.fillMode))
+      } else {
+        this.figures.push(new Rectangle(this.clicks[0].x, this.clicks[0].y, w, h, this.sw, this.sc, this.fc, this.scale, this.fillMode))
+      }
 
       this.resetDrawingVars()
     }
@@ -296,7 +301,11 @@ export class AppLogic {
         curPos.y
       )
 
-      this.shadowFig = new Rectangle(this.clicks[0].x, this.clicks[0].y, w, h, this.sw, this.sc, this.fc, this.scale, this.fillMode)
+      if (this.keyMapDown[16]) {
+        this.shadowFig = new Rectangle(this.clicks[0].x, this.clicks[0].y, w, w, this.sw, this.sc, this.fc, this.scale, this.fillMode)
+      } else {
+        this.shadowFig = new Rectangle(this.clicks[0].x, this.clicks[0].y, w, h, this.sw, this.sc, this.fc, this.scale, this.fillMode)
+      }
     }
   }
 }

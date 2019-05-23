@@ -80,6 +80,14 @@ export class AppWindow {
         self.app.computeSpace()
       }
     })
+
+    document.addEventListener('keydown', function (event) {
+      self.app.keyMapDown[event.keyCode] = true
+    })
+
+    document.addEventListener('keyup', function (event) {
+      self.app.keyMapDown[event.keyCode] = false
+    })
   }
 
   draw () {
