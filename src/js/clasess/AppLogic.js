@@ -5,6 +5,7 @@ import { Line } from '../clasess/Line'
 import { Curve } from './Curve'
 import { SCurve } from './SCurve'
 import { HelperDot } from './HelperDot'
+import { SizeIndicator } from './SizeIndicator'
 
 import { DE, vectorLength } from '../utility'
 
@@ -40,6 +41,8 @@ export class AppLogic {
     this.shadowFig = {}
     this.drawShadow = false
     this.helperDots = []
+    this.sizeIndicators = []
+    this.diameters = []
   }
 
   reset () {
@@ -244,7 +247,7 @@ export class AppLogic {
     if (this.step === 1) {
       this.helperDots.push(new HelperDot(this.clicks[this.step - 1].x, this.clicks[this.step - 1].y))
     }
-    
+
     if (this.step === 2) {
       const rx = vectorLength(
         this.clicks[0].x,
@@ -287,6 +290,17 @@ export class AppLogic {
         0,
         curPos.y
       )
+
+      this.sizeIndicators[0] = new SizeIndicator(this.clicks[0].x + parseInt(rx / 2), this.clicks[0].y - 5, parseInt(rx / 2), 'orange')
+      this.diameters[0] = new Line(this.clicks[0].x, this.clicks[0].y, curPos.x, this.clicks[0].y, 2, 'orange')
+
+      if (this.keyMapDown[16]) {
+        delete this.sizeIndicators[1]
+        delete this.diameters[1]
+      } else {
+        this.sizeIndicators[1] = new SizeIndicator(this.clicks[0].x + 5, this.clicks[0].y + parseInt(ry / 2), parseInt(ry / 2), 'orangered')
+        this.diameters[1] = new Line(this.clicks[0].x, this.clicks[0].y, this.clicks[0].x, curPos.y, 2, 'orangered')
+      }
 
       if (this.keyMapDown[16]) {
         this.shadowFig = new Ellipse(this.clicks[0].x, this.clicks[0].y, rx, rx, this.sw, this.sc, this.fc, this.scale, this.fillMode)
@@ -342,6 +356,14 @@ export class AppLogic {
         0,
         curPos.y
       )
+
+      this.sizeIndicators[0] = new SizeIndicator(this.clicks[0].x + parseInt(w / 2), this.clicks[0].y - 5, w, 'orange')
+
+      if (this.keyMapDown[16]) {
+        delete this.sizeIndicators[1]
+      } else {
+        this.sizeIndicators[1] = new SizeIndicator(this.clicks[0].x + 5, this.clicks[0].y + parseInt(h / 2), h, 'orangered')
+      }
 
       if (this.keyMapDown[16]) {
         this.shadowFig = new Rectangle(this.clicks[0].x, this.clicks[0].y, w, w, this.sw, this.sc, this.fc, this.scale, this.fillMode)

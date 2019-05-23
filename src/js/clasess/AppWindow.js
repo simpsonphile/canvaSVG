@@ -110,5 +110,13 @@ export class AppWindow {
       }
       dot.draw(this.ctx, specialColor, this.scale)
     })
+
+    this.app.sizeIndicators.forEach(size => {
+      size.draw(this.ctx)
+    })
+
+    this.app.diameters.forEach(diameter => {
+      diameter.draw(this.ctx)
+    })
   }
 }
