@@ -71,8 +71,8 @@ export class AppLogic {
     if (this.mode === 'scurve') this.symulateSCurve(curPos)
   }
 
-  computeSpace () {
-    if (this.mode === 'poly') this.computePoly(true)
+  layFigure (close = false) {
+    if (this.mode === 'poly') this.computePoly(true, close)
     if (this.mode === 'scurve') this.computeSCurve(true)
   }
 
@@ -182,7 +182,7 @@ export class AppLogic {
 
     if (this.step === 3) {
       this.figures.push(new Curve(this.clicks[0].x, this.clicks[0].y, this.clicks[1].x, this.clicks[1].y, this.clicks[2].x, this.clicks[2].y, this.sw, this.sc, this.scale))
-      
+
       this.resetDrawingVars()
     }
   }
@@ -211,8 +211,10 @@ export class AppLogic {
   }
 
   /* poly functions */
-  computePoly (stop) {
+  computePoly (stop, close) {
     if (stop && this.step > 1) {
+      if (close) this.clicks.push(this.clicks[0])
+
       this.figures.push(new Polyline(this.clicks, this.sw, this.sc, this.scale))
 
       this.resetDrawingVars()

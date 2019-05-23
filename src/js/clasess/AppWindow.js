@@ -76,8 +76,10 @@ export class AppWindow {
     document.addEventListener('keypress', function (event) {
       if (event.key === 'q' || event.keyCode === 81) { // q
         self.app.resetDrawingVars()
-      } else if (event.key === 'Space' || event.keyCode === 32) { // Space
-        self.app.computeSpace()
+      } else if (event.key === 'c' || event.keyCode === 67) { // c
+        self.app.layFigure()
+      } else if (event.key === 'Space' || event.keyCode === 32) { //  Space
+        self.app.layFigure(true)
       }
     })
 
