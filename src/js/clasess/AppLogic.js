@@ -196,6 +196,10 @@ export class AppLogic {
 
   /* line functions */
   computeLine () {
+    if (this.step === 1) {
+      this.helperDots.push(new HelperDot(this.clicks[this.step - 1].x, this.clicks[this.step - 1].y))
+    }
+
     if (this.step === 2) {
       this.figures.push(new Line(this.clicks[0].x, this.clicks[0].y, this.clicks[1].x, this.clicks[1].y, this.sw, this.sc, this.scale))
 
