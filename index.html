@@ -10,7 +10,9 @@
 <link rel="icon" type="image/x-icon" href="./static/img/favicon.svg">    </head>
     <body>
         <main class="l-main">
-            <nav class="c-toolkit">
+            <div class="l-app">
+                <div class="l-app__sidebar">
+                     <nav class="c-toolkit">
     <button class="c-btn c-btn--toolkit c-btn--t3 c-hint js-modal-trigger js-color-for" data-hint-txt="Change fill color" data-modal="color" data-color-for="fill">
         <span class="c-btn__wrap">
             <span class="c-btn__ico c-btn__ico--solo">
@@ -141,18 +143,28 @@
         </span>
     </button>
 </nav>
-            <div class="js-canvas-container c-canvas-container">
+                     <div class="c-dimensions">
+    <h3 class="t-head t-head--standard">Canvas Size</h3>
+
+    <label class="c-dimensions__label">Width: 
+        <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="c-dimensions__input js-canvas-size" data-canvas-size="width" value="100">
+    </label>
+
+    <label class="c-dimensions__label">Height: 
+        <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="c-dimensions__input js-canvas-size" data-canvas-size="height" value="100">
+    </label>
+</div>                </div>
+
+                <div class="l-app__canvas js-canvas-window">
+                    <div class="js-canvas-container c-canvas-container">
     <span class="c-canvas-wrapper">
         <canvas class="js-canvas c-canvas"></canvas>
         <span class="c-cursor-pos js-cursor-pos"></span>
     </span>
+</div>                </div>
+            </div>
 
-    <div class="c-canvas__size c-dimensions">
-        <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="c-dimensions__input js-canvas-size" data-canvas-size="width" value="100">
-        <span>,</span>
-        <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="c-dimensions__input js-canvas-size" data-canvas-size="height" value="100">
-    </div>
-</div>            <div class="c-modal js-modal u-hidden" data-modal="generate-svg">
+            <div class="c-modal js-modal u-hidden" data-modal="generate-svg">
   <span class="c-modal__bg"></span>
   <div class="c-modal__container">
     <div class="c-modal__top">

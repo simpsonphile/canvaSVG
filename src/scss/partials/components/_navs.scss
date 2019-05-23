@@ -1,10 +1,9 @@
 .c-toolkit {
-  position: fixed;
-  z-index: 2;
   flex-wrap: wrap;
-  justify-content: space-between;
+  flex-direction: column;
 
   display: flex;
 
-  width: 10rem;
+  max-height: calc(100% - 20rem);
+  width: 100%;
 }

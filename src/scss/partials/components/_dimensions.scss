@@ -1,13 +1,5 @@
-.c-dimensions {
+.c-dimensions__label {
   display: flex;
-
-  &::before {
-    content: "(";
-  }
-
-  &::after {
-    content: ")";
-  }
 }
 
 .c-dimensions__input {

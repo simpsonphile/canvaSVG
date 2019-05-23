@@ -9,8 +9,17 @@
     </head>
     <body>
         <main class="l-main">
-            {% include "partials/layouts/toolkit.twig" %}
-            {% include "partials/layouts/canvas.twig" %}
+            <div class="l-app">
+                <div class="l-app__sidebar">
+                     {% include "partials/layouts/toolkit.twig" %}
+                     {% include "partials/layouts/dimensions.twig" %}
+                </div>
+
+                <div class="l-app__canvas js-canvas-window">
+                    {% include "partials/layouts/canvas.twig" %}
+                </div>
+            </div>
+
             {% include "partials/layouts/modal-generate-svg.twig" with {"modalID": "generate-svg"} %}
             {% include "partials/layouts/modal-color.twig" with {"modalID": "color"} %}
         </main>

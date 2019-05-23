@@ -7,8 +7,8 @@ export class AppWindow {
   }
 
   resize () {
-    const scaleOfHeight = window.innerHeight / this.app.svg.height
-    const scaleOfWidth = window.innerWidth / this.app.svg.width
+    const scaleOfHeight = DE.canvasWindow.offsetHeight / this.app.svg.height
+    const scaleOfWidth = DE.canvasWindow.offsetWidth / this.app.svg.width
 
     if (scaleOfHeight > scaleOfWidth) {
       this.scale = scaleOfWidth

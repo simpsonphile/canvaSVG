@@ -2,10 +2,10 @@
   position: relative;
   align-items: center;
   justify-content: center;
-  
+
   display: flex;
 
-  height: 100vh;
+  height: 100%;
 }
 
 .c-canvas-wrapper {
@@ -14,10 +14,5 @@
 
 .c-canvas {
   border: 1px solid $color_white;
-
   background: rgba($color_white, .1);
-}
-
-.c-canvas__size {
-  align-self: flex-start;
 }

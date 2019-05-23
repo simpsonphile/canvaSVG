@@ -1,4 +1,5 @@
 export const DE = {
+  canvasWindow: document.querySelector('.js-canvas-window'),
   figBtns: document.querySelectorAll('.js-fig'),
   historyUndoBtn: document.querySelector('.js-history-undo'),
   historyRedoBtn: document.querySelector('.js-history-redo'),
