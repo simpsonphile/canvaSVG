@@ -48,16 +48,12 @@ export class AppWindow {
   }
 
   init () {
-    window.addEventListener('DOMContentLoaded', () => {
-      this.resize()
-    })
-    window.addEventListener('resize', () => {
-      this.resize()
-    })
-    window.addEventListener('orientationchange', () => {
-      this.resize()
-    })
+    //  Resize canvas events
+    window.addEventListener('DOMContentLoaded', () => { this.resize() })
+    window.addEventListener('resize', () => { this.resize() })
+    window.addEventListener('orientationchange', () => { this.resize() })
 
+    //  Mouse events
     DE.canvas.addEventListener('click', event => {
       this.app.computeClick(this.returnPoint(event))
     })
@@ -71,22 +67,23 @@ export class AppWindow {
       DE.cursorPosIndi.style.display = 'none'
     })
 
-    document.addEventListener('keypress', event => {
-      if (event.key === 'q' || event.keyCode === 81) { // q
-        this.app.resetDrawingVars()
-      } else if (event.key === 'c' || event.keyCode === 67) { // c
-        this.app.layFigure()
-      } else if (event.key === 'Space' || event.keyCode === 32) { //  Space
-        this.app.layFigure(true)
-      }
-    })
-
+    //  Keyboard events
     document.addEventListener('keydown', event => {
       this.app.keyMapDown[event.keyCode] = true
     })
 
     document.addEventListener('keyup', event => {
       this.app.keyMapDown[event.keyCode] = false
+    })
+
+    document.addEventListener('keypress', event => {
+      if (event.key === 'q' || event.keyCode === 81) {
+        this.app.resetDrawingVars()
+      } else if (event.key === 'c' || event.keyCode === 67) {
+        this.app.layFigure()
+      } else if (event.key === 'Space' || event.keyCode === 32) {
+        this.app.layFigure(true)
+      }
     })
   }
 
