@@ -48,47 +48,45 @@ export class AppWindow {
   }
 
   init () {
-    const self = this
-
-    window.addEventListener('DOMContentLoaded', function () {
-      self.resize()
+    window.addEventListener('DOMContentLoaded', () => {
+      this.resize()
     })
-    window.addEventListener('resize', function () {
-      self.resize()
+    window.addEventListener('resize', () => {
+      this.resize()
     })
-    window.addEventListener('orientationchange', function () {
-      self.resize()
+    window.addEventListener('orientationchange', () => {
+      this.resize()
     })
 
-    DE.canvas.addEventListener('click', function (event) {
-      self.app.computeClick(self.returnPoint(event))
+    DE.canvas.addEventListener('click', event => {
+      this.app.computeClick(this.returnPoint(event))
     })
 
-    DE.canvas.addEventListener('mousemove', function (event) {
-      self.app.computeMouseMove(self.returnPoint(event))
-      self.updateCursor(event)
+    DE.canvas.addEventListener('mousemove', event => {
+      this.app.computeMouseMove(this.returnPoint(event))
+      this.updateCursor(event)
     })
 
-    DE.canvas.addEventListener('mouseout', function () {
+    DE.canvas.addEventListener('mouseout', () => {
       DE.cursorPosIndi.style.display = 'none'
     })
 
-    document.addEventListener('keypress', function (event) {
+    document.addEventListener('keypress', event => {
       if (event.key === 'q' || event.keyCode === 81) { // q
-        self.app.resetDrawingVars()
+        this.app.resetDrawingVars()
       } else if (event.key === 'c' || event.keyCode === 67) { // c
-        self.app.layFigure()
+        this.app.layFigure()
       } else if (event.key === 'Space' || event.keyCode === 32) { //  Space
-        self.app.layFigure(true)
+        this.app.layFigure(true)
       }
     })
 
-    document.addEventListener('keydown', function (event) {
-      self.app.keyMapDown[event.keyCode] = true
+    document.addEventListener('keydown', event => {
+      this.app.keyMapDown[event.keyCode] = true
     })
 
-    document.addEventListener('keyup', function (event) {
-      self.app.keyMapDown[event.keyCode] = false
+    document.addEventListener('keyup', event => {
+      this.app.keyMapDown[event.keyCode] = false
     })
   }
 
