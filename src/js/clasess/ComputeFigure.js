@@ -219,12 +219,12 @@ export class ComputeFigure {
         curPos.y
       )
 
-      G.sizeIndicators[0] = new SizeIndicator(G.clicks[0].x + parseInt(w / 2), G.clicks[0].y - 5, Math.floor(w / G.scale), 'orange')
+      G.sizeIndicators[0] = new SizeIndicator(G.clicks[0].x + parseInt(w / 2), G.clicks[0].y - 5, Math.floor(w / G.scale), invertColor(G.fc))
 
       if (G.keyMapDown[16]) {
         delete G.sizeIndicators[1]
       } else {
-        G.sizeIndicators[1] = new SizeIndicator(G.clicks[0].x + 5, G.clicks[0].y + parseInt(h / 2), Math.floor(h / G.scale), 'orangered')
+        G.sizeIndicators[1] = new SizeIndicator(G.clicks[0].x + 5, G.clicks[0].y + parseInt(h / 2), Math.floor(h / G.scale), invertColor(G.fc))
       }
 
       if (G.keyMapDown[16]) {
