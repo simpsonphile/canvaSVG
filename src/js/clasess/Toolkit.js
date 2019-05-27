@@ -48,6 +48,10 @@ export class Toolkit {
       })
     })
 
+    DE.strokeWidthInput.addEventListener('change', event => {
+      this.app.updateStrokeWidth(event.target.value)
+    })
+
     DE.historyUndoBtn.addEventListener('click', event => {
       this.app.changeHistory('undo')
     })

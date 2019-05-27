@@ -25,6 +25,7 @@ export class Figure {
     ctx.fillStyle = 'transparent'
     ctx.beginPath()
     this.drawFigure(ctx)
+    ctx.lineWidth = this.sw * this.scale
     ctx.strokeStyle = this.sc
     ctx.stroke()
     ctx.fill()

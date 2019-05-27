@@ -115,6 +115,10 @@ export class AppLogic {
     }
   }
 
+  updateStrokeWidth (size) {
+    G.sw = size
+  }
+
   generateSvg () {
     let svgHTML = `<svg viewBox="0 0 ${G.svg.width} ${G.svg.height}">`
 

@@ -14,7 +14,9 @@ export const DE = {
   cursorPosIndi: document.querySelector('.js-cursor-pos'),
   toggleFillMode: document.querySelectorAll('.js-toggle-fill'),
   fillColorIndicator: document.querySelector('.js-fill-color-indicator'),
-  strokeColorIndicator: document.querySelector('.js-stroke-color-indicator')
+  strokeColorIndicator: document.querySelector('.js-stroke-color-indicator'),
+  strokeWidthBtn: document.querySelector('.js-stroke-width'),
+  strokeWidthInput: document.querySelector('.js-stroke-width-input')
 }
 
 export function vectorLength (x1, y1, x2, y2) {
@@ -50,8 +52,8 @@ export const G = {
   scale: 1,
   keyMapDown: [],
   svg: {
-    width: 100,
-    height: 100
+    width: 1000,
+    height: 1000
   },
 
   sw: 1,
