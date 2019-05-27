@@ -1,39 +1,7 @@
 
-/* Buttons
-  ========================================================================== */
 @import 'buttons';
-
-/* Forms
-  ========================================================================== */
-@import 'forms/base';
-@import 'forms/forms';
-@import 'forms/fields';
-@import 'forms/chooses-list';
-@import 'forms/controls';
-@import 'forms/labels';
-@import 'forms/actions';
-@import 'forms/valid';
-
-/* Icons
-  ========================================================================== */
 @import 'icons';
-
-/* Navs
-  ========================================================================== */
-@import 'navs';
-
-/* Tables
-  ========================================================================== */
-@import 'tables';
-
-/* Logos
-  ========================================================================== */
-@import 'logos';
-
-/* Objects
-  ========================================================================== */
-@import 'objects';
-
+@import 'toolkit';
 @import 'canvas';
 @import 'dimensions';
 @import 'cursor-pos';
