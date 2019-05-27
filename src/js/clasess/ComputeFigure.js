@@ -6,7 +6,7 @@ import { Curve } from './Curve'
 import { SCurve } from './SCurve'
 import { HelperDot } from './HelperDot'
 import { SizeIndicator } from './SizeIndicator'
-import { vectorLength, G } from '../utility'
+import { vectorLength, G, invertColor } from '../utility'
 
 export class ComputeFigure {
   reset () {
@@ -153,15 +153,15 @@ export class ComputeFigure {
         curPos.y
       )
 
-      G.sizeIndicators[0] = new SizeIndicator(G.clicks[0].x + parseInt(rx / 2), G.clicks[0].y - 5, Math.floor(rx / 2 / G.scale), 'orange')
-      G.diameters[0] = new Line(G.clicks[0].x, G.clicks[0].y, curPos.x, G.clicks[0].y, 2, 'orange')
+      G.sizeIndicators[0] = new SizeIndicator(G.clicks[0].x + parseInt(rx / 2), G.clicks[0].y - 5, Math.floor(rx / 2 / G.scale), invertColor(G.fc))
+      G.diameters[0] = new Line(G.clicks[0].x, G.clicks[0].y, curPos.x, G.clicks[0].y, 2, invertColor(G.fc))
 
       if (G.keyMapDown[16]) {
         delete G.sizeIndicators[1]
         delete G.diameters[1]
       } else {
-        G.sizeIndicators[1] = new SizeIndicator(G.clicks[0].x + 5, G.clicks[0].y + parseInt(ry / 2), Math.floor(ry / 2 / G.scale), 'orangered')
-        G.diameters[1] = new Line(G.clicks[0].x, G.clicks[0].y, G.clicks[0].x, curPos.y, 2, 'orangered')
+        G.sizeIndicators[1] = new SizeIndicator(G.clicks[0].x + 5, G.clicks[0].y + parseInt(ry / 2), Math.floor(ry / 2 / G.scale), invertColor(G.fc))
+        G.diameters[1] = new Line(G.clicks[0].x, G.clicks[0].y, G.clicks[0].x, curPos.y, 2, invertColor(G.fc))
       }
 
       if (G.keyMapDown[16]) {
