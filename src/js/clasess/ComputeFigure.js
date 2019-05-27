@@ -153,14 +153,14 @@ export class ComputeFigure {
         curPos.y
       )
 
-      G.sizeIndicators[0] = new SizeIndicator(G.clicks[0].x + parseInt(rx / 2), G.clicks[0].y - 5, parseInt(rx / 2), 'orange')
+      G.sizeIndicators[0] = new SizeIndicator(G.clicks[0].x + parseInt(rx / 2), G.clicks[0].y - 5, Math.floor(rx / 2 / G.scale), 'orange')
       G.diameters[0] = new Line(G.clicks[0].x, G.clicks[0].y, curPos.x, G.clicks[0].y, 2, 'orange')
 
       if (G.keyMapDown[16]) {
         delete G.sizeIndicators[1]
         delete G.diameters[1]
       } else {
-        G.sizeIndicators[1] = new SizeIndicator(G.clicks[0].x + 5, G.clicks[0].y + parseInt(ry / 2), parseInt(ry / 2), 'orangered')
+        G.sizeIndicators[1] = new SizeIndicator(G.clicks[0].x + 5, G.clicks[0].y + parseInt(ry / 2), Math.floor(ry / 2 / G.scale), 'orangered')
         G.diameters[1] = new Line(G.clicks[0].x, G.clicks[0].y, G.clicks[0].x, curPos.y, 2, 'orangered')
       }
 
@@ -219,12 +219,12 @@ export class ComputeFigure {
         curPos.y
       )
 
-      G.sizeIndicators[0] = new SizeIndicator(G.clicks[0].x + parseInt(w / 2), G.clicks[0].y - 5, w, 'orange')
+      G.sizeIndicators[0] = new SizeIndicator(G.clicks[0].x + parseInt(w / 2), G.clicks[0].y - 5, Math.floor(w / G.scale), 'orange')
 
       if (G.keyMapDown[16]) {
         delete G.sizeIndicators[1]
       } else {
-        G.sizeIndicators[1] = new SizeIndicator(G.clicks[0].x + 5, G.clicks[0].y + parseInt(h / 2), h, 'orangered')
+        G.sizeIndicators[1] = new SizeIndicator(G.clicks[0].x + 5, G.clicks[0].y + parseInt(h / 2), Math.floor(h / G.scale), 'orangered')
       }
 
       if (G.keyMapDown[16]) {
