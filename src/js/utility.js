@@ -12,7 +12,9 @@ export const DE = {
   canvas: document.querySelector('.js-canvas'),
   canvasContainer: document.querySelector('js-canvas-container'),
   cursorPosIndi: document.querySelector('.js-cursor-pos'),
-  toggleFillMode: document.querySelectorAll('.js-toggle-fill')
+  toggleFillMode: document.querySelectorAll('.js-toggle-fill'),
+  fillColorIndicator: document.querySelector('.js-fill-color-indicator'),
+  strokeColorIndicator: document.querySelector('.js-stroke-color-indicator')
 }
 
 export function vectorLength (x1, y1, x2, y2) {

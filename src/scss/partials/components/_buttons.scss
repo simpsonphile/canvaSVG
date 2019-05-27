@@ -1,6 +1,6 @@
 .c-btn-wrapper {
     @extend %helper-clear-margins;
-    
+
     margin-bottom: 20px;
 }
 
@@ -67,6 +67,17 @@
     height: 4.5rem;
     min-height: 4.5rem;
     border-radius: .4rem;
+}
+
+.c-btn--toolkit__color {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    width: 1rem;
+    height: 1rem;
+
+    background: white;
 }
 
 .c-btn--t1 {

@@ -70,8 +70,10 @@ export class AppLogic {
   changeColor (color) {
     if (G.colorFor === 'fill') {
       G.fc = color
+      DE.fillColorIndicator.style.background = color
     } else if (G.colorFor === 'stroke') {
       G.sc = color
+      DE.strokeColorIndicator.style.background = color
     }
   }
 
