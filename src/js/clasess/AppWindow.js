@@ -1,4 +1,4 @@
-import { DE } from '../utility'
+import { DE, G } from '../utility'
 
 export class AppWindow {
   constructor (app) {
@@ -7,26 +7,21 @@ export class AppWindow {
   }
 
   resize () {
-    const scaleOfHeight = DE.canvasWindow.offsetHeight / this.app.svg.height
-    const scaleOfWidth = DE.canvasWindow.offsetWidth / this.app.svg.width
+    const scaleOfHeight = DE.canvasWindow.offsetHeight / G.svg.height
+    const scaleOfWidth = DE.canvasWindow.offsetWidth / G.svg.width
 
     if (scaleOfHeight > scaleOfWidth) {
-      this.scale = scaleOfWidth
+      G.scale = scaleOfWidth
     } else {
-      this.scale = scaleOfHeight
+      G.scale = scaleOfHeight
     }
 
-    this.scale *= 0.95
+    G.scale *= 0.95
 
-    DE.canvas.height = this.scale * this.app.svg.height
-    DE.canvas.width = this.scale * this.app.svg.width
+    DE.canvas.height = G.scale * G.svg.height
+    DE.canvas.width = G.scale * G.svg.width
 
-    this.app.scale = this.scale
     this.app.rescale()
-  }
-
-  returnScale () {
-    return this.scale
   }
 
   returnPoint (event) {
@@ -41,8 +36,8 @@ export class AppWindow {
     DE.cursorPosIndi.style.left = `${event.layerX}px`
     DE.cursorPosIndi.style.top = `${event.layerY}px`
 
-    const x = Math.floor(event.layerX / this.scale)
-    const y = Math.floor(event.layerY / this.scale)
+    const x = Math.floor(event.layerX / G.scale)
+    const y = Math.floor(event.layerY / G.scale)
 
     DE.cursorPosIndi.innerHTML = `(${x}, ${y})`
   }
@@ -69,11 +64,11 @@ export class AppWindow {
 
     //  Keyboard events
     document.addEventListener('keydown', event => {
-      this.app.keyMapDown[event.keyCode] = true
+      G.keyMapDown[event.keyCode] = true
     })
 
     document.addEventListener('keyup', event => {
-      this.app.keyMapDown[event.keyCode] = false
+      G.keyMapDown[event.keyCode] = false
     })
 
     document.addEventListener('keypress', event => {
@@ -103,7 +98,7 @@ export class AppWindow {
       if (index >= this.app.helperDots.length - 2) {
         specialColor = true
       }
-      dot.draw(this.ctx, specialColor, this.scale)
+      dot.draw(this.ctx, specialColor, G.scale)
     })
 
     this.app.sizeIndicators.forEach(size => {

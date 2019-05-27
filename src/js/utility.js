@@ -18,3 +18,12 @@ export const DE = {
 export function vectorLength (x1, y1, x2, y2) {
   return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))
 }
+
+export const G = {
+  scale: 1,
+  keyMapDown: [],
+  svg: {
+    width: 100,
+    height: 100
+  }
+}

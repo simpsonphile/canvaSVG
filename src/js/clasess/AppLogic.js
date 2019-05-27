@@ -7,7 +7,7 @@ import { SCurve } from './SCurve'
 import { HelperDot } from './HelperDot'
 import { SizeIndicator } from './SizeIndicator'
 
-import { DE, vectorLength } from '../utility'
+import { DE, vectorLength, G } from '../utility'
 
 export class AppLogic {
   constructor () {
@@ -15,8 +15,6 @@ export class AppLogic {
   }
 
   init () {
-    this.keyMapDown = []
-
     this.sw = 1 //  strokeWidth
     this.colorFor = undefined
     this.sc = '#ffffff' //  strokeColor
@@ -27,11 +25,6 @@ export class AppLogic {
 
     this.figures = []
     this.figuresHistory = []
-
-    this.svg = {
-      width: 100,
-      height: 100
-    }
   }
 
   resetDrawingVars () {
@@ -131,20 +124,20 @@ export class AppLogic {
 
   rescale () {
     this.figures.forEach(fig => {
-      fig.rescale(this.scale)
+      fig.rescale(G.scale)
     })
   }
 
   updateDimensions (type, size) {
     if (type === 'width') {
-      this.svg.width = size
+      G.svg.width = size
     } else if (type === 'height') {
-      this.svg.height = size
+      G.svg.height = size
     }
   }
 
   generateSvg () {
-    let svgHTML = `<svg viewBox="0 0 ${this.svg.width} ${this.svg.height}">`
+    let svgHTML = `<svg viewBox="0 0 ${G.svg.width} ${G.svg.height}">`
 
     this.figures.forEach(fig => {
       svgHTML += fig.returnHTML()
@@ -163,7 +156,7 @@ export class AppLogic {
     }
 
     if (stop && this.step > 2) {
-      this.figures.push(new SCurve(this.clicks, this.sw, this.sc, this.scale))
+      this.figures.push(new SCurve(this.clicks, this.sw, this.sc, G.scale))
 
       this.resetDrawingVars()
     }
@@ -173,7 +166,7 @@ export class AppLogic {
     if (this.step >= 2) {
       this.drawShadow = true
       const points = [...this.clicks, curPos]
-      this.shadowFig = new SCurve(points, this.sw, this.sc, this.scale)
+      this.shadowFig = new SCurve(points, this.sw, this.sc, G.scale)
     }
   }
 
@@ -188,7 +181,7 @@ export class AppLogic {
     }
 
     if (this.step === 3) {
-      this.figures.push(new Curve(this.clicks[0].x, this.clicks[0].y, this.clicks[1].x, this.clicks[1].y, this.clicks[2].x, this.clicks[2].y, this.sw, this.sc, this.scale))
+      this.figures.push(new Curve(this.clicks[0].x, this.clicks[0].y, this.clicks[1].x, this.clicks[1].y, this.clicks[2].x, this.clicks[2].y, this.sw, this.sc, G.scale))
 
       this.resetDrawingVars()
     }
@@ -197,7 +190,7 @@ export class AppLogic {
   symulateCurve (curPos) {
     if (this.step === 2) {
       this.drawShadow = true
-      this.shadowFig = new Curve(this.clicks[0].x, this.clicks[0].y, this.clicks[1].x, this.clicks[1].y, curPos.x, curPos.y, this.sw, this.sc, this.scale)
+      this.shadowFig = new Curve(this.clicks[0].x, this.clicks[0].y, this.clicks[1].x, this.clicks[1].y, curPos.x, curPos.y, this.sw, this.sc, G.scale)
     }
   }
 
@@ -208,7 +201,7 @@ export class AppLogic {
     }
 
     if (this.step === 2) {
-      this.figures.push(new Line(this.clicks[0].x, this.clicks[0].y, this.clicks[1].x, this.clicks[1].y, this.sw, this.sc, this.scale))
+      this.figures.push(new Line(this.clicks[0].x, this.clicks[0].y, this.clicks[1].x, this.clicks[1].y, this.sw, this.sc, G.scale))
 
       this.resetDrawingVars()
     }
@@ -217,7 +210,7 @@ export class AppLogic {
   symulateLine (curPos) {
     if (this.step === 1) {
       this.drawShadow = true
-      this.shadowFig = new Line(this.clicks[0].x, this.clicks[0].y, curPos.x, curPos.y, this.sw, this.sc, this.scale)
+      this.shadowFig = new Line(this.clicks[0].x, this.clicks[0].y, curPos.x, curPos.y, this.sw, this.sc, G.scale)
     }
   }
 
@@ -226,7 +219,7 @@ export class AppLogic {
     if (stop && this.step > 1) {
       if (close) this.clicks.push(this.clicks[0])
 
-      this.figures.push(new Polyline(this.clicks, this.sw, this.sc, this.scale))
+      this.figures.push(new Polyline(this.clicks, this.sw, this.sc, G.scale))
 
       this.resetDrawingVars()
     }
@@ -263,10 +256,10 @@ export class AppLogic {
         this.clicks[1].y
       )
 
-      if (this.keyMapDown[16]) {
-        this.figures.push(new Ellipse(this.clicks[0].x, this.clicks[0].y, rx, rx, this.sw, this.sc, this.fc, this.scale, this.fillMode))
+      if (G.keyMapDown[16]) {
+        this.figures.push(new Ellipse(this.clicks[0].x, this.clicks[0].y, rx, rx, this.sw, this.sc, this.fc, G.scale, this.fillMode))
       } else {
-        this.figures.push(new Ellipse(this.clicks[0].x, this.clicks[0].y, rx, ry, this.sw, this.sc, this.fc, this.scale, this.fillMode))
+        this.figures.push(new Ellipse(this.clicks[0].x, this.clicks[0].y, rx, ry, this.sw, this.sc, this.fc, G.scale, this.fillMode))
       }
 
       this.resetDrawingVars()
@@ -294,7 +287,7 @@ export class AppLogic {
       this.sizeIndicators[0] = new SizeIndicator(this.clicks[0].x + parseInt(rx / 2), this.clicks[0].y - 5, parseInt(rx / 2), 'orange')
       this.diameters[0] = new Line(this.clicks[0].x, this.clicks[0].y, curPos.x, this.clicks[0].y, 2, 'orange')
 
-      if (this.keyMapDown[16]) {
+      if (G.keyMapDown[16]) {
         delete this.sizeIndicators[1]
         delete this.diameters[1]
       } else {
@@ -302,10 +295,10 @@ export class AppLogic {
         this.diameters[1] = new Line(this.clicks[0].x, this.clicks[0].y, this.clicks[0].x, curPos.y, 2, 'orangered')
       }
 
-      if (this.keyMapDown[16]) {
-        this.shadowFig = new Ellipse(this.clicks[0].x, this.clicks[0].y, rx, rx, this.sw, this.sc, this.fc, this.scale, this.fillMode)
+      if (G.keyMapDown[16]) {
+        this.shadowFig = new Ellipse(this.clicks[0].x, this.clicks[0].y, rx, rx, this.sw, this.sc, this.fc, G.scale, this.fillMode)
       } else {
-        this.shadowFig = new Ellipse(this.clicks[0].x, this.clicks[0].y, rx, ry, this.sw, this.sc, this.fc, this.scale, this.fillMode)
+        this.shadowFig = new Ellipse(this.clicks[0].x, this.clicks[0].y, rx, ry, this.sw, this.sc, this.fc, G.scale, this.fillMode)
       }
     }
   }
@@ -330,10 +323,10 @@ export class AppLogic {
         0,
         this.clicks[1].y
       )
-      if (this.keyMapDown[16]) {
-        this.figures.push(new Rectangle(this.clicks[0].x, this.clicks[0].y, w, w, this.sw, this.sc, this.fc, this.scale, this.fillMode))
+      if (G.keyMapDown[16]) {
+        this.figures.push(new Rectangle(this.clicks[0].x, this.clicks[0].y, w, w, this.sw, this.sc, this.fc, G.scale, this.fillMode))
       } else {
-        this.figures.push(new Rectangle(this.clicks[0].x, this.clicks[0].y, w, h, this.sw, this.sc, this.fc, this.scale, this.fillMode))
+        this.figures.push(new Rectangle(this.clicks[0].x, this.clicks[0].y, w, h, this.sw, this.sc, this.fc, G.scale, this.fillMode))
       }
 
       this.resetDrawingVars()
@@ -359,16 +352,16 @@ export class AppLogic {
 
       this.sizeIndicators[0] = new SizeIndicator(this.clicks[0].x + parseInt(w / 2), this.clicks[0].y - 5, w, 'orange')
 
-      if (this.keyMapDown[16]) {
+      if (G.keyMapDown[16]) {
         delete this.sizeIndicators[1]
       } else {
         this.sizeIndicators[1] = new SizeIndicator(this.clicks[0].x + 5, this.clicks[0].y + parseInt(h / 2), h, 'orangered')
       }
 
-      if (this.keyMapDown[16]) {
-        this.shadowFig = new Rectangle(this.clicks[0].x, this.clicks[0].y, w, w, this.sw, this.sc, this.fc, this.scale, this.fillMode)
+      if (G.keyMapDown[16]) {
+        this.shadowFig = new Rectangle(this.clicks[0].x, this.clicks[0].y, w, w, this.sw, this.sc, this.fc, G.scale, this.fillMode)
       } else {
-        this.shadowFig = new Rectangle(this.clicks[0].x, this.clicks[0].y, w, h, this.sw, this.sc, this.fc, this.scale, this.fillMode)
+        this.shadowFig = new Rectangle(this.clicks[0].x, this.clicks[0].y, w, h, this.sw, this.sc, this.fc, G.scale, this.fillMode)
       }
     }
   }
