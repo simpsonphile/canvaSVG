@@ -25,5 +25,21 @@ export const G = {
   svg: {
     width: 100,
     height: 100
-  }
+  },
+
+  sw: 1,
+  sc: '#ffffff',
+  fc: '#ffffff',
+
+  colorFor: undefined,
+  fillMode: false,
+
+  mode: '',
+  step: 0,
+  clicks: [],
+  shadowFig: {},
+  drawShadow: false,
+  helperDots: [],
+  sizeIndicators: [],
+  diameters: []
 }

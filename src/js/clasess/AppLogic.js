@@ -15,107 +15,100 @@ export class AppLogic {
   }
 
   init () {
-    this.sw = 1 //  strokeWidth
-    this.colorFor = undefined
-    this.sc = '#ffffff' //  strokeColor
-    this.fc = '#ffffff' //  fillColor
-    this.fillMode = false
-    this.mode = ''
     this.resetDrawingVars()
 
-    this.figures = []
-    this.figuresHistory = []
+    G.figures = []
+    G.figuresHistory = []
   }
 
   resetDrawingVars () {
-    this.step = 0
-    this.clicks = []
-    this.curPos = undefined
-    this.shadowFig = {}
-    this.drawShadow = false
-    this.helperDots = []
-    this.sizeIndicators = []
-    this.diameters = []
+    G.step = 0
+    G.clicks = []
+    G.shadowFig = {}
+    G.drawShadow = false
+    G.helperDots = []
+    G.sizeIndicators = []
+    G.diameters = []
   }
 
   reset () {
     this.resetDrawingVars()
-    this.figures = []
-    this.figuresHistory = []
+    G.figures = []
+    G.figuresHistory = []
   }
 
   computeClick (click) {
-    this.clicks.push(click)
-    this.step ++
+    G.clicks.push(click)
+    G.step ++
 
-    if (this.mode === 'arc') this.computeArc()
-    if (this.mode === 'rec') this.computeRec()
-    if (this.mode === 'poly') this.computePoly()
-    if (this.mode === 'line') this.computeLine()
-    if (this.mode === 'curve') this.computeCurve()
-    if (this.mode === 'scurve') this.computeSCurve()
+    if (G.mode === 'arc') this.computeArc()
+    if (G.mode === 'rec') this.computeRec()
+    if (G.mode === 'poly') this.computePoly()
+    if (G.mode === 'line') this.computeLine()
+    if (G.mode === 'curve') this.computeCurve()
+    if (G.mode === 'scurve') this.computeSCurve()
 
     this.manageHistoryBtns()
   }
 
   computeMouseMove (curPos) {
-    if (this.mode === 'arc') this.symulateArc(curPos)
-    if (this.mode === 'rec') this.symulateRec(curPos)
-    if (this.mode === 'poly') this.symulatePoly(curPos)
-    if (this.mode === 'line') this.symulateLine(curPos)
-    if (this.mode === 'curve') this.symulateCurve(curPos)
-    if (this.mode === 'scurve') this.symulateSCurve(curPos)
+    if (G.mode === 'arc') this.symulateArc(curPos)
+    if (G.mode === 'rec') this.symulateRec(curPos)
+    if (G.mode === 'poly') this.symulatePoly(curPos)
+    if (G.mode === 'line') this.symulateLine(curPos)
+    if (G.mode === 'curve') this.symulateCurve(curPos)
+    if (G.mode === 'scurve') this.symulateSCurve(curPos)
   }
 
   layFigure (close = false) {
-    if (this.mode === 'poly') this.computePoly(true, close)
-    if (this.mode === 'scurve') this.computeSCurve(true)
+    if (G.mode === 'poly') this.computePoly(true, close)
+    if (G.mode === 'scurve') this.computeSCurve(true)
   }
 
   changeMode (nMode) {
     this.resetDrawingVars()
-    this.mode = nMode
+    G.mode = nMode
   }
 
   toggleFillMode () {
-    this.fillMode = !this.fillMode
+    G.fillMode = !G.fillMode
   }
 
   prepWheel (colorFor, wheel) {
-    this.colorFor = colorFor
+    G.colorFor = colorFor
     if (colorFor === 'fill') {
-      wheel.hex = this.fc
+      wheel.hex = G.fc
     } else if (colorFor === 'stroke') {
-      wheel.hex = this.sc
+      wheel.hex = G.sc
     }
   }
 
   changeColor (color) {
-    if (this.colorFor === 'fill') {
-      this.fc = color
-    } else if (this.colorFor === 'stroke') {
-      this.sc = color
+    if (G.colorFor === 'fill') {
+      G.fc = color
+    } else if (G.colorFor === 'stroke') {
+      G.sc = color
     }
   }
 
   changeHistory (action) {
-    if (action === 'undo' && this.figures.length > 0) {
-      this.figuresHistory.push(this.figures.pop())
-    } else if (action === 'redo' && this.figuresHistory.length > 0) {
-      this.figures.push(this.figuresHistory.pop())
+    if (action === 'undo' && G.figures.length > 0) {
+      G.figuresHistory.push(G.figures.pop())
+    } else if (action === 'redo' && G.figuresHistory.length > 0) {
+      G.figures.push(G.figuresHistory.pop())
     }
 
     this.manageHistoryBtns()
   }
 
   manageHistoryBtns () {
-    if (this.figuresHistory.length === 0) {
+    if (G.figuresHistory.length === 0) {
       DE.historyRedoBtn.classList.add('is-disabled')
     } else {
       DE.historyRedoBtn.classList.remove('is-disabled')
     }
 
-    if (this.figures.length === 0) {
+    if (G.figures.length === 0) {
       DE.historyUndoBtn.classList.add('is-disabled')
     } else {
       DE.historyUndoBtn.classList.remove('is-disabled')
@@ -123,7 +116,7 @@ export class AppLogic {
   }
 
   rescale () {
-    this.figures.forEach(fig => {
+    G.figures.forEach(fig => {
       fig.rescale(G.scale)
     })
   }
@@ -139,7 +132,7 @@ export class AppLogic {
   generateSvg () {
     let svgHTML = `<svg viewBox="0 0 ${G.svg.width} ${G.svg.height}">`
 
-    this.figures.forEach(fig => {
+    G.figures.forEach(fig => {
       svgHTML += fig.returnHTML()
     })
 
@@ -151,115 +144,115 @@ export class AppLogic {
   /* SCurve functions */
 
   computeSCurve (stop) {
-    if (this.step === 1 || this.step % 2 === 0) {
-      this.helperDots.push(new HelperDot(this.clicks[this.step - 1].x, this.clicks[this.step - 1].y))
+    if (G.step === 1 || G.step % 2 === 0) {
+      G.helperDots.push(new HelperDot(G.clicks[G.step - 1].x, G.clicks[G.step - 1].y))
     }
 
-    if (stop && this.step > 2) {
-      this.figures.push(new SCurve(this.clicks, this.sw, this.sc, G.scale))
+    if (stop && G.step > 2) {
+      G.figures.push(new SCurve(G.clicks, G.sw, G.sc, G.scale))
 
       this.resetDrawingVars()
     }
   }
 
   symulateSCurve (curPos) {
-    if (this.step >= 2) {
-      this.drawShadow = true
-      const points = [...this.clicks, curPos]
-      this.shadowFig = new SCurve(points, this.sw, this.sc, G.scale)
+    if (G.step >= 2) {
+      G.drawShadow = true
+      const points = [...G.clicks, curPos]
+      G.shadowFig = new SCurve(points, G.sw, G.sc, G.scale)
     }
   }
 
   /* Curve functions */
   computeCurve () {
-    if (this.step === 1) {
-      this.helperDots.push(new HelperDot(this.clicks[this.step - 1].x, this.clicks[this.step - 1].y))
+    if (G.step === 1) {
+      G.helperDots.push(new HelperDot(G.clicks[G.step - 1].x, G.clicks[G.step - 1].y))
     }
 
-    if (this.step <= 2) {
-      this.helperDots.push(new HelperDot(this.clicks[this.step - 1].x, this.clicks[this.step - 1].y))
+    if (G.step <= 2) {
+      G.helperDots.push(new HelperDot(G.clicks[G.step - 1].x, G.clicks[G.step - 1].y))
     }
 
-    if (this.step === 3) {
-      this.figures.push(new Curve(this.clicks[0].x, this.clicks[0].y, this.clicks[1].x, this.clicks[1].y, this.clicks[2].x, this.clicks[2].y, this.sw, this.sc, G.scale))
+    if (G.step === 3) {
+      G.figures.push(new Curve(G.clicks[0].x, G.clicks[0].y, G.clicks[1].x, G.clicks[1].y, G.clicks[2].x, G.clicks[2].y, G.sw, G.sc, G.scale))
 
       this.resetDrawingVars()
     }
   }
 
   symulateCurve (curPos) {
-    if (this.step === 2) {
-      this.drawShadow = true
-      this.shadowFig = new Curve(this.clicks[0].x, this.clicks[0].y, this.clicks[1].x, this.clicks[1].y, curPos.x, curPos.y, this.sw, this.sc, G.scale)
+    if (G.step === 2) {
+      G.drawShadow = true
+      G.shadowFig = new Curve(G.clicks[0].x, G.clicks[0].y, G.clicks[1].x, G.clicks[1].y, curPos.x, curPos.y, G.sw, G.sc, G.scale)
     }
   }
 
   /* line functions */
   computeLine () {
-    if (this.step === 1) {
-      this.helperDots.push(new HelperDot(this.clicks[this.step - 1].x, this.clicks[this.step - 1].y))
+    if (G.step === 1) {
+      G.helperDots.push(new HelperDot(G.clicks[G.step - 1].x, G.clicks[G.step - 1].y))
     }
 
-    if (this.step === 2) {
-      this.figures.push(new Line(this.clicks[0].x, this.clicks[0].y, this.clicks[1].x, this.clicks[1].y, this.sw, this.sc, G.scale))
+    if (G.step === 2) {
+      G.figures.push(new Line(G.clicks[0].x, G.clicks[0].y, G.clicks[1].x, G.clicks[1].y, G.sw, G.sc, G.scale))
 
       this.resetDrawingVars()
     }
   }
 
   symulateLine (curPos) {
-    if (this.step === 1) {
-      this.drawShadow = true
-      this.shadowFig = new Line(this.clicks[0].x, this.clicks[0].y, curPos.x, curPos.y, this.sw, this.sc, G.scale)
+    if (G.step === 1) {
+      G.drawShadow = true
+      G.shadowFig = new Line(G.clicks[0].x, G.clicks[0].y, curPos.x, curPos.y, G.sw, G.sc, G.scale)
     }
   }
 
   /* poly functions */
   computePoly (stop, close) {
-    if (stop && this.step > 1) {
-      if (close) this.clicks.push(this.clicks[0])
+    if (stop && G.step > 1) {
+      if (close) G.clicks.push(G.clicks[0])
 
-      this.figures.push(new Polyline(this.clicks, this.sw, this.sc, G.scale))
+      G.figures.push(new Polyline(G.clicks, G.sw, G.sc, G.scale))
 
       this.resetDrawingVars()
     }
   }
 
   symulatePoly (curPos) {
-    if (this.step > 0) {
-      this.drawShadow = true
-      const points = [...this.clicks, curPos]
-      this.helperDots.push(new HelperDot(this.clicks[this.step - 1].x, this.clicks[this.step - 1].y))
-      this.shadowFig = new Polyline(points, this.sw, this.sc)
+    if (G.step > 0) {
+      G.drawShadow = true
+      const points = [...G.clicks, curPos]
+      G.helperDots.push(new HelperDot(G.clicks[G.step - 1].x, G.clicks[G.step - 1].y))
+      G.shadowFig = new Polyline(points, G.sw, G.sc)
     }
   }
 
   /* arc functions */
 
   computeArc () {
-    if (this.step === 1) {
-      this.helperDots.push(new HelperDot(this.clicks[this.step - 1].x, this.clicks[this.step - 1].y))
+    if (G.step === 1) {
+      G.helperDots.push(new HelperDot(G.clicks[G.step - 1].x, G.clicks[G.step - 1].y))
     }
 
-    if (this.step === 2) {
+    if (G.step === 2) {
       const rx = vectorLength(
-        this.clicks[0].x,
+        G.clicks[0].x,
         0,
-        this.clicks[1].x,
+        G.clicks[1].x,
         0
       )
 
       const ry = vectorLength(
         0,
-        this.clicks[0].y,
+        G.clicks[0].y,
         0,
-        this.clicks[1].y
+        G.clicks[1].y
       )
 
       if (G.keyMapDown[16]) {
-        this.figures.push(new Ellipse(this.clicks[0].x, this.clicks[0].y, rx, rx, this.sw, this.sc, this.fc, G.scale, this.fillMode))
+        G.figures.push(new Ellipse(G.clicks[0].x, G.clicks[0].y, rx, rx, G.sw, G.sc, G.fc, G.scale, G.fillMode))
       } else {
-        this.figures.push(new Ellipse(this.clicks[0].x, this.clicks[0].y, rx, ry, this.sw, this.sc, this.fc, G.scale, this.fillMode))
+        G.figures.push(new Ellipse(G.clicks[0].x, G.clicks[0].y, rx, ry, G.sw, G.sc, G.fc, G.scale, G.fillMode))
       }
 
       this.resetDrawingVars()
@@ -267,11 +260,11 @@ export class AppLogic {
   }
 
   symulateArc (curPos) {
-    if (this.step === 1) {
-      this.drawShadow = true
+    if (G.step === 1) {
+      G.drawShadow = true
 
       const rx = vectorLength(
-        this.clicks[0].x,
+        G.clicks[0].x,
         0,
         curPos.x,
         0
@@ -279,54 +272,54 @@ export class AppLogic {
 
       const ry = vectorLength(
         0,
-        this.clicks[0].y,
+        G.clicks[0].y,
         0,
         curPos.y
       )
 
-      this.sizeIndicators[0] = new SizeIndicator(this.clicks[0].x + parseInt(rx / 2), this.clicks[0].y - 5, parseInt(rx / 2), 'orange')
-      this.diameters[0] = new Line(this.clicks[0].x, this.clicks[0].y, curPos.x, this.clicks[0].y, 2, 'orange')
+      G.sizeIndicators[0] = new SizeIndicator(G.clicks[0].x + parseInt(rx / 2), G.clicks[0].y - 5, parseInt(rx / 2), 'orange')
+      G.diameters[0] = new Line(G.clicks[0].x, G.clicks[0].y, curPos.x, G.clicks[0].y, 2, 'orange')
 
       if (G.keyMapDown[16]) {
-        delete this.sizeIndicators[1]
-        delete this.diameters[1]
+        delete G.sizeIndicators[1]
+        delete G.diameters[1]
       } else {
-        this.sizeIndicators[1] = new SizeIndicator(this.clicks[0].x + 5, this.clicks[0].y + parseInt(ry / 2), parseInt(ry / 2), 'orangered')
-        this.diameters[1] = new Line(this.clicks[0].x, this.clicks[0].y, this.clicks[0].x, curPos.y, 2, 'orangered')
+        G.sizeIndicators[1] = new SizeIndicator(G.clicks[0].x + 5, G.clicks[0].y + parseInt(ry / 2), parseInt(ry / 2), 'orangered')
+        G.diameters[1] = new Line(G.clicks[0].x, G.clicks[0].y, G.clicks[0].x, curPos.y, 2, 'orangered')
       }
 
       if (G.keyMapDown[16]) {
-        this.shadowFig = new Ellipse(this.clicks[0].x, this.clicks[0].y, rx, rx, this.sw, this.sc, this.fc, G.scale, this.fillMode)
+        G.shadowFig = new Ellipse(G.clicks[0].x, G.clicks[0].y, rx, rx, G.sw, G.sc, G.fc, G.scale, G.fillMode)
       } else {
-        this.shadowFig = new Ellipse(this.clicks[0].x, this.clicks[0].y, rx, ry, this.sw, this.sc, this.fc, G.scale, this.fillMode)
+        G.shadowFig = new Ellipse(G.clicks[0].x, G.clicks[0].y, rx, ry, G.sw, G.sc, G.fc, G.scale, G.fillMode)
       }
     }
   }
 
   /* rec functions */
   computeRec () {
-    if (this.step === 1) {
-      this.helperDots.push(new HelperDot(this.clicks[this.step - 1].x, this.clicks[this.step - 1].y))
+    if (G.step === 1) {
+      G.helperDots.push(new HelperDot(G.clicks[G.step - 1].x, G.clicks[G.step - 1].y))
     }
 
-    if (this.step === 2) {
+    if (G.step === 2) {
       const w = vectorLength(
-        this.clicks[0].x,
+        G.clicks[0].x,
         0,
-        this.clicks[1].x,
+        G.clicks[1].x,
         0
       )
 
       const h = vectorLength(
         0,
-        this.clicks[0].y,
+        G.clicks[0].y,
         0,
-        this.clicks[1].y
+        G.clicks[1].y
       )
       if (G.keyMapDown[16]) {
-        this.figures.push(new Rectangle(this.clicks[0].x, this.clicks[0].y, w, w, this.sw, this.sc, this.fc, G.scale, this.fillMode))
+        G.figures.push(new Rectangle(G.clicks[0].x, G.clicks[0].y, w, w, G.sw, G.sc, G.fc, G.scale, G.fillMode))
       } else {
-        this.figures.push(new Rectangle(this.clicks[0].x, this.clicks[0].y, w, h, this.sw, this.sc, this.fc, G.scale, this.fillMode))
+        G.figures.push(new Rectangle(G.clicks[0].x, G.clicks[0].y, w, h, G.sw, G.sc, G.fc, G.scale, G.fillMode))
       }
 
       this.resetDrawingVars()
@@ -334,10 +327,10 @@ export class AppLogic {
   }
 
   symulateRec (curPos) {
-    if (this.step === 1) {
-      this.drawShadow = true
+    if (G.step === 1) {
+      G.drawShadow = true
       const w = vectorLength(
-        this.clicks[0].x,
+        G.clicks[0].x,
         0,
         curPos.x,
         0
@@ -345,23 +338,23 @@ export class AppLogic {
 
       const h = vectorLength(
         0,
-        this.clicks[0].y,
+        G.clicks[0].y,
         0,
         curPos.y
       )
 
-      this.sizeIndicators[0] = new SizeIndicator(this.clicks[0].x + parseInt(w / 2), this.clicks[0].y - 5, w, 'orange')
+      G.sizeIndicators[0] = new SizeIndicator(G.clicks[0].x + parseInt(w / 2), G.clicks[0].y - 5, w, 'orange')
 
       if (G.keyMapDown[16]) {
-        delete this.sizeIndicators[1]
+        delete G.sizeIndicators[1]
       } else {
-        this.sizeIndicators[1] = new SizeIndicator(this.clicks[0].x + 5, this.clicks[0].y + parseInt(h / 2), h, 'orangered')
+        G.sizeIndicators[1] = new SizeIndicator(G.clicks[0].x + 5, G.clicks[0].y + parseInt(h / 2), h, 'orangered')
       }
 
       if (G.keyMapDown[16]) {
-        this.shadowFig = new Rectangle(this.clicks[0].x, this.clicks[0].y, w, w, this.sw, this.sc, this.fc, G.scale, this.fillMode)
+        G.shadowFig = new Rectangle(G.clicks[0].x, G.clicks[0].y, w, w, G.sw, G.sc, G.fc, G.scale, G.fillMode)
       } else {
-        this.shadowFig = new Rectangle(this.clicks[0].x, this.clicks[0].y, w, h, this.sw, this.sc, this.fc, G.scale, this.fillMode)
+        G.shadowFig = new Rectangle(G.clicks[0].x, G.clicks[0].y, w, h, G.sw, G.sc, G.fc, G.scale, G.fillMode)
       }
     }
   }

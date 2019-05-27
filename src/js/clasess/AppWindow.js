@@ -85,27 +85,27 @@ export class AppWindow {
   draw () {
     this.ctx.clearRect(0, 0, DE.canvas.width, DE.canvas.height)
 
-    this.app.figures.forEach(fig => {
+    G.figures.forEach(fig => {
       fig.draw(this.ctx)
     })
 
-    if (this.app.drawShadow) {
-      this.app.shadowFig.draw(this.ctx)
+    if (G.drawShadow) {
+      G.shadowFig.draw(this.ctx)
     }
 
-    this.app.helperDots.forEach((dot, index) => {
+    G.helperDots.forEach((dot, index) => {
       let specialColor = false
-      if (index >= this.app.helperDots.length - 2) {
+      if (index >= G.helperDots.length - 2) {
         specialColor = true
       }
       dot.draw(this.ctx, specialColor, G.scale)
     })
 
-    this.app.sizeIndicators.forEach(size => {
+    G.sizeIndicators.forEach(size => {
       size.draw(this.ctx)
     })
 
-    this.app.diameters.forEach(diameter => {
+    G.diameters.forEach(diameter => {
       diameter.draw(this.ctx)
     })
   }
