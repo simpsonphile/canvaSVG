@@ -1,0 +1,51 @@
+.c-switch {
+  position: relative;
+
+  display: inline-block;
+
+  height: 3.4rem;
+  width: 6rem;
+}
+
+.c-switch__input {
+  display: none;
+}
+
+.c-switch__slider {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 3.4rem;
+
+  transition: $transition_speed;
+}
+
+.c-switch__slider:before {
+  content: "";
+
+  position: absolute;
+  bottom: .4rem;
+  left: .4rem;
+
+  height: 2.6rem;
+  width: 2.6rem;
+
+  background-color: $color_white;
+  border-radius: 50%;
+
+  transition: .4s;
+}
+
+.c-switch__input:checked + .c-switch__slider {
+  background-color: $color_violet;
+}
+
+.c-switch__input:checked + .c-switch__slider:before {
+  transform: translateX(26px);
+}
+

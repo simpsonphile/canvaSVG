@@ -1,0 +1,13 @@
+input,
+textarea {
+  font-size: 1.6rem;
+}
+
+textarea {
+  width: 100%;
+  padding: 1rem 1.4rem;
+}
+
+input[type='number'] {
+  min-width: 5rem;
+}

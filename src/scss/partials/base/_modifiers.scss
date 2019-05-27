@@ -35,8 +35,20 @@
     display: none;
 }
 
+.u-fit-content {
+    width: fit-content;
+}
+
 /* Flexbox utilises
    ========================================================================== */
+.u-flex {
+    display: flex;
+}
+
+.u-flex-column {
+    flex-direction: column;
+}
+
 .u-align-items-center {
     align-items: center;
 }
