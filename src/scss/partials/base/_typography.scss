@@ -15,6 +15,10 @@ body {
 
     color: $color_white;
     background: $color_black_2;
+
+    @include media('<=m') {
+        font-size: 1.2rem;
+    }
 }
 
 /* Global Typography

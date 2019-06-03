@@ -6,3 +6,15 @@
 
     margin: 0;
 }
+
+.t-head--m {
+    font-size: 2.4rem;
+
+    @include media('<=t') {
+        font-size: 2rem;
+    }
+
+    @include media('<=m') {
+        font-size: 1.8rem;
+    }
+}

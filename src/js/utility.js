@@ -15,12 +15,17 @@ export const DE = {
   toggleFillMode: document.querySelectorAll('.js-toggle-fill'),
   fillColorIndicator: document.querySelector('.js-fill-color-indicator'),
   strokeColorIndicator: document.querySelector('.js-stroke-color-indicator'),
-  strokeWidthBtn: document.querySelector('.js-stroke-width'),
   strokeWidthInput: document.querySelector('.js-stroke-width-input')
 }
 
 export function vectorLength (x1, y1, x2, y2) {
   return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))
+}
+
+function padZero (str, len) {
+  len = len || 2
+  var zeros = new Array(len).join('0')
+  return (zeros + str).slice(-len)
 }
 
 export function invertColor (hex) {
@@ -42,18 +47,12 @@ export function invertColor (hex) {
   return '#' + padZero(r) + padZero(g) + padZero(b)
 }
 
-function padZero (str, len) {
-  len = len || 2
-  var zeros = new Array(len).join('0')
-  return (zeros + str).slice(-len)
-}
-
 export const G = {
   scale: 1,
   keyMapDown: [],
   svg: {
-    width: 1000,
-    height: 1000
+    width: 100,
+    height: 100
   },
 
   sw: 1,

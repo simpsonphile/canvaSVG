@@ -6,4 +6,11 @@
 
   max-height: calc(100% - 20rem);
   width: 100%;
+
+  @include media('<=t') {
+    flex-direction: row;
+    justify-content: center;
+
+    max-height: unset;
+  }
 }

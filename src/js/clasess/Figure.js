@@ -23,10 +23,10 @@ export class Figure {
   draw (ctx) {
     ctx.save()
     ctx.fillStyle = 'transparent'
-    ctx.beginPath()
-    this.drawFigure(ctx)
     ctx.lineWidth = this.sw * this.scale
     ctx.strokeStyle = this.sc
+    ctx.beginPath()
+    this.drawFigure(ctx)
     ctx.stroke()
     ctx.fill()
     ctx.restore()

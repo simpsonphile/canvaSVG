@@ -45,6 +45,16 @@
         </span>
     </button>
 
+    <button class="c-btn c-btn--toolkit c-btn--t3 c-hint js-stroke-width js-modal-trigger" data-hint-txt="Change svg Dimensions" data-modal="svg-size">
+        <span class="c-btn__wrap">
+            <span class="c-btn__ico c-btn__ico--solo">
+                <svg class="o-ico o-ico--tool">
+                    <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#svgSize"></use>
+                </svg>
+            </span>
+        </span>
+    </button>
+
     <button class="c-btn c-btn--toolkit c-btn--t2 c-hint js-fig" data-fig="arc" data-hint-txt="Elipse shape">
         <span class="c-btn__wrap">
             <span class="c-btn__ico c-btn__ico--solo">
@@ -145,17 +155,7 @@
         </span>
     </button>
 </nav>
-                     <div class="c-dimensions">
-    <h3 class="t-head t-head--standard">Canvas Size</h3>
-
-    <label class="c-dimensions__label">Width: 
-        <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="c-dimensions__input js-canvas-size" data-canvas-size="width" value="100">
-    </label>
-
-    <label class="c-dimensions__label">Height: 
-        <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="c-dimensions__input js-canvas-size" data-canvas-size="height" value="100">
-    </label>
-</div>                </div>
+                </div>
 
                 <div class="l-app__canvas js-canvas-window">
                     <div class="js-canvas-container c-canvas-container">
@@ -170,7 +170,7 @@
   <span class="c-modal__bg"></span>
   <div class="c-modal__container">
     <div class="c-modal__top">
-      <h2 class="t-head c-modal__title">
+      <h2 class="t-head t-head--m c-modal__title">
           Generated SVG Code
       </h2>
 
@@ -198,7 +198,7 @@
   <span class="c-modal__bg"></span>
   <div class="c-modal__container">
     <div class="c-modal__top">
-      <h2 class="t-head c-modal__title">
+      <h2 class="t-head t-head--m c-modal__title">
           Pick Color
       </h2>
 
@@ -233,7 +233,7 @@
   <span class="c-modal__bg"></span>
   <div class="c-modal__container">
     <div class="c-modal__top">
-      <h2 class="t-head c-modal__title">
+      <h2 class="t-head t-head--m c-modal__title">
           Change Stroke Size
       </h2>
 
@@ -254,6 +254,40 @@
 
     <div class="c-modal__bot js-modal-bottom">
         <button class="c-btn c-btn--primary c-btn--t1 c-modal__btn js-modal-close">OK</button>
+    </div>
+  </div>
+</div>            <div class="c-modal js-modal u-hidden" data-modal="svg-size">
+  <span class="c-modal__bg"></span>
+  <div class="c-modal__container">
+    <div class="c-modal__top">
+      <h2 class="t-head t-head--m c-modal__title">
+          Canvas Size
+      </h2>
+
+      <button class="c-btn c-modal__close js-modal-close">
+        <span class="c-btn__wrap">
+            <span class="c-btn__ico c-btn__ico--solo">
+                <svg class="o-ico o-ico--tool">
+                    <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#close"></use>
+                </svg>
+            </span>
+        </span>
+      </button>
+    </div>
+
+    <div class="c-modal__content js-modal-content">
+      <div class="c-dimensions">
+    <label class="c-dimensions__label">Width: 
+        <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="c-dimensions__input js-canvas-size" data-canvas-size="width" value="100">
+    </label>
+
+    <label class="c-dimensions__label">Height: 
+        <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="c-dimensions__input js-canvas-size" data-canvas-size="height" value="100">
+    </label>
+</div>    </div>
+
+    <div class="c-modal__bot js-modal-bottom">
+        <button class="c-btn c-btn--primary c-btn--t2 c-modal__btn js-modal-close">OK</button>
     </div>
   </div>
 </div>        </main>

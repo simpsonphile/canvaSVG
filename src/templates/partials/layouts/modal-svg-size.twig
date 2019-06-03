@@ -1,0 +1,13 @@
+{% extends "modal.twig" %}
+
+{% block modalTop %}
+  Canvas Size
+{% endblock %}
+
+{% block modalContent %}
+{% include "./dimensions.twig" %}
+{% endblock %}
+
+{% block modalBot %}
+  <button class="c-btn c-btn--primary c-btn--t2 c-modal__btn js-modal-close">OK</button>
+{% endblock %}

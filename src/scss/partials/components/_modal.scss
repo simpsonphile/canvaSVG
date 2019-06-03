@@ -12,6 +12,9 @@
 
   padding: 5rem;
 
+  @include media('<=t') {
+    padding: 2rem;
+  }
 }
 
 .c-modal__bg {
