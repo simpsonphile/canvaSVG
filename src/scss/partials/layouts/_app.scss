@@ -11,6 +11,9 @@
 }
 
 .l-app__sidebar {
+  position: relative;
+  z-index: 2;
+
   @include media('<=t') {
     padding-bottom: 1rem;
   }
