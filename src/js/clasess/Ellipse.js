@@ -1,7 +1,7 @@
 import { Figure } from './Figure'
 
 export class Ellipse extends Figure {
-  constructor (cx, cy, rx, ry, sw, sc, fc, scale, fillMode) {
+  constructor (cx, cy, rx, ry, sw, sc, fc, scale) {
     super()
     this.cx = cx
     this.cy = cy
@@ -9,7 +9,7 @@ export class Ellipse extends Figure {
     this.ry = ry
     this.sw = sw
     this.sc = sc
-    this.fc = fillMode ? fc : 'transparent'
+    this.fc = fc
     this.scale = scale
   }
 

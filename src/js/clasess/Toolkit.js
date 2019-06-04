@@ -52,11 +52,5 @@ export class Toolkit {
     DE.historyRedoBtn.addEventListener('click', event => {
       this.app.changeHistory('redo')
     })
-
-    DE.toggleFillMode.forEach(btn => {
-      btn.addEventListener('click', event => {
-        this.app.toggleFillMode()
-      })
-    })
   }
 }

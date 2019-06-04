@@ -12,7 +12,6 @@ export const DE = {
   canvas: document.querySelector('.js-canvas'),
   canvasContainer: document.querySelector('js-canvas-container'),
   cursorPosIndi: document.querySelector('.js-cursor-pos'),
-  toggleFillMode: document.querySelectorAll('.js-toggle-fill'),
   strokeWidthInput: document.querySelector('.js-stroke-width-input'),
   fillColorIndicator: document.querySelector('.js-color-fill-indicator'),
   strokeColorIndicator: document.querySelector('.js-color-stroke-indicator')
@@ -33,8 +32,6 @@ export const G = {
   sw: 1,
   sc: '#ffffff',
   fc: '#ffffff',
-
-  fillMode: false,
 
   mode: '',
   step: 0,

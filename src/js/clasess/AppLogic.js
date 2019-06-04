@@ -56,10 +56,6 @@ export class AppLogic {
     G.mode = nMode
   }
 
-  toggleFillMode () {
-    G.fillMode = !G.fillMode
-  }
-
   prepWheel (colorFor, wheel) {
     G.colorFor = colorFor
     if (colorFor === 'fill') {

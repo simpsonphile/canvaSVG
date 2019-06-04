@@ -126,9 +126,9 @@ export class ComputeFigure {
       )
 
       if (G.keyMapDown[16]) {
-        G.figures.push(new Ellipse(G.clicks[0].x, G.clicks[0].y, rx, rx, G.sw, G.sc, G.fc, G.scale, G.fillMode))
+        G.figures.push(new Ellipse(G.clicks[0].x, G.clicks[0].y, rx, rx, G.sw, G.sc, G.fc, G.scale))
       } else {
-        G.figures.push(new Ellipse(G.clicks[0].x, G.clicks[0].y, rx, ry, G.sw, G.sc, G.fc, G.scale, G.fillMode))
+        G.figures.push(new Ellipse(G.clicks[0].x, G.clicks[0].y, rx, ry, G.sw, G.sc, G.fc, G.scale))
       }
 
       this.reset()
@@ -165,9 +165,9 @@ export class ComputeFigure {
       }
 
       if (G.keyMapDown[16]) {
-        G.shadowFig = new Ellipse(G.clicks[0].x, G.clicks[0].y, rx, rx, G.sw, G.sc, G.fc, G.scale, G.fillMode)
+        G.shadowFig = new Ellipse(G.clicks[0].x, G.clicks[0].y, rx, rx, G.sw, G.sc, G.fc, G.scale)
       } else {
-        G.shadowFig = new Ellipse(G.clicks[0].x, G.clicks[0].y, rx, ry, G.sw, G.sc, G.fc, G.scale, G.fillMode)
+        G.shadowFig = new Ellipse(G.clicks[0].x, G.clicks[0].y, rx, ry, G.sw, G.sc, G.fc, G.scale)
       }
     }
   }
@@ -193,9 +193,9 @@ export class ComputeFigure {
         G.clicks[1].y
       )
       if (G.keyMapDown[16]) {
-        G.figures.push(new Rectangle(G.clicks[0].x, G.clicks[0].y, w, w, G.sw, G.sc, G.fc, G.scale, G.fillMode))
+        G.figures.push(new Rectangle(G.clicks[0].x, G.clicks[0].y, w, w, G.sw, G.sc, G.fc, G.scale))
       } else {
-        G.figures.push(new Rectangle(G.clicks[0].x, G.clicks[0].y, w, h, G.sw, G.sc, G.fc, G.scale, G.fillMode))
+        G.figures.push(new Rectangle(G.clicks[0].x, G.clicks[0].y, w, h, G.sw, G.sc, G.fc, G.scale))
       }
 
       this.reset()
@@ -228,9 +228,9 @@ export class ComputeFigure {
       }
 
       if (G.keyMapDown[16]) {
-        G.shadowFig = new Rectangle(G.clicks[0].x, G.clicks[0].y, w, w, G.sw, G.sc, G.fc, G.scale, G.fillMode)
+        G.shadowFig = new Rectangle(G.clicks[0].x, G.clicks[0].y, w, w, G.sw, G.sc, G.fc, G.scale)
       } else {
-        G.shadowFig = new Rectangle(G.clicks[0].x, G.clicks[0].y, w, h, G.sw, G.sc, G.fc, G.scale, G.fillMode)
+        G.shadowFig = new Rectangle(G.clicks[0].x, G.clicks[0].y, w, h, G.sw, G.sc, G.fc, G.scale)
       }
     }
   }
