@@ -52,5 +52,17 @@ export class Toolkit {
     DE.historyRedoBtn.addEventListener('click', event => {
       this.app.changeHistory('redo')
     })
+
+    DE.resetFigBtn.addEventListener('click', event => {
+      this.app.compute.reset()
+    })
+
+    DE.layFigBtn.addEventListener('click', event => {
+      this.app.layFigure()
+    })
+
+    DE.closeFigBtn.addEventListener('click', event => {
+      this.app.layFigure(true)
+    })
   }
 }

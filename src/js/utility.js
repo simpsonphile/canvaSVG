@@ -14,7 +14,10 @@ export const DE = {
   cursorPosIndi: document.querySelector('.js-cursor-pos'),
   strokeWidthInput: document.querySelector('.js-stroke-width-input'),
   fillColorIndicator: document.querySelector('.js-color-fill-indicator'),
-  strokeColorIndicator: document.querySelector('.js-color-stroke-indicator')
+  strokeColorIndicator: document.querySelector('.js-color-stroke-indicator'),
+  resetFigBtn: document.querySelector('.js-btn-reset-fig'),
+  layFigBtn: document.querySelector('.js-btn-lay-fig'),
+  closeFigBtn: document.querySelector('.js-btn-close-fig')
 }
 
 export function vectorLength (x1, y1, x2, y2) {

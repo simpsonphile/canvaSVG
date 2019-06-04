@@ -27,6 +27,14 @@
   max-width: 100%;
 
   @include media('<=t') {
-    max-height: calc(100% - 15rem);
+    max-height: calc(100% - 20rem);
+  }
+}
+
+.l-app__mobile-toolkit {
+  display: none;
+  
+  @include media('<=t') {
+    display: block;
   }
 }
