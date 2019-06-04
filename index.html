@@ -13,25 +13,27 @@
             <div class="l-app">
                 <div class="l-app__sidebar">
                      <nav class="c-toolkit">
-    <button class="c-btn c-btn--toolkit c-btn--t3 c-hint js-modal-trigger js-color-for" data-hint-txt="Change fill color" data-modal="color" data-color-for="fill">
+    <button class="c-btn c-btn--toolkit c-btn--t3 c-hint js-color-fill" data-hint-txt="Change fill color">
         <span class="c-btn__wrap">
             <span class="c-btn__ico c-btn__ico--solo">
                 <svg class="o-ico o-ico--tool">
                     <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#fill"></use>
                 </svg>
             </span>
-            <span class="c-btn--toolkit__color js-fill-color-indicator" data-color="#fff"></span>
+
+            <span class="c-btn--toolkit__color js-color-fill-indicator"></span>
         </span>
     </button>
 
-    <button class="c-btn c-btn--toolkit c-btn--t3 c-hint js-modal-trigger js-color-for" data-hint-txt="Change stroke color" data-modal="color" data-color-for="stroke">
+    <button class="c-btn c-btn--toolkit c-btn--t3 c-hint js-color-stroke" data-hint-txt="Change stroke color">
         <span class="c-btn__wrap">
             <span class="c-btn__ico c-btn__ico--solo">
                 <svg class="o-ico o-ico--tool">
                     <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#border-color"></use>
                 </svg>
             </span>
-            <span class="c-btn--toolkit__color js-stroke-color-indicator" data-color=""></span>
+
+            <span class="c-btn--toolkit__color js-color-stroke-indicator"></span>
         </span>
     </button>
 
@@ -215,6 +217,7 @@
 
     <div class="c-modal__content js-modal-content">
         <div class="js-color-wheel"></div>
+  <div class="color-picker"></div>
 
   <span class="u-flex u-flex-column u-align-items-center u-fit-content c-hint" data-hint-txt="when enabled shapes will be filled with color">
     <label class="c-switch">

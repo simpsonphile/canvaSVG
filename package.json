@@ -68,6 +68,6 @@
     ]
   },
   "dependencies": {
-    "reinvented-color-wheel": "^0.2.4"
+    "@simonwep/pickr": "^0.6.2"
   }
 }

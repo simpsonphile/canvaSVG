@@ -13,6 +13,8 @@ export class AppLogic {
 
     G.figures = []
     G.figuresHistory = []
+
+    this.updateColorIndicators()
   }
 
   reset () {
@@ -67,14 +69,19 @@ export class AppLogic {
     }
   }
 
-  changeColor (color) {
-    if (G.colorFor === 'fill') {
+  updateColorIndicators () {
+    DE.strokeColorIndicator.style.background = G.sc
+    DE.fillColorIndicator.style.background = G.fc
+  }
+
+  changeColor (color, colorFor) {
+    if (colorFor === 'fill') {
       G.fc = color
-      DE.fillColorIndicator.style.background = color
-    } else if (G.colorFor === 'stroke') {
+    } else if (colorFor === 'stroke') {
       G.sc = color
-      DE.strokeColorIndicator.style.background = color
     }
+
+    this.updateColorIndicators()
   }
 
   changeHistory (action) {

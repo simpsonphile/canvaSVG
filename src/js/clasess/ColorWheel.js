@@ -1,22 +1,44 @@
-import ReinventedColorWheel from 'reinvented-color-wheel'
+import Pickr from '@simonwep/pickr/dist/pickr.min'
 
 export class ColorWheel {
   constructor (app) {
+    this.components = {
+      preview: true,
+      opacity: true,
+      hue: true,
+
+      interaction: {
+        hex: true,
+        rgba: true,
+        input: true,
+        save: true
+      }
+    }
+
     this.app = app
-    this.wheel = new ReinventedColorWheel({
-      appendTo: document.querySelector('.js-color-wheel'),
-      hex: '#ff0000',
-      wheelDiameter: 200,
-      wheelThickness: 20,
-      handleDiameter: 16,
-      wheelReflectsSaturation: true
-    })
   }
 
   init () {
-    this.app.pickerColor = this.wheel.hex
-    this.wheel.onChange = color => {
-      this.app.changeColor(color._hex)
-    }
+    this.fillBtn = Pickr.create({
+      el: '.js-color-fill',
+      useAsButton: 'false',
+      default: '#fff',
+      components: {
+        ...this.components
+      }
+    }).on('save', color => {
+      this.app.changeColor(color.toRGBA().toString(), 'fill')
+    })
+
+    this.strokeBtn = Pickr.create({
+      el: '.js-color-stroke',
+      useAsButton: 'false',
+      default: '#fff',
+      components: {
+        ...this.components
+      }
+    }).on('save', color => {
+      this.app.changeColor(color.toRGBA().toString(), 'stroke')
+    })
   }
 }

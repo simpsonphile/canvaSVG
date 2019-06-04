@@ -1,10 +1,9 @@
 import { DE } from '../utility'
 
 export class Toolkit {
-  constructor (app, colorWheel, appWindow) {
+  constructor (app, appWindow) {
     this.appWindow = appWindow
     this.app = app
-    this.wheel = colorWheel
   }
 
   resetFigBtns () {
@@ -33,12 +32,6 @@ export class Toolkit {
 
     DE.resetCanvasBtn.addEventListener('click', event => {
       this.app.reset()
-    })
-
-    DE.colorBtns.forEach(btn => {
-      btn.addEventListener('click', event => {
-        this.app.prepWheel(btn.dataset.colorFor, this.wheel.wheel)
-      })
     })
 
     DE.canvasSizeInputs.forEach(input => {
