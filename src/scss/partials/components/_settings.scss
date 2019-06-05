@@ -1,0 +1,23 @@
+.c-settings {
+  position: absolute;
+  z-index: 99;
+
+  min-width: 20rem;
+  padding: 2rem;
+
+  background: linear-gradient(125deg, $color_blue, darken($color_blue, 15));
+  border-radius: .8rem;
+  border: 2px solid $color_white;
+
+  @include media('<=t-m') {
+    padding: 1rem;
+  }
+}
+
+.c-settings__top {
+  justify-content: space-between;
+
+  display: flex;
+
+  margin-bottom: 1rem;
+}

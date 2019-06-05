@@ -24,6 +24,10 @@ export function vectorLength (x1, y1, x2, y2) {
   return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))
 }
 
+export const BREAKPOINTS = {
+  tablet: 1200
+}
+
 export const G = {
   scale: 1,
   keyMapDown: [],

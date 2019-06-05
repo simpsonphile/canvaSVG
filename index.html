@@ -37,7 +37,7 @@
         </span>
     </button>
 
-    <button class="c-btn c-btn--toolkit c-btn--t3 c-hint js-stroke-width js-modal-trigger" data-hint-txt="Change stroke width" data-modal="stroke-size">
+    <button class="c-btn c-btn--toolkit c-btn--t3 c-hint js-modal-trigger" data-hint-txt="Change stroke width" data-modal="stroke-width" data-modal-positioned>
         <span class="c-btn__wrap">
             <span class="c-btn__ico c-btn__ico--solo">
                 <svg class="o-ico o-ico--tool">
@@ -47,7 +47,7 @@
         </span>
     </button>
 
-    <button class="c-btn c-btn--toolkit c-btn--t3 c-hint js-stroke-width js-modal-trigger" data-hint-txt="Change svg Dimensions" data-modal="svg-size">
+    <button class="c-btn c-btn--toolkit c-btn--t3 c-hint js-modal-trigger" data-hint-txt="Change svg Dimensions" data-modal="svg-size" data-modal-positioned>
         <span class="c-btn__wrap">
             <span class="c-btn__ico c-btn__ico--solo">
                 <svg class="o-ico o-ico--tool">
@@ -190,6 +190,54 @@
                 </div>
             </div>
 
+            <div class="c-settings js-modal u-hidden" data-modal=stroke-width>
+  <div class="c-settings__top">
+    <div class="c-settings__head">
+      <h3 class="t-head t-head--s">  Stroke Width
+</h3>
+    </div>
+
+    <button class="c-settings__close c-btn js-modal-close">
+      <span class="c-btn__wrap">
+          <span class="c-btn__ico c-btn__ico--solo">
+              <svg class="o-ico o-ico--tool">
+                  <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#close"></use>
+              </svg>
+          </span>
+      </span>
+    </button>
+  </div>
+  <div class="c-settings__content">
+      <input type="number" class="js-stroke-width-input" max="8" min="1" step="1" value="1">
+  </div>
+</div>            <div class="c-settings js-modal u-hidden" data-modal=svg-size>
+  <div class="c-settings__top">
+    <div class="c-settings__head">
+      <h3 class="t-head t-head--s">  SVG Dimensions
+</h3>
+    </div>
+
+    <button class="c-settings__close c-btn js-modal-close">
+      <span class="c-btn__wrap">
+          <span class="c-btn__ico c-btn__ico--solo">
+              <svg class="o-ico o-ico--tool">
+                  <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#close"></use>
+              </svg>
+          </span>
+      </span>
+    </button>
+  </div>
+  <div class="c-settings__content">
+      <div class="c-dimensions">
+    <label class="c-dimensions__label">Width: 
+        <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="c-dimensions__input js-canvas-size" data-canvas-size="width" value="100">
+    </label>
+
+    <label class="c-dimensions__label">Height: 
+        <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="c-dimensions__input js-canvas-size" data-canvas-size="height" value="100">
+    </label>
+</div>  </div>
+</div>
             <div class="c-modal js-modal u-hidden" data-modal="generate-svg">
   <span class="c-modal__bg"></span>
   <div class="c-modal__container">
@@ -216,67 +264,6 @@
     <div class="c-modal__bot js-modal-bottom">
         <button class="c-btn c-btn--primary c-btn--t1 c-modal__btn js-modal-close">OK</button>
   <button class="c-btn c-btn--primary c-btn--t1 c-modal__btn js-copy">copy</button>
-    </div>
-  </div>
-</div>            <div class="c-modal js-modal u-hidden" data-modal="stroke-size">
-  <span class="c-modal__bg"></span>
-  <div class="c-modal__container">
-    <div class="c-modal__top">
-      <h2 class="t-head t-head--m c-modal__title">
-          Change Stroke Size
-      </h2>
-
-      <button class="c-btn c-modal__close js-modal-close">
-        <span class="c-btn__wrap">
-            <span class="c-btn__ico c-btn__ico--solo">
-                <svg class="o-ico o-ico--tool">
-                    <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#close"></use>
-                </svg>
-            </span>
-        </span>
-      </button>
-    </div>
-
-    <div class="c-modal__content js-modal-content">
-        <input type="number" class="js-stroke-width-input" max="8" min="1" step="1" value="1">
-    </div>
-
-    <div class="c-modal__bot js-modal-bottom">
-        <button class="c-btn c-btn--primary c-btn--t1 c-modal__btn js-modal-close">OK</button>
-    </div>
-  </div>
-</div>            <div class="c-modal js-modal u-hidden" data-modal="svg-size">
-  <span class="c-modal__bg"></span>
-  <div class="c-modal__container">
-    <div class="c-modal__top">
-      <h2 class="t-head t-head--m c-modal__title">
-          Canvas Size
-      </h2>
-
-      <button class="c-btn c-modal__close js-modal-close">
-        <span class="c-btn__wrap">
-            <span class="c-btn__ico c-btn__ico--solo">
-                <svg class="o-ico o-ico--tool">
-                    <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#close"></use>
-                </svg>
-            </span>
-        </span>
-      </button>
-    </div>
-
-    <div class="c-modal__content js-modal-content">
-      <div class="c-dimensions">
-    <label class="c-dimensions__label">Width: 
-        <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="c-dimensions__input js-canvas-size" data-canvas-size="width" value="100">
-    </label>
-
-    <label class="c-dimensions__label">Height: 
-        <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="c-dimensions__input js-canvas-size" data-canvas-size="height" value="100">
-    </label>
-</div>    </div>
-
-    <div class="c-modal__bot js-modal-bottom">
-        <button class="c-btn c-btn--primary c-btn--t2 c-modal__btn js-modal-close">OK</button>
     </div>
   </div>
 </div>        </main>

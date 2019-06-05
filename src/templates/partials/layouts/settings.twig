@@ -1,0 +1,20 @@
+<div class="c-settings js-modal u-hidden" data-modal={{modalID}}>
+  <div class="c-settings__top">
+    <div class="c-settings__head">
+      <h3 class="t-head t-head--s">{% block title %}{% endblock %}</h3>
+    </div>
+
+    <button class="c-settings__close c-btn js-modal-close">
+      <span class="c-btn__wrap">
+          <span class="c-btn__ico c-btn__ico--solo">
+              <svg class="o-ico o-ico--tool">
+                  <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#close"></use>
+              </svg>
+          </span>
+      </span>
+    </button>
+  </div>
+  <div class="c-settings__content">
+    {% block content %}{% endblock %}
+  </div>
+</div>

@@ -18,3 +18,15 @@
         font-size: 1.8rem;
     }
 }
+
+.t-head--s {
+    font-size: 1.8rem;
+
+    @include media('<=t') {
+        font-size: 1.6rem;
+    }
+
+    @include media('<=m') {
+        font-size: 1.4rem;
+    }
+}
