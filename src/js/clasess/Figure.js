@@ -23,8 +23,8 @@ export class Figure {
   draw (ctx) {
     ctx.save()
     ctx.fillStyle = 'transparent'
-    ctx.lineWidth = this.sw * this.scale
-    ctx.strokeStyle = this.sc
+    ctx.lineWidth = this.strokeWidth * this.scale
+    ctx.strokeStyle = this.strokeColor
     ctx.beginPath()
     this.drawFigure(ctx)
     ctx.stroke()

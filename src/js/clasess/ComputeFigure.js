@@ -6,129 +6,246 @@ import { Curve } from './Curve'
 import { SCurve } from './SCurve'
 import { HelperDot } from './HelperDot'
 import { SizeIndicator } from './SizeIndicator'
-import { vectorLength, G } from '../utility'
+import { vectorLength, DATA } from '../utility'
 
 export class ComputeFigure {
   reset () {
-    G.step = 0
-    G.clicks = []
-    G.shadowFig = {}
-    G.drawShadow = false
-    G.helperDots = []
-    G.sizeIndicators = []
-    G.diameters = []
+    DATA.step = 0
+    DATA.clicks = []
+    DATA.shadowFig = {}
+    DATA.drawShadow = false
+    DATA.helperDots = []
+    DATA.sizeIndicators = []
+    DATA.diameters = []
   }
 
   /* SCurve functions */
   computeSCurve (stop) {
-    if (G.step === 1 || G.step % 2 === 0) {
-      G.helperDots.push(new HelperDot(G.clicks[G.step - 1].x, G.clicks[G.step - 1].y))
+    if (DATA.step === 1 || DATA.step % 2 === 0) {
+      DATA.helperDots.push(
+        new HelperDot(
+          DATA.clicks[DATA.step - 1].x,
+          DATA.clicks[DATA.step - 1].y
+        )
+      )
     }
 
-    if (stop && G.step > 2) {
-      G.figures.push(new SCurve(G.clicks, G.sw, G.sc, G.scale))
+    if (stop && DATA.step > 2) {
+      DATA.figures.push(
+        new SCurve(
+          DATA.clicks,
+          DATA.strokeWidth,
+          DATA.strokeColor,
+          DATA.scale
+        )
+      )
 
       this.reset()
     }
   }
 
   symulateSCurve (curPos) {
-    if (G.step >= 2) {
-      G.drawShadow = true
-      const points = [...G.clicks, curPos]
-      G.shadowFig = new SCurve(points, G.sw, G.sc, G.scale)
+    if (DATA.step >= 2) {
+      DATA.drawShadow = true
+      const points = [...DATA.clicks, curPos]
+      DATA.shadowFig = new SCurve(
+        points,
+        DATA.strokeWidth,
+        DATA.strokeColor,
+        DATA.scale
+      )
     }
   }
 
   /* Curve functions */
   computeCurve () {
-    if (G.step === 1) {
-      G.helperDots.push(new HelperDot(G.clicks[G.step - 1].x, G.clicks[G.step - 1].y))
+    if (DATA.step === 1) {
+      DATA.helperDots.push(
+        new HelperDot(
+          DATA.clicks[DATA.step - 1].x,
+          DATA.clicks[DATA.step - 1].y
+        )
+      )
     }
 
-    if (G.step <= 2) {
-      G.helperDots.push(new HelperDot(G.clicks[G.step - 1].x, G.clicks[G.step - 1].y))
+    if (DATA.step <= 2) {
+      DATA.helperDots.push(
+        new HelperDot(
+          DATA.clicks[DATA.step - 1].x,
+          DATA.clicks[DATA.step - 1].y
+        )
+      )
     }
 
-    if (G.step === 3) {
-      G.figures.push(new Curve(G.clicks[0].x, G.clicks[0].y, G.clicks[1].x, G.clicks[1].y, G.clicks[2].x, G.clicks[2].y, G.sw, G.sc, G.scale))
+    if (DATA.step === 3) {
+      DATA.figures.push(
+        new Curve(
+          DATA.clicks[0].x,
+          DATA.clicks[0].y,
+          DATA.clicks[1].x,
+          DATA.clicks[1].y,
+          DATA.clicks[2].x,
+          DATA.clicks[2].y,
+          DATA.strokeWidth,
+          DATA.strokeColor,
+          DATA.scale
+        )
+      )
 
       this.reset()
     }
   }
 
   symulateCurve (curPos) {
-    if (G.step === 2) {
-      G.drawShadow = true
-      G.shadowFig = new Curve(G.clicks[0].x, G.clicks[0].y, G.clicks[1].x, G.clicks[1].y, curPos.x, curPos.y, G.sw, G.sc, G.scale)
+    if (DATA.step === 2) {
+      DATA.drawShadow = true
+      DATA.shadowFig = new Curve(
+        DATA.clicks[0].x,
+        DATA.clicks[0].y,
+        DATA.clicks[1].x,
+        DATA.clicks[1].y,
+        curPos.x,
+        curPos.y,
+        DATA.strokeWidth,
+        DATA.strokeColor,
+        DATA.scale
+      )
     }
   }
 
   /* line functions */
   computeLine () {
-    if (G.step === 1) {
-      G.helperDots.push(new HelperDot(G.clicks[G.step - 1].x, G.clicks[G.step - 1].y))
+    if (DATA.step === 1) {
+      DATA.helperDots.push(
+        new HelperDot(
+          DATA.clicks[DATA.step - 1].x,
+          DATA.clicks[DATA.step - 1].y
+        )
+      )
     }
 
-    if (G.step === 2) {
-      G.figures.push(new Line(G.clicks[0].x, G.clicks[0].y, G.clicks[1].x, G.clicks[1].y, G.sw, G.sc, G.scale))
+    if (DATA.step === 2) {
+      DATA.figures.push(
+        new Line(
+          DATA.clicks[0].x,
+          DATA.clicks[0].y,
+          DATA.clicks[1].x,
+          DATA.clicks[1].y,
+          DATA.strokeWidth,
+          DATA.strokeColor,
+          DATA.scale
+        )
+      )
 
       this.reset()
     }
   }
 
   symulateLine (curPos) {
-    if (G.step === 1) {
-      G.drawShadow = true
-      G.shadowFig = new Line(G.clicks[0].x, G.clicks[0].y, curPos.x, curPos.y, G.sw, G.sc, G.scale)
+    if (DATA.step === 1) {
+      DATA.drawShadow = true
+      DATA.shadowFig = new Line(
+        DATA.clicks[0].x,
+        DATA.clicks[0].y,
+        curPos.x,
+        curPos.y,
+        DATA.strokeWidth,
+        DATA.strokeColor,
+        DATA.scale
+      )
     }
   }
 
   /* poly functions */
   computePoly (stop, close) {
-    if (stop && G.step > 1) {
-      if (close) G.clicks.push(G.clicks[0])
+    if (stop && DATA.step > 1) {
+      if (close) DATA.clicks.push(DATA.clicks[0])
 
-      G.figures.push(new Polyline(G.clicks, G.sw, G.sc, G.scale))
+      DATA.figures.push(
+        new Polyline(
+          DATA.clicks,
+          DATA.strokeWidth,
+          DATA.strokeColor,
+          DATA.scale
+        )
+      )
 
       this.reset()
     }
   }
 
   symulatePoly (curPos) {
-    if (G.step > 0) {
-      G.drawShadow = true
-      const points = [...G.clicks, curPos]
-      G.helperDots.push(new HelperDot(G.clicks[G.step - 1].x, G.clicks[G.step - 1].y))
-      G.shadowFig = new Polyline(points, G.sw, G.sc)
+    if (DATA.step > 0) {
+      DATA.drawShadow = true
+      const points = [...DATA.clicks, curPos]
+
+      DATA.helperDots.push(
+        new HelperDot(
+          DATA.clicks[DATA.step - 1].x,
+          DATA.clicks[DATA.step - 1].y
+        )
+      )
+
+      DATA.shadowFig = new Polyline(
+        points,
+        DATA.strokeWidth,
+        DATA.sc
+      )
     }
   }
 
   /* arc functions */
   computeArc () {
-    if (G.step === 1) {
-      G.helperDots.push(new HelperDot(G.clicks[G.step - 1].x, G.clicks[G.step - 1].y))
+    if (DATA.step === 1) {
+      DATA.helperDots.push(
+        new HelperDot(
+          DATA.clicks[DATA.step - 1].x,
+          DATA.clicks[DATA.step - 1].y
+        )
+      )
     }
 
-    if (G.step === 2) {
+    if (DATA.step === 2) {
       const rx = vectorLength(
-        G.clicks[0].x,
+        DATA.clicks[0].x,
         0,
-        G.clicks[1].x,
+        DATA.clicks[1].x,
         0
       )
 
       const ry = vectorLength(
         0,
-        G.clicks[0].y,
+        DATA.clicks[0].y,
         0,
-        G.clicks[1].y
+        DATA.clicks[1].y
       )
 
-      if (G.keyMapDown[16]) {
-        G.figures.push(new Ellipse(G.clicks[0].x, G.clicks[0].y, rx, rx, G.sw, G.sc, G.fc, G.scale))
+      if (DATA.keyMapDown[16]) {
+        DATA.figures.push(
+          new Ellipse(
+            DATA.clicks[0].x,
+            DATA.clicks[0].y,
+            rx,
+            rx,
+            DATA.strokeWidth,
+            DATA.strokeColor,
+            DATA.fillColor,
+            DATA.scale
+          )
+        )
       } else {
-        G.figures.push(new Ellipse(G.clicks[0].x, G.clicks[0].y, rx, ry, G.sw, G.sc, G.fc, G.scale))
+        DATA.figures.push(
+          new Ellipse(
+            DATA.clicks[0].x,
+            DATA.clicks[0].y,
+            rx,
+            ry,
+            DATA.strokeWidth,
+            DATA.strokeColor,
+            DATA.fillColor,
+            DATA.scale
+          )
+        )
       }
 
       this.reset()
@@ -136,11 +253,11 @@ export class ComputeFigure {
   }
 
   symulateArc (curPos) {
-    if (G.step === 1) {
-      G.drawShadow = true
+    if (DATA.step === 1) {
+      DATA.drawShadow = true
 
       const rx = vectorLength(
-        G.clicks[0].x,
+        DATA.clicks[0].x,
         0,
         curPos.x,
         0
@@ -148,54 +265,126 @@ export class ComputeFigure {
 
       const ry = vectorLength(
         0,
-        G.clicks[0].y,
+        DATA.clicks[0].y,
         0,
         curPos.y
       )
 
-      G.sizeIndicators[0] = new SizeIndicator(G.clicks[0].x + parseInt(rx / 2), G.clicks[0].y - 5, Math.floor(rx / 2 / G.scale), G.fc)
-      G.diameters[0] = new Line(G.clicks[0].x, G.clicks[0].y, curPos.x, G.clicks[0].y, 2, G.fc)
+      DATA.sizeIndicators[0] = new SizeIndicator(
+        DATA.clicks[0].x + parseInt(rx / 2),
+        DATA.clicks[0].y - 5,
+        Math.floor(rx / 2 / DATA.scale),
+        DATA.fillColor
+      )
 
-      if (G.keyMapDown[16]) {
-        delete G.sizeIndicators[1]
-        delete G.diameters[1]
+      DATA.diameters[0] = new Line(
+        DATA.clicks[0].x,
+        DATA.clicks[0].y,
+        curPos.x,
+        DATA.clicks[0].y,
+        2,
+        DATA.fillColor
+      )
+
+      if (DATA.keyMapDown[16]) {
+        delete DATA.sizeIndicators[1]
+        delete DATA.diameters[1]
       } else {
-        G.sizeIndicators[1] = new SizeIndicator(G.clicks[0].x + 5, G.clicks[0].y + parseInt(ry / 2), Math.floor(ry / 2 / G.scale), G.fc)
-        G.diameters[1] = new Line(G.clicks[0].x, G.clicks[0].y, G.clicks[0].x, curPos.y, 2, G.fc)
+        DATA.sizeIndicators[1] = new SizeIndicator(
+          DATA.clicks[0].x + 5,
+          DATA.clicks[0].y + parseInt(ry / 2),
+          Math.floor(ry / 2 / DATA.scale),
+          DATA.fillColor
+        )
+
+        DATA.diameters[1] = new Line(
+          DATA.clicks[0].x,
+          DATA.clicks[0].y,
+          DATA.clicks[0].x,
+          curPos.y,
+          2,
+          DATA.fillColor
+        )
       }
 
-      if (G.keyMapDown[16]) {
-        G.shadowFig = new Ellipse(G.clicks[0].x, G.clicks[0].y, rx, rx, G.sw, G.sc, G.fc, G.scale)
+      if (DATA.keyMapDown[16]) {
+        DATA.shadowFig = new Ellipse(
+          DATA.clicks[0].x,
+          DATA.clicks[0].y,
+          rx,
+          rx,
+          DATA.strokeWidth,
+          DATA.strokeColor,
+          DATA.fillColor,
+          DATA.scale
+        )
       } else {
-        G.shadowFig = new Ellipse(G.clicks[0].x, G.clicks[0].y, rx, ry, G.sw, G.sc, G.fc, G.scale)
+        DATA.shadowFig = new Ellipse(
+          DATA.clicks[0].x,
+          DATA.clicks[0].y,
+          rx,
+          ry,
+          DATA.strokeWidth,
+          DATA.strokeColor,
+          DATA.fillColor,
+          DATA.scale
+        )
       }
     }
   }
 
   /* rec functions */
   computeRec () {
-    if (G.step === 1) {
-      G.helperDots.push(new HelperDot(G.clicks[G.step - 1].x, G.clicks[G.step - 1].y))
+    if (DATA.step === 1) {
+      DATA.helperDots.push(
+        new HelperDot(
+          DATA.clicks[DATA.step - 1].x,
+          DATA.clicks[DATA.step - 1].y
+        )
+      )
     }
 
-    if (G.step === 2) {
+    if (DATA.step === 2) {
       const w = vectorLength(
-        G.clicks[0].x,
+        DATA.clicks[0].x,
         0,
-        G.clicks[1].x,
+        DATA.clicks[1].x,
         0
       )
 
       const h = vectorLength(
         0,
-        G.clicks[0].y,
+        DATA.clicks[0].y,
         0,
-        G.clicks[1].y
+        DATA.clicks[1].y
       )
-      if (G.keyMapDown[16]) {
-        G.figures.push(new Rectangle(G.clicks[0].x, G.clicks[0].y, w, w, G.sw, G.sc, G.fc, G.scale))
+
+      if (DATA.keyMapDown[16]) {
+        DATA.figures.push(
+          new Rectangle(
+            DATA.clicks[0].x,
+            DATA.clicks[0].y,
+            w,
+            w,
+            DATA.strokeWidth,
+            DATA.strokeColor,
+            DATA.fillColor,
+            DATA.scale
+          )
+        )
       } else {
-        G.figures.push(new Rectangle(G.clicks[0].x, G.clicks[0].y, w, h, G.sw, G.sc, G.fc, G.scale))
+        DATA.figures.push(
+          new Rectangle(
+            DATA.clicks[0].x,
+            DATA.clicks[0].y,
+            w,
+            h,
+            DATA.strokeWidth,
+            DATA.strokeColor,
+            DATA.fillColor,
+            DATA.scale
+          )
+        )
       }
 
       this.reset()
@@ -203,10 +392,10 @@ export class ComputeFigure {
   }
 
   symulateRec (curPos) {
-    if (G.step === 1) {
-      G.drawShadow = true
+    if (DATA.step === 1) {
+      DATA.drawShadow = true
       const w = vectorLength(
-        G.clicks[0].x,
+        DATA.clicks[0].x,
         0,
         curPos.x,
         0
@@ -214,23 +403,51 @@ export class ComputeFigure {
 
       const h = vectorLength(
         0,
-        G.clicks[0].y,
+        DATA.clicks[0].y,
         0,
         curPos.y
       )
 
-      G.sizeIndicators[0] = new SizeIndicator(G.clicks[0].x + parseInt(w / 2), G.clicks[0].y - 5, Math.floor(w / G.scale), G.fc)
+      DATA.sizeIndicators[0] = new SizeIndicator(
+        DATA.clicks[0].x + parseInt(w / 2),
+        DATA.clicks[0].y - 5,
+        Math.floor(w / DATA.scale),
+        DATA.fillColor
+      )
 
-      if (G.keyMapDown[16]) {
-        delete G.sizeIndicators[1]
+      if (DATA.keyMapDown[16]) {
+        delete DATA.sizeIndicators[1]
       } else {
-        G.sizeIndicators[1] = new SizeIndicator(G.clicks[0].x + 5, G.clicks[0].y + parseInt(h / 2), Math.floor(h / G.scale), G.fc)
+        DATA.sizeIndicators[1] = new SizeIndicator(
+          DATA.clicks[0].x + 5,
+          DATA.clicks[0].y + parseInt(h / 2),
+          Math.floor(h / DATA.scale),
+          DATA.fillColor
+        )
       }
 
-      if (G.keyMapDown[16]) {
-        G.shadowFig = new Rectangle(G.clicks[0].x, G.clicks[0].y, w, w, G.sw, G.sc, G.fc, G.scale)
+      if (DATA.keyMapDown[16]) {
+        DATA.shadowFig = new Rectangle(
+          DATA.clicks[0].x,
+          DATA.clicks[0].y,
+          w,
+          w,
+          DATA.strokeWidth,
+          DATA.strokeColor,
+          DATA.fillColor,
+          DATA.scale
+        )
       } else {
-        G.shadowFig = new Rectangle(G.clicks[0].x, G.clicks[0].y, w, h, G.sw, G.sc, G.fc, G.scale)
+        DATA.shadowFig = new Rectangle(
+          DATA.clicks[0].x,
+          DATA.clicks[0].y,
+          w,
+          h,
+          DATA.strokeWidth,
+          DATA.strokeColor,
+          DATA.fillColor,
+          DATA.scale
+        )
       }
     }
   }

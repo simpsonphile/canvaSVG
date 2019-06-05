@@ -1,4 +1,4 @@
-import { DE, G } from '../utility'
+import { DE, DATA } from '../utility'
 
 export class AppWindow {
   constructor (app) {
@@ -7,19 +7,19 @@ export class AppWindow {
   }
 
   resize () {
-    const scaleOfHeight = DE.canvasWindow.offsetHeight / G.svg.height
-    const scaleOfWidth = DE.canvasWindow.offsetWidth / G.svg.width
+    const scaleOfHeight = DE.canvasWindow.offsetHeight / DATA.svg.height
+    const scaleOfWidth = DE.canvasWindow.offsetWidth / DATA.svg.width
 
     if (scaleOfHeight > scaleOfWidth) {
-      G.scale = scaleOfWidth
+      DATA.scale = scaleOfWidth
     } else {
-      G.scale = scaleOfHeight
+      DATA.scale = scaleOfHeight
     }
 
-    G.scale *= 0.95
+    DATA.scale *= 0.95
 
-    DE.canvas.height = G.scale * G.svg.height
-    DE.canvas.width = G.scale * G.svg.width
+    DE.canvas.height = DATA.scale * DATA.svg.height
+    DE.canvas.width = DATA.scale * DATA.svg.width
 
     this.app.rescale()
   }
@@ -36,8 +36,8 @@ export class AppWindow {
     DE.cursorPosIndi.style.left = `${event.layerX}px`
     DE.cursorPosIndi.style.top = `${event.layerY}px`
 
-    const x = Math.floor(event.layerX / G.scale)
-    const y = Math.floor(event.layerY / G.scale)
+    const x = Math.floor(event.layerX / DATA.scale)
+    const y = Math.floor(event.layerY / DATA.scale)
 
     DE.cursorPosIndi.innerHTML = `(${x}, ${y})`
   }
@@ -64,11 +64,11 @@ export class AppWindow {
 
     //  Keyboard events
     document.addEventListener('keydown', event => {
-      G.keyMapDown[event.keyCode] = true
+      DATA.keyMapDown[event.keyCode] = true
     })
 
     document.addEventListener('keyup', event => {
-      G.keyMapDown[event.keyCode] = false
+      DATA.keyMapDown[event.keyCode] = false
     })
 
     document.addEventListener('keypress', event => {
@@ -85,27 +85,27 @@ export class AppWindow {
   draw () {
     this.ctx.clearRect(0, 0, DE.canvas.width, DE.canvas.height)
 
-    G.figures.forEach(fig => {
+    DATA.figures.forEach(fig => {
       fig.draw(this.ctx)
     })
 
-    if (G.drawShadow) {
-      G.shadowFig.draw(this.ctx)
+    if (DATA.drawShadow) {
+      DATA.shadowFig.draw(this.ctx)
     }
 
-    G.helperDots.forEach((dot, index) => {
+    DATA.helperDots.forEach((dot, index) => {
       let specialColor = false
-      if (index >= G.helperDots.length - 2) {
+      if (index >= DATA.helperDots.length - 2) {
         specialColor = true
       }
-      dot.draw(this.ctx, specialColor, G.scale)
+      dot.draw(this.ctx, specialColor, DATA.scale)
     })
 
-    G.sizeIndicators.forEach(size => {
+    DATA.sizeIndicators.forEach(size => {
       size.draw(this.ctx)
     })
 
-    G.diameters.forEach(diameter => {
+    DATA.diameters.forEach(diameter => {
       diameter.draw(this.ctx)
     })
   }

@@ -1,15 +1,15 @@
 import { Figure } from './Figure'
 
 export class Rectangle extends Figure {
-  constructor (x, y, w, h, sw, sc, fc, scale) {
+  constructor (x, y, w, h, strokeWidth, strokeColor, fillColor, scale) {
     super()
     this.x = x
     this.y = y
     this.w = w
     this.h = h
-    this.sw = sw
-    this.sc = sc
-    this.fc = fc
+    this.strokeWidth = strokeWidth
+    this.strokeColor = strokeColor
+    this.fillColor = fillColor
 
     this.scale = scale
   }
@@ -22,7 +22,7 @@ export class Rectangle extends Figure {
     this.y *= toScale
     this.w *= toScale
     this.h *= toScale
-    this.sw *= toScale
+    this.strokeWidth *= toScale
   }
 
   generateFigureHTML () {
@@ -30,14 +30,14 @@ export class Rectangle extends Figure {
                   y="${this.scaleForSvg(this.y)}"
                   width="${this.scaleForSvg(this.w)}"
                   height="${this.scaleForSvg(this.h)}"
-                  stroke-width="${this.sw}"
-                  stroke="${this.sc}"
-                  fill="${this.fc}">
+                  stroke-width="${this.strokeWidth}"
+                  stroke="${this.strokeColor}"
+                  fill="${this.fillColor}">
             </rect>`
   }
 
   drawFigure (ctx) {
-    ctx.fillStyle = this.fc
+    ctx.fillStyle = this.fillColor
     ctx.rect(parseInt(this.x), parseInt(this.y), parseInt(this.w), parseInt(this.h))
   }
 }

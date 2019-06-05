@@ -1,15 +1,15 @@
 import { Figure } from './Figure'
 
 export class Ellipse extends Figure {
-  constructor (cx, cy, rx, ry, sw, sc, fc, scale) {
+  constructor (cx, cy, rx, ry, strokeWidth, strokeColor, fillColor, scale) {
     super()
     this.cx = cx
     this.cy = cy
     this.rx = rx
     this.ry = ry
-    this.sw = sw
-    this.sc = sc
-    this.fc = fc
+    this.strokeWidth = strokeWidth
+    this.strokeColor = strokeColor
+    this.fillColor = fillColor
     this.scale = scale
   }
 
@@ -29,15 +29,15 @@ export class Ellipse extends Figure {
               cy="${this.scaleForSvg(this.cy)}"
               rx="${this.scaleForSvg(this.rx)}"
               ry="${this.scaleForSvg(this.ry)}"
-              stroke-width="${this.sw}"
-              stroke="${this.sc}"
-              fill="${this.fc}">
+              stroke-width="${this.strokeWidth}"
+              stroke="${this.strokeColor}"
+              fill="${this.fillColor}">
       </ellipse>
       `
   }
 
   drawFigure (ctx) {
     ctx.ellipse(parseInt(this.cx), parseInt(this.cy), parseInt(this.rx), parseInt(this.ry), 0, 0, 2 * Math.PI)
-    ctx.fillStyle = this.fc
+    ctx.fillStyle = this.fillColor
   }
 }

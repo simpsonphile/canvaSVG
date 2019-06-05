@@ -1,14 +1,14 @@
 import { Figure } from './Figure'
 
 export class Line extends Figure {
-  constructor (x1, y1, x2, y2, sw, sc, scale) {
+  constructor (x1, y1, x2, y2, strokeWidth, strokeColor, scale) {
     super()
     this.x1 = x1
     this.y1 = y1
     this.x2 = x2
     this.y2 = y2
-    this.sw = sw
-    this.sc = sc
+    this.strokeWidth = strokeWidth
+    this.strokeColor = strokeColor
 
     this.scale = scale
   }
@@ -28,8 +28,8 @@ export class Line extends Figure {
                   y1="${this.scaleForSvg(this.y1)}"
                   x2="${this.scaleForSvg(this.x2)}"
                   y2="${this.scaleForSvg(this.y2)}"
-                  stroke-width="${this.sw}"
-                  stroke="${this.sc}">
+                  stroke-width="${this.strokeWidth}"
+                  stroke="${this.strokeColor}">
             </line>`
   }
 

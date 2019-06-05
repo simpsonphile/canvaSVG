@@ -1,6 +1,6 @@
 import { ComputeFigure } from './ComputeFigure'
 
-import { DE, G } from '../utility'
+import { DE, DATA } from '../utility'
 
 export class AppLogic {
   constructor () {
@@ -11,93 +11,93 @@ export class AppLogic {
   init () {
     this.compute.reset()
 
-    G.figures = []
-    G.figuresHistory = []
+    DATA.figures = []
+    DATA.figuresHistory = []
 
     this.updateColorIndicators()
   }
 
   reset () {
     this.compute.reset()
-    G.figures = []
-    G.figuresHistory = []
+    DATA.figures = []
+    DATA.figuresHistory = []
   }
 
   computeClick (click) {
-    G.clicks.push(click)
-    G.step ++
+    DATA.clicks.push(click)
+    DATA.step ++
 
-    if (G.mode === 'arc') this.compute.computeArc()
-    if (G.mode === 'rec') this.compute.computeRec()
-    if (G.mode === 'poly') this.compute.computePoly()
-    if (G.mode === 'line') this.compute.computeLine()
-    if (G.mode === 'curve') this.compute.computeCurve()
-    if (G.mode === 'scurve') this.compute.computeSCurve()
+    if (DATA.mode === 'arc') this.compute.computeArc()
+    if (DATA.mode === 'rec') this.compute.computeRec()
+    if (DATA.mode === 'poly') this.compute.computePoly()
+    if (DATA.mode === 'line') this.compute.computeLine()
+    if (DATA.mode === 'curve') this.compute.computeCurve()
+    if (DATA.mode === 'scurve') this.compute.computeSCurve()
 
     this.manageHistoryBtns()
   }
 
   computeMouseMove (curPos) {
-    if (G.mode === 'arc') this.compute.symulateArc(curPos)
-    if (G.mode === 'rec') this.compute.symulateRec(curPos)
-    if (G.mode === 'poly') this.compute.symulatePoly(curPos)
-    if (G.mode === 'line') this.compute.symulateLine(curPos)
-    if (G.mode === 'curve') this.compute.symulateCurve(curPos)
-    if (G.mode === 'scurve') this.compute.symulateSCurve(curPos)
+    if (DATA.mode === 'arc') this.compute.symulateArc(curPos)
+    if (DATA.mode === 'rec') this.compute.symulateRec(curPos)
+    if (DATA.mode === 'poly') this.compute.symulatePoly(curPos)
+    if (DATA.mode === 'line') this.compute.symulateLine(curPos)
+    if (DATA.mode === 'curve') this.compute.symulateCurve(curPos)
+    if (DATA.mode === 'scurve') this.compute.symulateSCurve(curPos)
   }
 
   layFigure (close = false) {
-    if (G.mode === 'poly') this.compute.computePoly(true, close)
-    if (G.mode === 'scurve') this.compute.computeSCurve(true)
+    if (DATA.mode === 'poly') this.compute.computePoly(true, close)
+    if (DATA.mode === 'scurve') this.compute.computeSCurve(true)
   }
 
   changeMode (nMode) {
     this.compute.reset()
-    G.mode = nMode
+    DATA.mode = nMode
   }
 
   prepWheel (colorFor, wheel) {
-    G.colorFor = colorFor
+    DATA.colorFor = colorFor
     if (colorFor === 'fill') {
-      wheel.hex = G.fc
+      wheel.hex = DATA.fillColor
     } else if (colorFor === 'stroke') {
-      wheel.hex = G.sc
+      wheel.hex = DATA.strokeColor
     }
   }
 
   updateColorIndicators () {
-    DE.strokeColorIndicator.style.background = G.sc
-    DE.fillColorIndicator.style.background = G.fc
+    DE.strokeColorIndicator.style.background = DATA.strokeColor
+    DE.fillColorIndicator.style.background = DATA.fillColor
   }
 
   changeColor (color, colorFor) {
     if (colorFor === 'fill') {
-      G.fc = color
+      DATA.fillColor = color
     } else if (colorFor === 'stroke') {
-      G.sc = color
+      DATA.strokeColor = color
     }
 
     this.updateColorIndicators()
   }
 
   changeHistory (action) {
-    if (action === 'undo' && G.figures.length > 0) {
-      G.figuresHistory.push(G.figures.pop())
-    } else if (action === 'redo' && G.figuresHistory.length > 0) {
-      G.figures.push(G.figuresHistory.pop())
+    if (action === 'undo' && DATA.figures.length > 0) {
+      DATA.figuresHistory.push(DATA.figures.pop())
+    } else if (action === 'redo' && DATA.figuresHistory.length > 0) {
+      DATA.figures.push(DATA.figuresHistory.pop())
     }
 
     this.manageHistoryBtns()
   }
 
   manageHistoryBtns () {
-    if (G.figuresHistory.length === 0) {
+    if (DATA.figuresHistory.length === 0) {
       DE.historyRedoBtn.classList.add('is-disabled')
     } else {
       DE.historyRedoBtn.classList.remove('is-disabled')
     }
 
-    if (G.figures.length === 0) {
+    if (DATA.figures.length === 0) {
       DE.historyUndoBtn.classList.add('is-disabled')
     } else {
       DE.historyUndoBtn.classList.remove('is-disabled')
@@ -105,28 +105,28 @@ export class AppLogic {
   }
 
   rescale () {
-    G.figures.forEach(fig => {
-      fig.rescale(G.scale)
+    DATA.figures.forEach(fig => {
+      fiDATA.rescale(DATA.scale)
     })
   }
 
   updateDimensions (type, size) {
     if (type === 'width') {
-      G.svg.width = size
+      DATA.svDATA.width = size
     } else if (type === 'height') {
-      G.svg.height = size
+      DATA.svDATA.height = size
     }
   }
 
   updateStrokeWidth (size) {
-    G.sw = size
+    DATA.strokeWidth = size
   }
 
   generateSvg () {
-    let svgHTML = `<svg viewBox="0 0 ${G.svg.width} ${G.svg.height}">`
+    let svgHTML = `<svg viewBox="0 0 ${DATA.svDATA.width} ${DATA.svDATA.height}">`
 
-    G.figures.forEach(fig => {
-      svgHTML += fig.returnHTML()
+    DATA.figures.forEach(fig => {
+      svgHTML += fiDATA.returnHTML()
     })
 
     svgHTML += '\n</svg>'

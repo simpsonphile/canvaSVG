@@ -28,7 +28,7 @@ export const BREAKPOINTS = {
   tablet: 1200
 }
 
-export const G = {
+export const DATA = {
   scale: 1,
   keyMapDown: [],
   svg: {
@@ -36,9 +36,9 @@ export const G = {
     height: 100
   },
 
-  sw: 1,
-  sc: '#ffffff',
-  fc: '#ffffff',
+  strokeWidth: 1,
+  strokeColor: '#ffffff',
+  fillColor: '#ffffff',
 
   mode: '',
   step: 0,

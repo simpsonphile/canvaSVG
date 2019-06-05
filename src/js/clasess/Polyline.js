@@ -1,11 +1,11 @@
 import { Figure } from './Figure'
 
 export class Polyline extends Figure {
-  constructor (points, sw, sc, scale) {
+  constructor (points, strokeWidth, strokeColor, scale) {
     super()
     this.points = points
-    this.sw = parseInt(sw)
-    this.sc = sc
+    this.strokeWidth = parseInt(strokeWidth)
+    this.strokeColor = strokeColor
 
     this.scale = scale
   }
@@ -31,7 +31,7 @@ export class Polyline extends Figure {
 
   generateFigureHTML () {
     return `<polyline points="${this.generatePoints(this.points)}"
-                      stroke-width="${this.sw}"
+                      stroke-width="${this.strokeWidth}"
                       stroke="${this.sc}"
                       fill="none">
             </polyline>`

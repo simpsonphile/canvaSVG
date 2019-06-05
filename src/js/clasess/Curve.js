@@ -1,7 +1,7 @@
 import { Figure } from './Figure'
 
 export class Curve extends Figure {
-  constructor (x, y, x1, y1, x2, y2, sw, sc, scale, fc) {
+  constructor (x, y, x1, y1, x2, y2, strokeWidth, strokeColor, scale, fillColor) {
     super()
     this.x = x
     this.y = y
@@ -9,9 +9,9 @@ export class Curve extends Figure {
     this.y1 = y1
     this.x2 = x2
     this.y2 = y2
-    this.sw = sw
-    this.sc = sc
-    this.fc = fc || 'transparent'
+    this.strokeWidth = strokeWidth
+    this.strokeColor = strokeColor
+    this.fillColor = fillColor || 'transparent'
     this.scale = scale
   }
 
@@ -33,8 +33,8 @@ export class Curve extends Figure {
                       ${this.scaleForSvg(this.y2)}
                       ${this.scaleForSvg(this.x1)}
                       ${this.scaleForSvg(this.y1)}"
-                  stroke-width="${this.sw}"
-                  stroke="${this.sc}"
+                  stroke-width="${this.strokeWidth}"
+                  stroke="${this.strokeColor}"
                   fill="none">
             </path>`
   }

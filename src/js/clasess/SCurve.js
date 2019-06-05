@@ -1,11 +1,11 @@
 import { Figure } from './Figure'
 
 export class SCurve extends Figure {
-  constructor (points, sw, sc, scale) {
+  constructor (points, strokeWidth, strokeColor, scale) {
     super()
     this.points = points
-    this.sw = sw
-    this.sc = sc
+    this.strokeWidth = strokeWidth
+    this.strokeColor = strokeColor
     this.fc = 'transparent'
     this.scale = scale
   }
@@ -38,8 +38,8 @@ export class SCurve extends Figure {
     })
 
     return `<path d="${(d)}"
-                  stroke-width="${this.sw}"
-                  stroke="${this.sc}"
+                  stroke-width="${this.strokeWidth}"
+                  stroke="${this.strokeColor}"
                   fill="none">
             </path>`
   }
