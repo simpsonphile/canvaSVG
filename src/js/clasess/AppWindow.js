@@ -34,7 +34,7 @@ export class AppWindow {
   returnTouchPoint (event) {
     return {
       x: event.changedTouches[0].clientX - DE.canvas.getBoundingClientRect().x,
-      y: event.changedTouches[0].clientY + DE.canvas.getBoundingClientRect().y
+      y: event.changedTouches[0].clientY - DE.canvas.getBoundingClientRect().y
     }
   }
 

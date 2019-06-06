@@ -9721,7 +9721,7 @@ var AppWindow = exports.AppWindow = function () {
     value: function returnTouchPoint(event) {
       return {
         x: event.changedTouches[0].clientX - _utility.DE.canvas.getBoundingClientRect().x,
-        y: event.changedTouches[0].clientY + _utility.DE.canvas.getBoundingClientRect().y
+        y: event.changedTouches[0].clientY - _utility.DE.canvas.getBoundingClientRect().y
       };
     }
   }, {
