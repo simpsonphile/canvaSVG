@@ -37,10 +37,41 @@ export class AppLogic {
     this.manageHistoryBtns()
   }
 
+  computeTouchEnd (click) {
+    if (DATA.mode === 'arc' || DATA.mode === 'rec' || DATA.mode === 'line') {
+      DATA.clicks.push(click)
+      DATA.step ++
+    }
+
+    if (DATA.mode === 'arc') this.compute.computeArc()
+    if (DATA.mode === 'rec') this.compute.computeRec()
+    if (DATA.mode === 'line') this.compute.computeLine()
+
+    if (DATA.mode === 'curve' && DATA.step >= 2) {
+      DATA.clicks.push(click)
+      DATA.step ++
+      this.compute.computeCurve()
+    }
+
+    if (DATA.mode === 'scurve' && DATA.step % 2 === 0) {
+      DATA.clicks.push(click)
+      DATA.step ++
+      this.compute.computeSCurve()
+    }
+  }
+
   computeMouseMove (curPos) {
     if (DATA.mode === 'arc') this.compute.symulateArc(curPos)
     if (DATA.mode === 'rec') this.compute.symulateRec(curPos)
     if (DATA.mode === 'poly') this.compute.symulatePoly(curPos)
+    if (DATA.mode === 'line') this.compute.symulateLine(curPos)
+    if (DATA.mode === 'curve') this.compute.symulateCurve(curPos)
+    if (DATA.mode === 'scurve') this.compute.symulateSCurve(curPos)
+  }
+
+  computeTouchMove (curPos) {
+    if (DATA.mode === 'arc') this.compute.symulateArc(curPos)
+    if (DATA.mode === 'rec') this.compute.symulateRec(curPos)
     if (DATA.mode === 'line') this.compute.symulateLine(curPos)
     if (DATA.mode === 'curve') this.compute.symulateCurve(curPos)
     if (DATA.mode === 'scurve') this.compute.symulateSCurve(curPos)

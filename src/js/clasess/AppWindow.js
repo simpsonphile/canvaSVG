@@ -1,4 +1,4 @@
-import { DE, DATA } from '../utility'
+import { DE, DATA, isTouchDevice } from '../utility'
 
 export class AppWindow {
   constructor (app) {
@@ -31,6 +31,13 @@ export class AppWindow {
     }
   }
 
+  returnTouchPoint (event) {
+    return {
+      x: event.changedTouches[0].clientX - DE.canvas.getBoundingClientRect().x,
+      y: event.changedTouches[0].clientY + DE.canvas.getBoundingClientRect().y
+    }
+  }
+
   updateCursor (event) {
     DE.cursorPosIndi.style.display = `block`
     DE.cursorPosIndi.style.left = `${event.layerX}px`
@@ -50,16 +57,35 @@ export class AppWindow {
 
     //  Mouse events
     DE.canvas.addEventListener('click', event => {
-      this.app.computeClick(this.returnPoint(event))
+      if (!isTouchDevice()) {
+        this.app.computeClick(this.returnPoint(event))
+      }
     })
 
     DE.canvas.addEventListener('mousemove', event => {
-      this.app.computeMouseMove(this.returnPoint(event))
-      this.updateCursor(event)
+      if (!isTouchDevice()) {
+        this.app.computeMouseMove(this.returnPoint(event))
+        this.updateCursor(event)
+      }
     })
 
     DE.canvas.addEventListener('mouseout', () => {
-      DE.cursorPosIndi.style.display = 'none'
+      if (!isTouchDevice()) {
+        DE.cursorPosIndi.style.display = 'none'
+      }
+    })
+
+    //  Touch events
+    DE.canvas.addEventListener('touchstart', event => {
+      this.app.computeClick(this.returnTouchPoint(event))
+    })
+
+    DE.canvas.addEventListener('touchend', event => {
+      this.app.computeTouchEnd(this.returnTouchPoint(event))
+    })
+
+    DE.canvas.addEventListener('touchmove', event => {
+      this.app.computeTouchMove(this.returnTouchPoint(event))
     })
 
     //  Keyboard events

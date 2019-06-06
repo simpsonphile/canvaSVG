@@ -42,6 +42,8 @@ export class ComputeFigure {
 
       this.reset()
     }
+
+    this.symulateSCurve(DATA.clicks[DATA.clicks.length - 1])
   }
 
   symulateSCurve (curPos) {
@@ -172,6 +174,8 @@ export class ComputeFigure {
 
       this.reset()
     }
+
+    this.symulatePoly(DATA.clicks[DATA.clicks.length - 1])
   }
 
   symulatePoly (curPos) {

@@ -557,7 +557,7 @@ if (__webpack_require__(7)) {
   var global = __webpack_require__(2);
   var fails = __webpack_require__(3);
   var $export = __webpack_require__(0);
-  var $typed = __webpack_require__(63);
+  var $typed = __webpack_require__(64);
   var $buffer = __webpack_require__(94);
   var ctx = __webpack_require__(19);
   var anInstance = __webpack_require__(39);
@@ -581,11 +581,11 @@ if (__webpack_require__(7)) {
   var uid = __webpack_require__(33);
   var wks = __webpack_require__(5);
   var createArrayMethod = __webpack_require__(26);
-  var createArrayIncludes = __webpack_require__(53);
+  var createArrayIncludes = __webpack_require__(54);
   var speciesConstructor = __webpack_require__(52);
   var ArrayIterators = __webpack_require__(88);
   var Iterators = __webpack_require__(46);
-  var $iterDetect = __webpack_require__(58);
+  var $iterDetect = __webpack_require__(59);
   var setSpecies = __webpack_require__(38);
   var arrayFill = __webpack_require__(87);
   var arrayCopyWithin = __webpack_require__(113);
@@ -1498,8 +1498,8 @@ var Figure = exports.Figure = function () {
     value: function draw(ctx) {
       ctx.save();
       ctx.fillStyle = 'transparent';
-      ctx.lineWidth = this.sw * this.scale;
-      ctx.strokeStyle = this.sc;
+      ctx.lineWidth = this.strokeWidth * this.scale;
+      ctx.strokeStyle = this.strokeColor;
       ctx.beginPath();
       this.drawFigure(ctx);
       ctx.stroke();
@@ -1587,6 +1587,86 @@ module.exports = function (O, D) {
 /* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isTouchDevice = isTouchDevice;
+exports.vectorLength = vectorLength;
+var DE = exports.DE = {
+  canvasWindow: document.querySelector('.js-canvas-window'),
+  figBtns: document.querySelectorAll('.js-fig'),
+  historyUndoBtn: document.querySelector('.js-history-undo'),
+  historyRedoBtn: document.querySelector('.js-history-redo'),
+  svgBtn: document.querySelector('.js-generate-svg'),
+  copyBtn: document.querySelector('.js-copy'),
+  svgCode: document.querySelector('.js-generated-svg-code'),
+  resetCanvasBtn: document.querySelector('.js-reset-canvas'),
+  colorBtns: document.querySelectorAll('.js-color-for'),
+  canvasSizeInputs: document.querySelectorAll('.js-canvas-size'),
+  canvas: document.querySelector('.js-canvas'),
+  canvasContainer: document.querySelector('.js-canvas-container'),
+  cursorPosIndi: document.querySelector('.js-cursor-pos'),
+  strokeWidthInput: document.querySelector('.js-stroke-width-input'),
+  fillColorIndicator: document.querySelector('.js-color-fill-indicator'),
+  strokeColorIndicator: document.querySelector('.js-color-stroke-indicator'),
+  resetFigBtn: document.querySelector('.js-btn-reset-fig'),
+  layFigBtn: document.querySelector('.js-btn-lay-fig'),
+  closeFigBtn: document.querySelector('.js-btn-close-fig')
+};
+
+function isTouchDevice() {
+  var prefixes = ' -webkit- -moz- -o- -ms- '.split(' ');
+  var mq = function mq(query) {
+    return window.matchMedia(query).matches;
+  };
+
+  if ('ontouchstart' in window || window.DocumentTouch && document instanceof DocumentTouch) {
+    return true;
+  }
+
+  // include the 'heartz' as a way to have a non matching MQ to help terminate the join
+  // https://git.io/vznFH
+  var query = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join('');
+  return mq(query);
+}
+
+function vectorLength(x1, y1, x2, y2) {
+  return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+}
+
+var BREAKPOINTS = exports.BREAKPOINTS = {
+  tablet: 1200
+};
+
+var DATA = exports.DATA = {
+  scale: 1,
+  keyMapDown: [],
+  svg: {
+    width: 750,
+    height: 750
+  },
+
+  strokeWidth: 1,
+  strokeColor: '#ffffff',
+  fillColor: '#FFFFFF0',
+
+  mode: '',
+  step: 0,
+  clicks: [],
+  shadowFig: {},
+  drawShadow: false,
+  helperDots: [],
+  sizeIndicators: [],
+  diameters: []
+};
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
 // false -> Array#indexOf
 // true  -> Array#includes
 var toIObject = __webpack_require__(15);
@@ -1613,14 +1693,14 @@ module.exports = function (IS_INCLUDES) {
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports) {
 
 exports.f = Object.getOwnPropertySymbols;
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.2.2 IsArray(argument)
@@ -1631,7 +1711,7 @@ module.exports = Array.isArray || function isArray(arg) {
 
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var toInteger = __webpack_require__(21);
@@ -1654,7 +1734,7 @@ module.exports = function (TO_STRING) {
 
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.2.8 IsRegExp(argument)
@@ -1668,7 +1748,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var ITERATOR = __webpack_require__(5)('iterator');
@@ -1696,7 +1776,7 @@ module.exports = function (exec, skipClosing) {
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1724,7 +1804,7 @@ module.exports = function (R, S) {
 
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1827,7 +1907,7 @@ module.exports = function (KEY, length, exec) {
 
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(2);
@@ -1837,7 +1917,7 @@ module.exports = navigator && navigator.userAgent || '';
 
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1851,7 +1931,7 @@ var forOf = __webpack_require__(40);
 var anInstance = __webpack_require__(39);
 var isObject = __webpack_require__(4);
 var fails = __webpack_require__(3);
-var $iterDetect = __webpack_require__(58);
+var $iterDetect = __webpack_require__(59);
 var setToStringTag = __webpack_require__(43);
 var inheritIfRequired = __webpack_require__(75);
 
@@ -1929,7 +2009,7 @@ module.exports = function (NAME, wrapper, methods, common, IS_MAP, IS_WEAK) {
 
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(2);
@@ -1963,7 +2043,7 @@ module.exports = {
 
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1979,7 +2059,7 @@ module.exports = __webpack_require__(29) || !__webpack_require__(3)(function () 
 
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1998,7 +2078,7 @@ module.exports = function (COLLECTION) {
 
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2031,65 +2111,6 @@ module.exports = function (COLLECTION) {
   } });
 };
 
-
-/***/ }),
-/* 67 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.vectorLength = vectorLength;
-var DE = exports.DE = {
-  canvasWindow: document.querySelector('.js-canvas-window'),
-  figBtns: document.querySelectorAll('.js-fig'),
-  historyUndoBtn: document.querySelector('.js-history-undo'),
-  historyRedoBtn: document.querySelector('.js-history-redo'),
-  svgBtn: document.querySelector('.js-generate-svg'),
-  copyBtn: document.querySelector('.js-copy'),
-  svgCode: document.querySelector('.js-generated-svg-code'),
-  resetCanvasBtn: document.querySelector('.js-reset-canvas'),
-  colorBtns: document.querySelectorAll('.js-color-for'),
-  canvasSizeInputs: document.querySelectorAll('.js-canvas-size'),
-  canvas: document.querySelector('.js-canvas'),
-  canvasContainer: document.querySelector('js-canvas-container'),
-  cursorPosIndi: document.querySelector('.js-cursor-pos'),
-  strokeWidthInput: document.querySelector('.js-stroke-width-input'),
-  fillColorIndicator: document.querySelector('.js-color-fill-indicator'),
-  strokeColorIndicator: document.querySelector('.js-color-stroke-indicator'),
-  resetFigBtn: document.querySelector('.js-btn-reset-fig'),
-  layFigBtn: document.querySelector('.js-btn-lay-fig'),
-  closeFigBtn: document.querySelector('.js-btn-close-fig')
-};
-
-function vectorLength(x1, y1, x2, y2) {
-  return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
-}
-
-var G = exports.G = {
-  scale: 1,
-  keyMapDown: [],
-  svg: {
-    width: 100,
-    height: 100
-  },
-
-  sw: 1,
-  sc: '#ffffff',
-  fc: '#ffffff',
-
-  mode: '',
-  step: 0,
-  clicks: [],
-  shadowFig: {},
-  drawShadow: false,
-  helperDots: [],
-  sizeIndicators: [],
-  diameters: []
-};
 
 /***/ }),
 /* 68 */
@@ -2349,7 +2370,7 @@ module.exports = function (Constructor, NAME, next) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // helper for String#{startsWith, endsWith, includes}
-var isRegExp = __webpack_require__(57);
+var isRegExp = __webpack_require__(58);
 var defined = __webpack_require__(24);
 
 module.exports = function (that, searchString, NAME) {
@@ -2565,7 +2586,7 @@ module.exports = patchedExec;
 
 "use strict";
 
-var at = __webpack_require__(56)(true);
+var at = __webpack_require__(57)(true);
 
  // `AdvanceStringIndex` abstract operation
 // https://tc39.github.io/ecma262/#sec-advancestringindex
@@ -2773,7 +2794,7 @@ module.exports.f = function (C) {
 var global = __webpack_require__(2);
 var DESCRIPTORS = __webpack_require__(7);
 var LIBRARY = __webpack_require__(29);
-var $typed = __webpack_require__(63);
+var $typed = __webpack_require__(64);
 var hide = __webpack_require__(11);
 var redefineAll = __webpack_require__(41);
 var fails = __webpack_require__(3);
@@ -3096,7 +3117,7 @@ exports.f = __webpack_require__(5);
 
 var has = __webpack_require__(14);
 var toIObject = __webpack_require__(15);
-var arrayIndexOf = __webpack_require__(53)(false);
+var arrayIndexOf = __webpack_require__(54)(false);
 var IE_PROTO = __webpack_require__(70)('IE_PROTO');
 
 module.exports = function (object, names) {
@@ -3165,7 +3186,7 @@ module.exports.f = function getOwnPropertyNames(it) {
 
 // 19.1.2.1 Object.assign(target, source, ...)
 var getKeys = __webpack_require__(34);
-var gOPS = __webpack_require__(54);
+var gOPS = __webpack_require__(55);
 var pIE = __webpack_require__(50);
 var toObject = __webpack_require__(9);
 var IObject = __webpack_require__(49);
@@ -3517,7 +3538,7 @@ var validate = __webpack_require__(42);
 var MAP = 'Map';
 
 // 23.1 Map Objects
-module.exports = __webpack_require__(62)(MAP, function (get) {
+module.exports = __webpack_require__(63)(MAP, function (get) {
   return function Map() { return get(this, arguments.length > 0 ? arguments[0] : undefined); };
 }, {
   // 23.1.3.6 Map.prototype.get(key)
@@ -3694,7 +3715,7 @@ var validate = __webpack_require__(42);
 var SET = 'Set';
 
 // 23.2 Set Objects
-module.exports = __webpack_require__(62)(SET, function (get) {
+module.exports = __webpack_require__(63)(SET, function (get) {
   return function Set() { return get(this, arguments.length > 0 ? arguments[0] : undefined); };
 }, {
   // 23.2.3.1 Set.prototype.add(value)
@@ -3748,7 +3769,7 @@ var methods = {
 };
 
 // 23.3 WeakMap Objects
-var $WeakMap = module.exports = __webpack_require__(62)(WEAK_MAP, wrapper, methods, weak, true, true);
+var $WeakMap = module.exports = __webpack_require__(63)(WEAK_MAP, wrapper, methods, weak, true, true);
 
 // IE11 WeakMap frozen keys fix
 if (NATIVE_WEAK_MAP && IS_IE11) {
@@ -3885,7 +3906,7 @@ module.exports = function (it) {
 
 // all object keys, includes non-enumerable and symbols
 var gOPN = __webpack_require__(37);
-var gOPS = __webpack_require__(54);
+var gOPS = __webpack_require__(55);
 var anObject = __webpack_require__(1);
 var Reflect = __webpack_require__(2).Reflect;
 module.exports = Reflect && Reflect.ownKeys || function ownKeys(it) {
@@ -3902,7 +3923,7 @@ module.exports = Reflect && Reflect.ownKeys || function ownKeys(it) {
 "use strict";
 
 // https://tc39.github.io/proposal-flatMap/#sec-FlattenIntoArray
-var isArray = __webpack_require__(55);
+var isArray = __webpack_require__(56);
 var isObject = __webpack_require__(4);
 var toLength = __webpack_require__(6);
 var ctx = __webpack_require__(19);
@@ -4315,7 +4336,7 @@ var wks = __webpack_require__(5);
 var wksExt = __webpack_require__(97);
 var wksDefine = __webpack_require__(69);
 var enumKeys = __webpack_require__(138);
-var isArray = __webpack_require__(55);
+var isArray = __webpack_require__(56);
 var anObject = __webpack_require__(1);
 var isObject = __webpack_require__(4);
 var toIObject = __webpack_require__(15);
@@ -4450,7 +4471,7 @@ if (!USE_NATIVE) {
   $DP.f = $defineProperty;
   __webpack_require__(37).f = gOPNExt.f = $getOwnPropertyNames;
   __webpack_require__(50).f = $propertyIsEnumerable;
-  __webpack_require__(54).f = $getOwnPropertySymbols;
+  __webpack_require__(55).f = $getOwnPropertySymbols;
 
   if (DESCRIPTORS && !__webpack_require__(29)) {
     redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
@@ -4548,7 +4569,7 @@ module.exports = __webpack_require__(48)('native-function-to-string', Function.t
 
 // all enumerable object keys, includes symbols
 var getKeys = __webpack_require__(34);
-var gOPS = __webpack_require__(54);
+var gOPS = __webpack_require__(55);
 var pIE = __webpack_require__(50);
 module.exports = function (it) {
   var result = getKeys(it);
@@ -5526,7 +5547,7 @@ __webpack_require__(45)('trim', function ($trim) {
 
 "use strict";
 
-var $at = __webpack_require__(56)(true);
+var $at = __webpack_require__(57)(true);
 
 // 21.1.3.27 String.prototype[@@iterator]()
 __webpack_require__(79)(String, 'String', function (iterated) {
@@ -5551,7 +5572,7 @@ __webpack_require__(79)(String, 'String', function (iterated) {
 "use strict";
 
 var $export = __webpack_require__(0);
-var $at = __webpack_require__(56)(false);
+var $at = __webpack_require__(57)(false);
 $export($export.P, 'String', {
   // 21.1.3.3 String.prototype.codePointAt(pos)
   codePointAt: function codePointAt(pos) {
@@ -5956,7 +5977,7 @@ module.exports = function (hint) {
 // 22.1.2.2 / 15.4.3.2 Array.isArray(arg)
 var $export = __webpack_require__(0);
 
-$export($export.S, 'Array', { isArray: __webpack_require__(55) });
+$export($export.S, 'Array', { isArray: __webpack_require__(56) });
 
 
 /***/ }),
@@ -5974,7 +5995,7 @@ var toLength = __webpack_require__(6);
 var createProperty = __webpack_require__(84);
 var getIterFn = __webpack_require__(85);
 
-$export($export.S + $export.F * !__webpack_require__(58)(function (iter) { Array.from(iter); }), 'Array', {
+$export($export.S + $export.F * !__webpack_require__(59)(function (iter) { Array.from(iter); }), 'Array', {
   // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
   from: function from(arrayLike /* , mapfn = undefined, thisArg = undefined */) {
     var O = toObject(arrayLike);
@@ -6136,7 +6157,7 @@ $export($export.P + $export.F * !STRICT, 'Array', {
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(4);
-var isArray = __webpack_require__(55);
+var isArray = __webpack_require__(56);
 var SPECIES = __webpack_require__(5)('species');
 
 module.exports = function (original) {
@@ -6262,7 +6283,7 @@ $export($export.P + $export.F * !__webpack_require__(22)([].reduceRight, true), 
 "use strict";
 
 var $export = __webpack_require__(0);
-var $indexOf = __webpack_require__(53)(false);
+var $indexOf = __webpack_require__(54)(false);
 var $native = [].indexOf;
 var NEGATIVE_ZERO = !!$native && 1 / [1].indexOf(1, -0) < 0;
 
@@ -6387,7 +6408,7 @@ var global = __webpack_require__(2);
 var inheritIfRequired = __webpack_require__(75);
 var dP = __webpack_require__(8).f;
 var gOPN = __webpack_require__(37).f;
-var isRegExp = __webpack_require__(57);
+var isRegExp = __webpack_require__(58);
 var $flags = __webpack_require__(51);
 var $RegExp = global.RegExp;
 var Base = $RegExp;
@@ -6470,10 +6491,10 @@ if (__webpack_require__(3)(function () { return $toString.call({ source: 'a', fl
 var anObject = __webpack_require__(1);
 var toLength = __webpack_require__(6);
 var advanceStringIndex = __webpack_require__(90);
-var regExpExec = __webpack_require__(59);
+var regExpExec = __webpack_require__(60);
 
 // @@match logic
-__webpack_require__(60)('match', 1, function (defined, MATCH, $match, maybeCallNative) {
+__webpack_require__(61)('match', 1, function (defined, MATCH, $match, maybeCallNative) {
   return [
     // `String.prototype.match` method
     // https://tc39.github.io/ecma262/#sec-string.prototype.match
@@ -6519,7 +6540,7 @@ var toObject = __webpack_require__(9);
 var toLength = __webpack_require__(6);
 var toInteger = __webpack_require__(21);
 var advanceStringIndex = __webpack_require__(90);
-var regExpExec = __webpack_require__(59);
+var regExpExec = __webpack_require__(60);
 var max = Math.max;
 var min = Math.min;
 var floor = Math.floor;
@@ -6531,7 +6552,7 @@ var maybeToString = function (it) {
 };
 
 // @@replace logic
-__webpack_require__(60)('replace', 2, function (defined, REPLACE, $replace, maybeCallNative) {
+__webpack_require__(61)('replace', 2, function (defined, REPLACE, $replace, maybeCallNative) {
   return [
     // `String.prototype.replace` method
     // https://tc39.github.io/ecma262/#sec-string.prototype.replace
@@ -6641,10 +6662,10 @@ __webpack_require__(60)('replace', 2, function (defined, REPLACE, $replace, mayb
 
 var anObject = __webpack_require__(1);
 var sameValue = __webpack_require__(102);
-var regExpExec = __webpack_require__(59);
+var regExpExec = __webpack_require__(60);
 
 // @@search logic
-__webpack_require__(60)('search', 1, function (defined, SEARCH, $search, maybeCallNative) {
+__webpack_require__(61)('search', 1, function (defined, SEARCH, $search, maybeCallNative) {
   return [
     // `String.prototype.search` method
     // https://tc39.github.io/ecma262/#sec-string.prototype.search
@@ -6677,12 +6698,12 @@ __webpack_require__(60)('search', 1, function (defined, SEARCH, $search, maybeCa
 "use strict";
 
 
-var isRegExp = __webpack_require__(57);
+var isRegExp = __webpack_require__(58);
 var anObject = __webpack_require__(1);
 var speciesConstructor = __webpack_require__(52);
 var advanceStringIndex = __webpack_require__(90);
 var toLength = __webpack_require__(6);
-var callRegExpExec = __webpack_require__(59);
+var callRegExpExec = __webpack_require__(60);
 var regexpExec = __webpack_require__(89);
 var fails = __webpack_require__(3);
 var $min = Math.min;
@@ -6696,7 +6717,7 @@ var MAX_UINT32 = 0xffffffff;
 var SUPPORTS_Y = !fails(function () { RegExp(MAX_UINT32, 'y'); });
 
 // @@split logic
-__webpack_require__(60)('split', 2, function (defined, SPLIT, $split, maybeCallNative) {
+__webpack_require__(61)('split', 2, function (defined, SPLIT, $split, maybeCallNative) {
   var internalSplit;
   if (
     'abbc'[$SPLIT](/(b)*/)[1] == 'c' ||
@@ -6831,7 +6852,7 @@ var task = __webpack_require__(91).set;
 var microtask = __webpack_require__(92)();
 var newPromiseCapabilityModule = __webpack_require__(93);
 var perform = __webpack_require__(117);
-var userAgent = __webpack_require__(61);
+var userAgent = __webpack_require__(62);
 var promiseResolve = __webpack_require__(118);
 var PROMISE = 'Promise';
 var TypeError = global.TypeError;
@@ -7058,7 +7079,7 @@ $export($export.S + $export.F * (LIBRARY || !USE_NATIVE), PROMISE, {
     return promiseResolve(LIBRARY && this === Wrapper ? $Promise : this, x);
   }
 });
-$export($export.S + $export.F * !(USE_NATIVE && __webpack_require__(58)(function (iter) {
+$export($export.S + $export.F * !(USE_NATIVE && __webpack_require__(59)(function (iter) {
   $Promise.all(iter)['catch'](empty);
 })), PROMISE, {
   // 25.4.4.1 Promise.all(iterable)
@@ -7115,7 +7136,7 @@ var validate = __webpack_require__(42);
 var WEAK_SET = 'WeakSet';
 
 // 23.4 WeakSet Objects
-__webpack_require__(62)(WEAK_SET, function (get) {
+__webpack_require__(63)(WEAK_SET, function (get) {
   return function WeakSet() { return get(this, arguments.length > 0 ? arguments[0] : undefined); };
 }, {
   // 23.4.3.1 WeakSet.prototype.add(value)
@@ -7132,7 +7153,7 @@ __webpack_require__(62)(WEAK_SET, function (get) {
 "use strict";
 
 var $export = __webpack_require__(0);
-var $typed = __webpack_require__(63);
+var $typed = __webpack_require__(64);
 var buffer = __webpack_require__(94);
 var anObject = __webpack_require__(1);
 var toAbsoluteIndex = __webpack_require__(35);
@@ -7183,7 +7204,7 @@ __webpack_require__(38)(ARRAY_BUFFER);
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(0);
-$export($export.G + $export.W + $export.F * !__webpack_require__(63).ABV, {
+$export($export.G + $export.W + $export.F * !__webpack_require__(64).ABV, {
   DataView: __webpack_require__(94).DataView
 });
 
@@ -7631,7 +7652,7 @@ if (setProto) $export($export.S, 'Reflect', {
 
 // https://github.com/tc39/Array.prototype.includes
 var $export = __webpack_require__(0);
-var $includes = __webpack_require__(53)(true);
+var $includes = __webpack_require__(54)(true);
 
 $export($export.P, 'Array', {
   includes: function includes(el /* , fromIndex = 0 */) {
@@ -7707,7 +7728,7 @@ __webpack_require__(31)('flatten');
 
 // https://github.com/mathiasbynens/String.prototype.at
 var $export = __webpack_require__(0);
-var $at = __webpack_require__(56)(true);
+var $at = __webpack_require__(57)(true);
 
 $export($export.P, 'String', {
   at: function at(pos) {
@@ -7725,7 +7746,7 @@ $export($export.P, 'String', {
 // https://github.com/tc39/proposal-string-pad-start-end
 var $export = __webpack_require__(0);
 var $pad = __webpack_require__(127);
-var userAgent = __webpack_require__(61);
+var userAgent = __webpack_require__(62);
 
 // https://github.com/zloirock/core-js/issues/280
 var WEBKIT_BUG = /Version\/10\.\d+(\.\d+)?( Mobile\/\w+)? Safari\//.test(userAgent);
@@ -7746,7 +7767,7 @@ $export($export.P + $export.F * WEBKIT_BUG, 'String', {
 // https://github.com/tc39/proposal-string-pad-start-end
 var $export = __webpack_require__(0);
 var $pad = __webpack_require__(127);
-var userAgent = __webpack_require__(61);
+var userAgent = __webpack_require__(62);
 
 // https://github.com/zloirock/core-js/issues/280
 var WEBKIT_BUG = /Version\/10\.\d+(\.\d+)?( Mobile\/\w+)? Safari\//.test(userAgent);
@@ -7796,7 +7817,7 @@ __webpack_require__(45)('trimRight', function ($trim) {
 var $export = __webpack_require__(0);
 var defined = __webpack_require__(24);
 var toLength = __webpack_require__(6);
-var isRegExp = __webpack_require__(57);
+var isRegExp = __webpack_require__(58);
 var getFlags = __webpack_require__(51);
 var RegExpProto = RegExp.prototype;
 
@@ -7907,7 +7928,7 @@ var aFunction = __webpack_require__(10);
 var $defineProperty = __webpack_require__(8);
 
 // B.2.2.2 Object.prototype.__defineGetter__(P, getter)
-__webpack_require__(7) && $export($export.P + __webpack_require__(64), 'Object', {
+__webpack_require__(7) && $export($export.P + __webpack_require__(65), 'Object', {
   __defineGetter__: function __defineGetter__(P, getter) {
     $defineProperty.f(toObject(this), P, { get: aFunction(getter), enumerable: true, configurable: true });
   }
@@ -7926,7 +7947,7 @@ var aFunction = __webpack_require__(10);
 var $defineProperty = __webpack_require__(8);
 
 // B.2.2.3 Object.prototype.__defineSetter__(P, setter)
-__webpack_require__(7) && $export($export.P + __webpack_require__(64), 'Object', {
+__webpack_require__(7) && $export($export.P + __webpack_require__(65), 'Object', {
   __defineSetter__: function __defineSetter__(P, setter) {
     $defineProperty.f(toObject(this), P, { set: aFunction(setter), enumerable: true, configurable: true });
   }
@@ -7946,7 +7967,7 @@ var getPrototypeOf = __webpack_require__(17);
 var getOwnPropertyDescriptor = __webpack_require__(16).f;
 
 // B.2.2.4 Object.prototype.__lookupGetter__(P)
-__webpack_require__(7) && $export($export.P + __webpack_require__(64), 'Object', {
+__webpack_require__(7) && $export($export.P + __webpack_require__(65), 'Object', {
   __lookupGetter__: function __lookupGetter__(P) {
     var O = toObject(this);
     var K = toPrimitive(P, true);
@@ -7971,7 +7992,7 @@ var getPrototypeOf = __webpack_require__(17);
 var getOwnPropertyDescriptor = __webpack_require__(16).f;
 
 // B.2.2.5 Object.prototype.__lookupSetter__(P)
-__webpack_require__(7) && $export($export.P + __webpack_require__(64), 'Object', {
+__webpack_require__(7) && $export($export.P + __webpack_require__(65), 'Object', {
   __lookupSetter__: function __lookupSetter__(P) {
     var O = toObject(this);
     var K = toPrimitive(P, true);
@@ -8008,7 +8029,7 @@ $export($export.P + $export.R, 'Set', { toJSON: __webpack_require__(129)('Set') 
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://tc39.github.io/proposal-setmap-offrom/#sec-map.of
-__webpack_require__(65)('Map');
+__webpack_require__(66)('Map');
 
 
 /***/ }),
@@ -8016,7 +8037,7 @@ __webpack_require__(65)('Map');
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://tc39.github.io/proposal-setmap-offrom/#sec-set.of
-__webpack_require__(65)('Set');
+__webpack_require__(66)('Set');
 
 
 /***/ }),
@@ -8024,7 +8045,7 @@ __webpack_require__(65)('Set');
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://tc39.github.io/proposal-setmap-offrom/#sec-weakmap.of
-__webpack_require__(65)('WeakMap');
+__webpack_require__(66)('WeakMap');
 
 
 /***/ }),
@@ -8032,7 +8053,7 @@ __webpack_require__(65)('WeakMap');
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://tc39.github.io/proposal-setmap-offrom/#sec-weakset.of
-__webpack_require__(65)('WeakSet');
+__webpack_require__(66)('WeakSet');
 
 
 /***/ }),
@@ -8040,7 +8061,7 @@ __webpack_require__(65)('WeakSet');
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://tc39.github.io/proposal-setmap-offrom/#sec-map.from
-__webpack_require__(66)('Map');
+__webpack_require__(67)('Map');
 
 
 /***/ }),
@@ -8048,7 +8069,7 @@ __webpack_require__(66)('Map');
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://tc39.github.io/proposal-setmap-offrom/#sec-set.from
-__webpack_require__(66)('Set');
+__webpack_require__(67)('Set');
 
 
 /***/ }),
@@ -8056,7 +8077,7 @@ __webpack_require__(66)('Set');
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://tc39.github.io/proposal-setmap-offrom/#sec-weakmap.from
-__webpack_require__(66)('WeakMap');
+__webpack_require__(67)('WeakMap');
 
 
 /***/ }),
@@ -8064,7 +8085,7 @@ __webpack_require__(66)('WeakMap');
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://tc39.github.io/proposal-setmap-offrom/#sec-weakset.from
-__webpack_require__(66)('WeakSet');
+__webpack_require__(67)('WeakSet');
 
 
 /***/ }),
@@ -8730,7 +8751,7 @@ __webpack_require__(38)('Observable');
 // ie9- setTimeout & setInterval additional parameters fix
 var global = __webpack_require__(2);
 var $export = __webpack_require__(0);
-var userAgent = __webpack_require__(61);
+var userAgent = __webpack_require__(62);
 var slice = [].slice;
 var MSIE = /MSIE .\./.test(userAgent); // <- dirty ie9- check
 var wrap = function (set) {
@@ -9656,7 +9677,7 @@ exports.AppWindow = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _utility = __webpack_require__(67);
+var _utility = __webpack_require__(53);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -9671,19 +9692,19 @@ var AppWindow = exports.AppWindow = function () {
   _createClass(AppWindow, [{
     key: 'resize',
     value: function resize() {
-      var scaleOfHeight = _utility.DE.canvasWindow.offsetHeight / _utility.G.svg.height;
-      var scaleOfWidth = _utility.DE.canvasWindow.offsetWidth / _utility.G.svg.width;
+      var scaleOfHeight = _utility.DE.canvasWindow.offsetHeight / _utility.DATA.svg.height;
+      var scaleOfWidth = _utility.DE.canvasWindow.offsetWidth / _utility.DATA.svg.width;
 
       if (scaleOfHeight > scaleOfWidth) {
-        _utility.G.scale = scaleOfWidth;
+        _utility.DATA.scale = scaleOfWidth;
       } else {
-        _utility.G.scale = scaleOfHeight;
+        _utility.DATA.scale = scaleOfHeight;
       }
 
-      _utility.G.scale *= 0.95;
+      _utility.DATA.scale *= 0.95;
 
-      _utility.DE.canvas.height = _utility.G.scale * _utility.G.svg.height;
-      _utility.DE.canvas.width = _utility.G.scale * _utility.G.svg.width;
+      _utility.DE.canvas.height = _utility.DATA.scale * _utility.DATA.svg.height;
+      _utility.DE.canvas.width = _utility.DATA.scale * _utility.DATA.svg.width;
 
       this.app.rescale();
     }
@@ -9696,14 +9717,22 @@ var AppWindow = exports.AppWindow = function () {
       };
     }
   }, {
+    key: 'returnTouchPoint',
+    value: function returnTouchPoint(event) {
+      return {
+        x: event.changedTouches[0].clientX - _utility.DE.canvas.getBoundingClientRect().x,
+        y: event.changedTouches[0].clientY + _utility.DE.canvas.getBoundingClientRect().y
+      };
+    }
+  }, {
     key: 'updateCursor',
     value: function updateCursor(event) {
       _utility.DE.cursorPosIndi.style.display = 'block';
       _utility.DE.cursorPosIndi.style.left = event.layerX + 'px';
       _utility.DE.cursorPosIndi.style.top = event.layerY + 'px';
 
-      var x = Math.floor(event.layerX / _utility.G.scale);
-      var y = Math.floor(event.layerY / _utility.G.scale);
+      var x = Math.floor(event.layerX / _utility.DATA.scale);
+      var y = Math.floor(event.layerY / _utility.DATA.scale);
 
       _utility.DE.cursorPosIndi.innerHTML = '(' + x + ', ' + y + ')';
     }
@@ -9725,25 +9754,44 @@ var AppWindow = exports.AppWindow = function () {
 
       //  Mouse events
       _utility.DE.canvas.addEventListener('click', function (event) {
-        _this.app.computeClick(_this.returnPoint(event));
+        if (!(0, _utility.isTouchDevice)()) {
+          _this.app.computeClick(_this.returnPoint(event));
+        }
       });
 
       _utility.DE.canvas.addEventListener('mousemove', function (event) {
-        _this.app.computeMouseMove(_this.returnPoint(event));
-        _this.updateCursor(event);
+        if (!(0, _utility.isTouchDevice)()) {
+          _this.app.computeMouseMove(_this.returnPoint(event));
+          _this.updateCursor(event);
+        }
       });
 
       _utility.DE.canvas.addEventListener('mouseout', function () {
-        _utility.DE.cursorPosIndi.style.display = 'none';
+        if (!(0, _utility.isTouchDevice)()) {
+          _utility.DE.cursorPosIndi.style.display = 'none';
+        }
+      });
+
+      //  Touch events
+      _utility.DE.canvas.addEventListener('touchstart', function (event) {
+        _this.app.computeClick(_this.returnTouchPoint(event));
+      });
+
+      _utility.DE.canvas.addEventListener('touchend', function (event) {
+        _this.app.computeTouchEnd(_this.returnTouchPoint(event));
+      });
+
+      _utility.DE.canvas.addEventListener('touchmove', function (event) {
+        _this.app.computeTouchMove(_this.returnTouchPoint(event));
       });
 
       //  Keyboard events
       document.addEventListener('keydown', function (event) {
-        _utility.G.keyMapDown[event.keyCode] = true;
+        _utility.DATA.keyMapDown[event.keyCode] = true;
       });
 
       document.addEventListener('keyup', function (event) {
-        _utility.G.keyMapDown[event.keyCode] = false;
+        _utility.DATA.keyMapDown[event.keyCode] = false;
       });
 
       document.addEventListener('keypress', function (event) {
@@ -9763,27 +9811,27 @@ var AppWindow = exports.AppWindow = function () {
 
       this.ctx.clearRect(0, 0, _utility.DE.canvas.width, _utility.DE.canvas.height);
 
-      _utility.G.figures.forEach(function (fig) {
+      _utility.DATA.figures.forEach(function (fig) {
         fig.draw(_this2.ctx);
       });
 
-      if (_utility.G.drawShadow) {
-        _utility.G.shadowFig.draw(this.ctx);
+      if (_utility.DATA.drawShadow) {
+        _utility.DATA.shadowFig.draw(this.ctx);
       }
 
-      _utility.G.helperDots.forEach(function (dot, index) {
+      _utility.DATA.helperDots.forEach(function (dot, index) {
         var specialColor = false;
-        if (index >= _utility.G.helperDots.length - 2) {
+        if (index >= _utility.DATA.helperDots.length - 2) {
           specialColor = true;
         }
-        dot.draw(_this2.ctx, specialColor, _utility.G.scale);
+        dot.draw(_this2.ctx, specialColor, _utility.DATA.scale);
       });
 
-      _utility.G.sizeIndicators.forEach(function (size) {
+      _utility.DATA.sizeIndicators.forEach(function (size) {
         size.draw(_this2.ctx);
       });
 
-      _utility.G.diameters.forEach(function (diameter) {
+      _utility.DATA.diameters.forEach(function (diameter) {
         diameter.draw(_this2.ctx);
       });
     }
@@ -9806,7 +9854,7 @@ exports.Toolkit = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _utility = __webpack_require__(67);
+var _utility = __webpack_require__(53);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -9949,7 +9997,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _ComputeFigure = __webpack_require__(341);
 
-var _utility = __webpack_require__(67);
+var _utility = __webpack_require__(53);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -9966,8 +10014,8 @@ var AppLogic = exports.AppLogic = function () {
     value: function init() {
       this.compute.reset();
 
-      _utility.G.figures = [];
-      _utility.G.figuresHistory = [];
+      _utility.DATA.figures = [];
+      _utility.DATA.figuresHistory = [];
 
       this.updateColorIndicators();
     }
@@ -9975,71 +10023,104 @@ var AppLogic = exports.AppLogic = function () {
     key: 'reset',
     value: function reset() {
       this.compute.reset();
-      _utility.G.figures = [];
-      _utility.G.figuresHistory = [];
+      _utility.DATA.figures = [];
+      _utility.DATA.figuresHistory = [];
     }
   }, {
     key: 'computeClick',
     value: function computeClick(click) {
-      _utility.G.clicks.push(click);
-      _utility.G.step++;
+      _utility.DATA.clicks.push(click);
+      _utility.DATA.step++;
 
-      if (_utility.G.mode === 'arc') this.compute.computeArc();
-      if (_utility.G.mode === 'rec') this.compute.computeRec();
-      if (_utility.G.mode === 'poly') this.compute.computePoly();
-      if (_utility.G.mode === 'line') this.compute.computeLine();
-      if (_utility.G.mode === 'curve') this.compute.computeCurve();
-      if (_utility.G.mode === 'scurve') this.compute.computeSCurve();
+      if (_utility.DATA.mode === 'arc') this.compute.computeArc();
+      if (_utility.DATA.mode === 'rec') this.compute.computeRec();
+      if (_utility.DATA.mode === 'poly') this.compute.computePoly();
+      if (_utility.DATA.mode === 'line') this.compute.computeLine();
+      if (_utility.DATA.mode === 'curve') this.compute.computeCurve();
+      if (_utility.DATA.mode === 'scurve') this.compute.computeSCurve();
 
       this.manageHistoryBtns();
     }
   }, {
+    key: 'computeTouchEnd',
+    value: function computeTouchEnd(click) {
+      if (_utility.DATA.mode === 'arc' || _utility.DATA.mode === 'rec' || _utility.DATA.mode === 'line') {
+        _utility.DATA.clicks.push(click);
+        _utility.DATA.step++;
+      }
+
+      if (_utility.DATA.mode === 'arc') this.compute.computeArc();
+      if (_utility.DATA.mode === 'rec') this.compute.computeRec();
+      if (_utility.DATA.mode === 'line') this.compute.computeLine();
+
+      if (_utility.DATA.mode === 'curve' && _utility.DATA.step >= 2) {
+        _utility.DATA.clicks.push(click);
+        _utility.DATA.step++;
+        this.compute.computeCurve();
+      }
+
+      if (_utility.DATA.mode === 'scurve' && _utility.DATA.step % 2 === 0) {
+        _utility.DATA.clicks.push(click);
+        _utility.DATA.step++;
+        this.compute.computeSCurve();
+      }
+    }
+  }, {
     key: 'computeMouseMove',
     value: function computeMouseMove(curPos) {
-      if (_utility.G.mode === 'arc') this.compute.symulateArc(curPos);
-      if (_utility.G.mode === 'rec') this.compute.symulateRec(curPos);
-      if (_utility.G.mode === 'poly') this.compute.symulatePoly(curPos);
-      if (_utility.G.mode === 'line') this.compute.symulateLine(curPos);
-      if (_utility.G.mode === 'curve') this.compute.symulateCurve(curPos);
-      if (_utility.G.mode === 'scurve') this.compute.symulateSCurve(curPos);
+      if (_utility.DATA.mode === 'arc') this.compute.symulateArc(curPos);
+      if (_utility.DATA.mode === 'rec') this.compute.symulateRec(curPos);
+      if (_utility.DATA.mode === 'poly') this.compute.symulatePoly(curPos);
+      if (_utility.DATA.mode === 'line') this.compute.symulateLine(curPos);
+      if (_utility.DATA.mode === 'curve') this.compute.symulateCurve(curPos);
+      if (_utility.DATA.mode === 'scurve') this.compute.symulateSCurve(curPos);
+    }
+  }, {
+    key: 'computeTouchMove',
+    value: function computeTouchMove(curPos) {
+      if (_utility.DATA.mode === 'arc') this.compute.symulateArc(curPos);
+      if (_utility.DATA.mode === 'rec') this.compute.symulateRec(curPos);
+      if (_utility.DATA.mode === 'line') this.compute.symulateLine(curPos);
+      if (_utility.DATA.mode === 'curve') this.compute.symulateCurve(curPos);
+      if (_utility.DATA.mode === 'scurve') this.compute.symulateSCurve(curPos);
     }
   }, {
     key: 'layFigure',
     value: function layFigure() {
       var close = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
 
-      if (_utility.G.mode === 'poly') this.compute.computePoly(true, close);
-      if (_utility.G.mode === 'scurve') this.compute.computeSCurve(true);
+      if (_utility.DATA.mode === 'poly') this.compute.computePoly(true, close);
+      if (_utility.DATA.mode === 'scurve') this.compute.computeSCurve(true);
     }
   }, {
     key: 'changeMode',
     value: function changeMode(nMode) {
       this.compute.reset();
-      _utility.G.mode = nMode;
+      _utility.DATA.mode = nMode;
     }
   }, {
     key: 'prepWheel',
     value: function prepWheel(colorFor, wheel) {
-      _utility.G.colorFor = colorFor;
+      _utility.DATA.colorFor = colorFor;
       if (colorFor === 'fill') {
-        wheel.hex = _utility.G.fc;
+        wheel.hex = _utility.DATA.fillColor;
       } else if (colorFor === 'stroke') {
-        wheel.hex = _utility.G.sc;
+        wheel.hex = _utility.DATA.strokeColor;
       }
     }
   }, {
     key: 'updateColorIndicators',
     value: function updateColorIndicators() {
-      _utility.DE.strokeColorIndicator.style.background = _utility.G.sc;
-      _utility.DE.fillColorIndicator.style.background = _utility.G.fc;
+      _utility.DE.strokeColorIndicator.style.background = _utility.DATA.strokeColor;
+      _utility.DE.fillColorIndicator.style.background = _utility.DATA.fillColor;
     }
   }, {
     key: 'changeColor',
     value: function changeColor(color, colorFor) {
       if (colorFor === 'fill') {
-        _utility.G.fc = color;
+        _utility.DATA.fillColor = color;
       } else if (colorFor === 'stroke') {
-        _utility.G.sc = color;
+        _utility.DATA.strokeColor = color;
       }
 
       this.updateColorIndicators();
@@ -10047,10 +10128,10 @@ var AppLogic = exports.AppLogic = function () {
   }, {
     key: 'changeHistory',
     value: function changeHistory(action) {
-      if (action === 'undo' && _utility.G.figures.length > 0) {
-        _utility.G.figuresHistory.push(_utility.G.figures.pop());
-      } else if (action === 'redo' && _utility.G.figuresHistory.length > 0) {
-        _utility.G.figures.push(_utility.G.figuresHistory.pop());
+      if (action === 'undo' && _utility.DATA.figures.length > 0) {
+        _utility.DATA.figuresHistory.push(_utility.DATA.figures.pop());
+      } else if (action === 'redo' && _utility.DATA.figuresHistory.length > 0) {
+        _utility.DATA.figures.push(_utility.DATA.figuresHistory.pop());
       }
 
       this.manageHistoryBtns();
@@ -10058,13 +10139,13 @@ var AppLogic = exports.AppLogic = function () {
   }, {
     key: 'manageHistoryBtns',
     value: function manageHistoryBtns() {
-      if (_utility.G.figuresHistory.length === 0) {
+      if (_utility.DATA.figuresHistory.length === 0) {
         _utility.DE.historyRedoBtn.classList.add('is-disabled');
       } else {
         _utility.DE.historyRedoBtn.classList.remove('is-disabled');
       }
 
-      if (_utility.G.figures.length === 0) {
+      if (_utility.DATA.figures.length === 0) {
         _utility.DE.historyUndoBtn.classList.add('is-disabled');
       } else {
         _utility.DE.historyUndoBtn.classList.remove('is-disabled');
@@ -10073,30 +10154,30 @@ var AppLogic = exports.AppLogic = function () {
   }, {
     key: 'rescale',
     value: function rescale() {
-      _utility.G.figures.forEach(function (fig) {
-        fig.rescale(_utility.G.scale);
+      _utility.DATA.figures.forEach(function (fig) {
+        fig.rescale(_utility.DATA.scale);
       });
     }
   }, {
     key: 'updateDimensions',
     value: function updateDimensions(type, size) {
       if (type === 'width') {
-        _utility.G.svg.width = size;
+        _utility.DATA.svg.width = size;
       } else if (type === 'height') {
-        _utility.G.svg.height = size;
+        _utility.DATA.svg.height = size;
       }
     }
   }, {
     key: 'updateStrokeWidth',
     value: function updateStrokeWidth(size) {
-      _utility.G.sw = size;
+      _utility.DATA.strokeWidth = size;
     }
   }, {
     key: 'generateSvg',
     value: function generateSvg() {
-      var svgHTML = '<svg viewBox="0 0 ' + _utility.G.svg.width + ' ' + _utility.G.svg.height + '">';
+      var svgHTML = '<svg viewBox="0 0 ' + _utility.DATA.svg.width + ' ' + _utility.DATA.svg.height + '">';
 
-      _utility.G.figures.forEach(function (fig) {
+      _utility.DATA.figures.forEach(function (fig) {
         svgHTML += fig.returnHTML();
       });
 
@@ -10139,7 +10220,7 @@ var _HelperDot = __webpack_require__(348);
 
 var _SizeIndicator = __webpack_require__(349);
 
-var _utility = __webpack_require__(67);
+var _utility = __webpack_require__(53);
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
@@ -10153,13 +10234,13 @@ var ComputeFigure = exports.ComputeFigure = function () {
   _createClass(ComputeFigure, [{
     key: 'reset',
     value: function reset() {
-      _utility.G.step = 0;
-      _utility.G.clicks = [];
-      _utility.G.shadowFig = {};
-      _utility.G.drawShadow = false;
-      _utility.G.helperDots = [];
-      _utility.G.sizeIndicators = [];
-      _utility.G.diameters = [];
+      _utility.DATA.step = 0;
+      _utility.DATA.clicks = [];
+      _utility.DATA.shadowFig = {};
+      _utility.DATA.drawShadow = false;
+      _utility.DATA.helperDots = [];
+      _utility.DATA.sizeIndicators = [];
+      _utility.DATA.diameters = [];
     }
 
     /* SCurve functions */
@@ -10167,23 +10248,25 @@ var ComputeFigure = exports.ComputeFigure = function () {
   }, {
     key: 'computeSCurve',
     value: function computeSCurve(stop) {
-      if (_utility.G.step === 1 || _utility.G.step % 2 === 0) {
-        _utility.G.helperDots.push(new _HelperDot.HelperDot(_utility.G.clicks[_utility.G.step - 1].x, _utility.G.clicks[_utility.G.step - 1].y));
+      if (_utility.DATA.step === 1 || _utility.DATA.step % 2 === 0) {
+        _utility.DATA.helperDots.push(new _HelperDot.HelperDot(_utility.DATA.clicks[_utility.DATA.step - 1].x, _utility.DATA.clicks[_utility.DATA.step - 1].y));
       }
 
-      if (stop && _utility.G.step > 2) {
-        _utility.G.figures.push(new _SCurve.SCurve(_utility.G.clicks, _utility.G.sw, _utility.G.sc, _utility.G.scale));
+      if (stop && _utility.DATA.step > 2) {
+        _utility.DATA.figures.push(new _SCurve.SCurve(_utility.DATA.clicks, _utility.DATA.strokeWidth, _utility.DATA.strokeColor, _utility.DATA.scale));
 
         this.reset();
       }
+
+      this.symulateSCurve(_utility.DATA.clicks[_utility.DATA.clicks.length - 1]);
     }
   }, {
     key: 'symulateSCurve',
     value: function symulateSCurve(curPos) {
-      if (_utility.G.step >= 2) {
-        _utility.G.drawShadow = true;
-        var points = [].concat(_toConsumableArray(_utility.G.clicks), [curPos]);
-        _utility.G.shadowFig = new _SCurve.SCurve(points, _utility.G.sw, _utility.G.sc, _utility.G.scale);
+      if (_utility.DATA.step >= 2) {
+        _utility.DATA.drawShadow = true;
+        var points = [].concat(_toConsumableArray(_utility.DATA.clicks), [curPos]);
+        _utility.DATA.shadowFig = new _SCurve.SCurve(points, _utility.DATA.strokeWidth, _utility.DATA.strokeColor, _utility.DATA.scale);
       }
     }
 
@@ -10192,16 +10275,16 @@ var ComputeFigure = exports.ComputeFigure = function () {
   }, {
     key: 'computeCurve',
     value: function computeCurve() {
-      if (_utility.G.step === 1) {
-        _utility.G.helperDots.push(new _HelperDot.HelperDot(_utility.G.clicks[_utility.G.step - 1].x, _utility.G.clicks[_utility.G.step - 1].y));
+      if (_utility.DATA.step === 1) {
+        _utility.DATA.helperDots.push(new _HelperDot.HelperDot(_utility.DATA.clicks[_utility.DATA.step - 1].x, _utility.DATA.clicks[_utility.DATA.step - 1].y));
       }
 
-      if (_utility.G.step <= 2) {
-        _utility.G.helperDots.push(new _HelperDot.HelperDot(_utility.G.clicks[_utility.G.step - 1].x, _utility.G.clicks[_utility.G.step - 1].y));
+      if (_utility.DATA.step <= 2) {
+        _utility.DATA.helperDots.push(new _HelperDot.HelperDot(_utility.DATA.clicks[_utility.DATA.step - 1].x, _utility.DATA.clicks[_utility.DATA.step - 1].y));
       }
 
-      if (_utility.G.step === 3) {
-        _utility.G.figures.push(new _Curve.Curve(_utility.G.clicks[0].x, _utility.G.clicks[0].y, _utility.G.clicks[1].x, _utility.G.clicks[1].y, _utility.G.clicks[2].x, _utility.G.clicks[2].y, _utility.G.sw, _utility.G.sc, _utility.G.scale));
+      if (_utility.DATA.step === 3) {
+        _utility.DATA.figures.push(new _Curve.Curve(_utility.DATA.clicks[0].x, _utility.DATA.clicks[0].y, _utility.DATA.clicks[1].x, _utility.DATA.clicks[1].y, _utility.DATA.clicks[2].x, _utility.DATA.clicks[2].y, _utility.DATA.strokeWidth, _utility.DATA.strokeColor, _utility.DATA.scale));
 
         this.reset();
       }
@@ -10209,9 +10292,9 @@ var ComputeFigure = exports.ComputeFigure = function () {
   }, {
     key: 'symulateCurve',
     value: function symulateCurve(curPos) {
-      if (_utility.G.step === 2) {
-        _utility.G.drawShadow = true;
-        _utility.G.shadowFig = new _Curve.Curve(_utility.G.clicks[0].x, _utility.G.clicks[0].y, _utility.G.clicks[1].x, _utility.G.clicks[1].y, curPos.x, curPos.y, _utility.G.sw, _utility.G.sc, _utility.G.scale);
+      if (_utility.DATA.step === 2) {
+        _utility.DATA.drawShadow = true;
+        _utility.DATA.shadowFig = new _Curve.Curve(_utility.DATA.clicks[0].x, _utility.DATA.clicks[0].y, _utility.DATA.clicks[1].x, _utility.DATA.clicks[1].y, curPos.x, curPos.y, _utility.DATA.strokeWidth, _utility.DATA.strokeColor, _utility.DATA.scale);
       }
     }
 
@@ -10220,12 +10303,12 @@ var ComputeFigure = exports.ComputeFigure = function () {
   }, {
     key: 'computeLine',
     value: function computeLine() {
-      if (_utility.G.step === 1) {
-        _utility.G.helperDots.push(new _HelperDot.HelperDot(_utility.G.clicks[_utility.G.step - 1].x, _utility.G.clicks[_utility.G.step - 1].y));
+      if (_utility.DATA.step === 1) {
+        _utility.DATA.helperDots.push(new _HelperDot.HelperDot(_utility.DATA.clicks[_utility.DATA.step - 1].x, _utility.DATA.clicks[_utility.DATA.step - 1].y));
       }
 
-      if (_utility.G.step === 2) {
-        _utility.G.figures.push(new _Line.Line(_utility.G.clicks[0].x, _utility.G.clicks[0].y, _utility.G.clicks[1].x, _utility.G.clicks[1].y, _utility.G.sw, _utility.G.sc, _utility.G.scale));
+      if (_utility.DATA.step === 2) {
+        _utility.DATA.figures.push(new _Line.Line(_utility.DATA.clicks[0].x, _utility.DATA.clicks[0].y, _utility.DATA.clicks[1].x, _utility.DATA.clicks[1].y, _utility.DATA.strokeWidth, _utility.DATA.strokeColor, _utility.DATA.scale));
 
         this.reset();
       }
@@ -10233,9 +10316,9 @@ var ComputeFigure = exports.ComputeFigure = function () {
   }, {
     key: 'symulateLine',
     value: function symulateLine(curPos) {
-      if (_utility.G.step === 1) {
-        _utility.G.drawShadow = true;
-        _utility.G.shadowFig = new _Line.Line(_utility.G.clicks[0].x, _utility.G.clicks[0].y, curPos.x, curPos.y, _utility.G.sw, _utility.G.sc, _utility.G.scale);
+      if (_utility.DATA.step === 1) {
+        _utility.DATA.drawShadow = true;
+        _utility.DATA.shadowFig = new _Line.Line(_utility.DATA.clicks[0].x, _utility.DATA.clicks[0].y, curPos.x, curPos.y, _utility.DATA.strokeWidth, _utility.DATA.strokeColor, _utility.DATA.scale);
       }
     }
 
@@ -10244,22 +10327,26 @@ var ComputeFigure = exports.ComputeFigure = function () {
   }, {
     key: 'computePoly',
     value: function computePoly(stop, close) {
-      if (stop && _utility.G.step > 1) {
-        if (close) _utility.G.clicks.push(_utility.G.clicks[0]);
+      if (stop && _utility.DATA.step > 1) {
+        if (close) _utility.DATA.clicks.push(_utility.DATA.clicks[0]);
 
-        _utility.G.figures.push(new _Polyline.Polyline(_utility.G.clicks, _utility.G.sw, _utility.G.sc, _utility.G.scale));
+        _utility.DATA.figures.push(new _Polyline.Polyline(_utility.DATA.clicks, _utility.DATA.strokeWidth, _utility.DATA.strokeColor, _utility.DATA.scale));
 
         this.reset();
       }
+
+      this.symulatePoly(_utility.DATA.clicks[_utility.DATA.clicks.length - 1]);
     }
   }, {
     key: 'symulatePoly',
     value: function symulatePoly(curPos) {
-      if (_utility.G.step > 0) {
-        _utility.G.drawShadow = true;
-        var points = [].concat(_toConsumableArray(_utility.G.clicks), [curPos]);
-        _utility.G.helperDots.push(new _HelperDot.HelperDot(_utility.G.clicks[_utility.G.step - 1].x, _utility.G.clicks[_utility.G.step - 1].y));
-        _utility.G.shadowFig = new _Polyline.Polyline(points, _utility.G.sw, _utility.G.sc);
+      if (_utility.DATA.step > 0) {
+        _utility.DATA.drawShadow = true;
+        var points = [].concat(_toConsumableArray(_utility.DATA.clicks), [curPos]);
+
+        _utility.DATA.helperDots.push(new _HelperDot.HelperDot(_utility.DATA.clicks[_utility.DATA.step - 1].x, _utility.DATA.clicks[_utility.DATA.step - 1].y));
+
+        _utility.DATA.shadowFig = new _Polyline.Polyline(points, _utility.DATA.strokeWidth, _utility.DATA.strokeColor, _utility.DATA.scale);
       }
     }
 
@@ -10268,19 +10355,19 @@ var ComputeFigure = exports.ComputeFigure = function () {
   }, {
     key: 'computeArc',
     value: function computeArc() {
-      if (_utility.G.step === 1) {
-        _utility.G.helperDots.push(new _HelperDot.HelperDot(_utility.G.clicks[_utility.G.step - 1].x, _utility.G.clicks[_utility.G.step - 1].y));
+      if (_utility.DATA.step === 1) {
+        _utility.DATA.helperDots.push(new _HelperDot.HelperDot(_utility.DATA.clicks[_utility.DATA.step - 1].x, _utility.DATA.clicks[_utility.DATA.step - 1].y));
       }
 
-      if (_utility.G.step === 2) {
-        var rx = (0, _utility.vectorLength)(_utility.G.clicks[0].x, 0, _utility.G.clicks[1].x, 0);
+      if (_utility.DATA.step === 2) {
+        var rx = (0, _utility.vectorLength)(_utility.DATA.clicks[0].x, 0, _utility.DATA.clicks[1].x, 0);
 
-        var ry = (0, _utility.vectorLength)(0, _utility.G.clicks[0].y, 0, _utility.G.clicks[1].y);
+        var ry = (0, _utility.vectorLength)(0, _utility.DATA.clicks[0].y, 0, _utility.DATA.clicks[1].y);
 
-        if (_utility.G.keyMapDown[16]) {
-          _utility.G.figures.push(new _Ellipse.Ellipse(_utility.G.clicks[0].x, _utility.G.clicks[0].y, rx, rx, _utility.G.sw, _utility.G.sc, _utility.G.fc, _utility.G.scale));
+        if (_utility.DATA.keyMapDown[16]) {
+          _utility.DATA.figures.push(new _Ellipse.Ellipse(_utility.DATA.clicks[0].x, _utility.DATA.clicks[0].y, rx, rx, _utility.DATA.strokeWidth, _utility.DATA.strokeColor, _utility.DATA.fillColor, _utility.DATA.scale));
         } else {
-          _utility.G.figures.push(new _Ellipse.Ellipse(_utility.G.clicks[0].x, _utility.G.clicks[0].y, rx, ry, _utility.G.sw, _utility.G.sc, _utility.G.fc, _utility.G.scale));
+          _utility.DATA.figures.push(new _Ellipse.Ellipse(_utility.DATA.clicks[0].x, _utility.DATA.clicks[0].y, rx, ry, _utility.DATA.strokeWidth, _utility.DATA.strokeColor, _utility.DATA.fillColor, _utility.DATA.scale));
         }
 
         this.reset();
@@ -10289,28 +10376,30 @@ var ComputeFigure = exports.ComputeFigure = function () {
   }, {
     key: 'symulateArc',
     value: function symulateArc(curPos) {
-      if (_utility.G.step === 1) {
-        _utility.G.drawShadow = true;
+      if (_utility.DATA.step === 1) {
+        _utility.DATA.drawShadow = true;
 
-        var rx = (0, _utility.vectorLength)(_utility.G.clicks[0].x, 0, curPos.x, 0);
+        var rx = (0, _utility.vectorLength)(_utility.DATA.clicks[0].x, 0, curPos.x, 0);
 
-        var ry = (0, _utility.vectorLength)(0, _utility.G.clicks[0].y, 0, curPos.y);
+        var ry = (0, _utility.vectorLength)(0, _utility.DATA.clicks[0].y, 0, curPos.y);
 
-        _utility.G.sizeIndicators[0] = new _SizeIndicator.SizeIndicator(_utility.G.clicks[0].x + parseInt(rx / 2), _utility.G.clicks[0].y - 5, Math.floor(rx / 2 / _utility.G.scale), _utility.G.fc);
-        _utility.G.diameters[0] = new _Line.Line(_utility.G.clicks[0].x, _utility.G.clicks[0].y, curPos.x, _utility.G.clicks[0].y, 2, _utility.G.fc);
+        _utility.DATA.sizeIndicators[0] = new _SizeIndicator.SizeIndicator(_utility.DATA.clicks[0].x + parseInt(rx / 2), _utility.DATA.clicks[0].y - 5, Math.floor(rx / 2 / _utility.DATA.scale), _utility.DATA.fillColor);
 
-        if (_utility.G.keyMapDown[16]) {
-          delete _utility.G.sizeIndicators[1];
-          delete _utility.G.diameters[1];
+        _utility.DATA.diameters[0] = new _Line.Line(_utility.DATA.clicks[0].x, _utility.DATA.clicks[0].y, curPos.x, _utility.DATA.clicks[0].y, 2, _utility.DATA.fillColor);
+
+        if (_utility.DATA.keyMapDown[16]) {
+          delete _utility.DATA.sizeIndicators[1];
+          delete _utility.DATA.diameters[1];
         } else {
-          _utility.G.sizeIndicators[1] = new _SizeIndicator.SizeIndicator(_utility.G.clicks[0].x + 5, _utility.G.clicks[0].y + parseInt(ry / 2), Math.floor(ry / 2 / _utility.G.scale), _utility.G.fc);
-          _utility.G.diameters[1] = new _Line.Line(_utility.G.clicks[0].x, _utility.G.clicks[0].y, _utility.G.clicks[0].x, curPos.y, 2, _utility.G.fc);
+          _utility.DATA.sizeIndicators[1] = new _SizeIndicator.SizeIndicator(_utility.DATA.clicks[0].x + 5, _utility.DATA.clicks[0].y + parseInt(ry / 2), Math.floor(ry / 2 / _utility.DATA.scale), _utility.DATA.fillColor);
+
+          _utility.DATA.diameters[1] = new _Line.Line(_utility.DATA.clicks[0].x, _utility.DATA.clicks[0].y, _utility.DATA.clicks[0].x, curPos.y, 2, _utility.DATA.fillColor);
         }
 
-        if (_utility.G.keyMapDown[16]) {
-          _utility.G.shadowFig = new _Ellipse.Ellipse(_utility.G.clicks[0].x, _utility.G.clicks[0].y, rx, rx, _utility.G.sw, _utility.G.sc, _utility.G.fc, _utility.G.scale);
+        if (_utility.DATA.keyMapDown[16]) {
+          _utility.DATA.shadowFig = new _Ellipse.Ellipse(_utility.DATA.clicks[0].x, _utility.DATA.clicks[0].y, rx, rx, _utility.DATA.strokeWidth, _utility.DATA.strokeColor, _utility.DATA.fillColor, _utility.DATA.scale);
         } else {
-          _utility.G.shadowFig = new _Ellipse.Ellipse(_utility.G.clicks[0].x, _utility.G.clicks[0].y, rx, ry, _utility.G.sw, _utility.G.sc, _utility.G.fc, _utility.G.scale);
+          _utility.DATA.shadowFig = new _Ellipse.Ellipse(_utility.DATA.clicks[0].x, _utility.DATA.clicks[0].y, rx, ry, _utility.DATA.strokeWidth, _utility.DATA.strokeColor, _utility.DATA.fillColor, _utility.DATA.scale);
         }
       }
     }
@@ -10320,18 +10409,19 @@ var ComputeFigure = exports.ComputeFigure = function () {
   }, {
     key: 'computeRec',
     value: function computeRec() {
-      if (_utility.G.step === 1) {
-        _utility.G.helperDots.push(new _HelperDot.HelperDot(_utility.G.clicks[_utility.G.step - 1].x, _utility.G.clicks[_utility.G.step - 1].y));
+      if (_utility.DATA.step === 1) {
+        _utility.DATA.helperDots.push(new _HelperDot.HelperDot(_utility.DATA.clicks[_utility.DATA.step - 1].x, _utility.DATA.clicks[_utility.DATA.step - 1].y));
       }
 
-      if (_utility.G.step === 2) {
-        var w = (0, _utility.vectorLength)(_utility.G.clicks[0].x, 0, _utility.G.clicks[1].x, 0);
+      if (_utility.DATA.step === 2) {
+        var w = (0, _utility.vectorLength)(_utility.DATA.clicks[0].x, 0, _utility.DATA.clicks[1].x, 0);
 
-        var h = (0, _utility.vectorLength)(0, _utility.G.clicks[0].y, 0, _utility.G.clicks[1].y);
-        if (_utility.G.keyMapDown[16]) {
-          _utility.G.figures.push(new _Rectangle.Rectangle(_utility.G.clicks[0].x, _utility.G.clicks[0].y, w, w, _utility.G.sw, _utility.G.sc, _utility.G.fc, _utility.G.scale));
+        var h = (0, _utility.vectorLength)(0, _utility.DATA.clicks[0].y, 0, _utility.DATA.clicks[1].y);
+
+        if (_utility.DATA.keyMapDown[16]) {
+          _utility.DATA.figures.push(new _Rectangle.Rectangle(_utility.DATA.clicks[0].x, _utility.DATA.clicks[0].y, w, w, _utility.DATA.strokeWidth, _utility.DATA.strokeColor, _utility.DATA.fillColor, _utility.DATA.scale));
         } else {
-          _utility.G.figures.push(new _Rectangle.Rectangle(_utility.G.clicks[0].x, _utility.G.clicks[0].y, w, h, _utility.G.sw, _utility.G.sc, _utility.G.fc, _utility.G.scale));
+          _utility.DATA.figures.push(new _Rectangle.Rectangle(_utility.DATA.clicks[0].x, _utility.DATA.clicks[0].y, w, h, _utility.DATA.strokeWidth, _utility.DATA.strokeColor, _utility.DATA.fillColor, _utility.DATA.scale));
         }
 
         this.reset();
@@ -10340,24 +10430,24 @@ var ComputeFigure = exports.ComputeFigure = function () {
   }, {
     key: 'symulateRec',
     value: function symulateRec(curPos) {
-      if (_utility.G.step === 1) {
-        _utility.G.drawShadow = true;
-        var w = (0, _utility.vectorLength)(_utility.G.clicks[0].x, 0, curPos.x, 0);
+      if (_utility.DATA.step === 1) {
+        _utility.DATA.drawShadow = true;
+        var w = (0, _utility.vectorLength)(_utility.DATA.clicks[0].x, 0, curPos.x, 0);
 
-        var h = (0, _utility.vectorLength)(0, _utility.G.clicks[0].y, 0, curPos.y);
+        var h = (0, _utility.vectorLength)(0, _utility.DATA.clicks[0].y, 0, curPos.y);
 
-        _utility.G.sizeIndicators[0] = new _SizeIndicator.SizeIndicator(_utility.G.clicks[0].x + parseInt(w / 2), _utility.G.clicks[0].y - 5, Math.floor(w / _utility.G.scale), _utility.G.fc);
+        _utility.DATA.sizeIndicators[0] = new _SizeIndicator.SizeIndicator(_utility.DATA.clicks[0].x + parseInt(w / 2), _utility.DATA.clicks[0].y - 5, Math.floor(w / _utility.DATA.scale), _utility.DATA.fillColor);
 
-        if (_utility.G.keyMapDown[16]) {
-          delete _utility.G.sizeIndicators[1];
+        if (_utility.DATA.keyMapDown[16]) {
+          delete _utility.DATA.sizeIndicators[1];
         } else {
-          _utility.G.sizeIndicators[1] = new _SizeIndicator.SizeIndicator(_utility.G.clicks[0].x + 5, _utility.G.clicks[0].y + parseInt(h / 2), Math.floor(h / _utility.G.scale), _utility.G.fc);
+          _utility.DATA.sizeIndicators[1] = new _SizeIndicator.SizeIndicator(_utility.DATA.clicks[0].x + 5, _utility.DATA.clicks[0].y + parseInt(h / 2), Math.floor(h / _utility.DATA.scale), _utility.DATA.fillColor);
         }
 
-        if (_utility.G.keyMapDown[16]) {
-          _utility.G.shadowFig = new _Rectangle.Rectangle(_utility.G.clicks[0].x, _utility.G.clicks[0].y, w, w, _utility.G.sw, _utility.G.sc, _utility.G.fc, _utility.G.scale);
+        if (_utility.DATA.keyMapDown[16]) {
+          _utility.DATA.shadowFig = new _Rectangle.Rectangle(_utility.DATA.clicks[0].x, _utility.DATA.clicks[0].y, w, w, _utility.DATA.strokeWidth, _utility.DATA.strokeColor, _utility.DATA.fillColor, _utility.DATA.scale);
         } else {
-          _utility.G.shadowFig = new _Rectangle.Rectangle(_utility.G.clicks[0].x, _utility.G.clicks[0].y, w, h, _utility.G.sw, _utility.G.sc, _utility.G.fc, _utility.G.scale);
+          _utility.DATA.shadowFig = new _Rectangle.Rectangle(_utility.DATA.clicks[0].x, _utility.DATA.clicks[0].y, w, h, _utility.DATA.strokeWidth, _utility.DATA.strokeColor, _utility.DATA.fillColor, _utility.DATA.scale);
         }
       }
     }
@@ -10391,7 +10481,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Ellipse = exports.Ellipse = function (_Figure) {
   _inherits(Ellipse, _Figure);
 
-  function Ellipse(cx, cy, rx, ry, sw, sc, fc, scale) {
+  function Ellipse(cx, cy, rx, ry, strokeWidth, strokeColor, fillColor, scale) {
     _classCallCheck(this, Ellipse);
 
     var _this = _possibleConstructorReturn(this, (Ellipse.__proto__ || Object.getPrototypeOf(Ellipse)).call(this));
@@ -10400,9 +10490,9 @@ var Ellipse = exports.Ellipse = function (_Figure) {
     _this.cy = cy;
     _this.rx = rx;
     _this.ry = ry;
-    _this.sw = sw;
-    _this.sc = sc;
-    _this.fc = fc;
+    _this.strokeWidth = strokeWidth;
+    _this.strokeColor = strokeColor;
+    _this.fillColor = fillColor;
     _this.scale = scale;
     return _this;
   }
@@ -10421,13 +10511,13 @@ var Ellipse = exports.Ellipse = function (_Figure) {
   }, {
     key: 'generateFigureHTML',
     value: function generateFigureHTML() {
-      return '\n      <ellipse cx="' + this.scaleForSvg(this.cx) + '"\n              cy="' + this.scaleForSvg(this.cy) + '"\n              rx="' + this.scaleForSvg(this.rx) + '"\n              ry="' + this.scaleForSvg(this.ry) + '"\n              stroke-width="' + this.sw + '"\n              stroke="' + this.sc + '"\n              fill="' + this.fc + '">\n      </ellipse>\n      ';
+      return '\n      <ellipse cx="' + this.scaleForSvg(this.cx) + '"\n              cy="' + this.scaleForSvg(this.cy) + '"\n              rx="' + this.scaleForSvg(this.rx) + '"\n              ry="' + this.scaleForSvg(this.ry) + '"\n              stroke-width="' + this.strokeWidth + '"\n              stroke="' + this.strokeColor + '"\n              fill="' + this.fillColor + '">\n      </ellipse>\n      ';
     }
   }, {
     key: 'drawFigure',
     value: function drawFigure(ctx) {
       ctx.ellipse(parseInt(this.cx), parseInt(this.cy), parseInt(this.rx), parseInt(this.ry), 0, 0, 2 * Math.PI);
-      ctx.fillStyle = this.fc;
+      ctx.fillStyle = this.fillColor;
     }
   }]);
 
@@ -10459,7 +10549,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Rectangle = exports.Rectangle = function (_Figure) {
   _inherits(Rectangle, _Figure);
 
-  function Rectangle(x, y, w, h, sw, sc, fc, scale) {
+  function Rectangle(x, y, w, h, strokeWidth, strokeColor, fillColor, scale) {
     _classCallCheck(this, Rectangle);
 
     var _this = _possibleConstructorReturn(this, (Rectangle.__proto__ || Object.getPrototypeOf(Rectangle)).call(this));
@@ -10468,9 +10558,9 @@ var Rectangle = exports.Rectangle = function (_Figure) {
     _this.y = y;
     _this.w = w;
     _this.h = h;
-    _this.sw = sw;
-    _this.sc = sc;
-    _this.fc = fc;
+    _this.strokeWidth = strokeWidth;
+    _this.strokeColor = strokeColor;
+    _this.fillColor = fillColor;
 
     _this.scale = scale;
     return _this;
@@ -10486,17 +10576,17 @@ var Rectangle = exports.Rectangle = function (_Figure) {
       this.y *= toScale;
       this.w *= toScale;
       this.h *= toScale;
-      this.sw *= toScale;
+      this.strokeWidth *= toScale;
     }
   }, {
     key: 'generateFigureHTML',
     value: function generateFigureHTML() {
-      return '<rect x="' + this.scaleForSvg(this.x) + '"\n                  y="' + this.scaleForSvg(this.y) + '"\n                  width="' + this.scaleForSvg(this.w) + '"\n                  height="' + this.scaleForSvg(this.h) + '"\n                  stroke-width="' + this.sw + '"\n                  stroke="' + this.sc + '"\n                  fill="' + this.fc + '">\n            </rect>';
+      return '<rect x="' + this.scaleForSvg(this.x) + '"\n                  y="' + this.scaleForSvg(this.y) + '"\n                  width="' + this.scaleForSvg(this.w) + '"\n                  height="' + this.scaleForSvg(this.h) + '"\n                  stroke-width="' + this.strokeWidth + '"\n                  stroke="' + this.strokeColor + '"\n                  fill="' + this.fillColor + '">\n            </rect>';
     }
   }, {
     key: 'drawFigure',
     value: function drawFigure(ctx) {
-      ctx.fillStyle = this.fc;
+      ctx.fillStyle = this.fillColor;
       ctx.rect(parseInt(this.x), parseInt(this.y), parseInt(this.w), parseInt(this.h));
     }
   }]);
@@ -10529,14 +10619,14 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Polyline = exports.Polyline = function (_Figure) {
   _inherits(Polyline, _Figure);
 
-  function Polyline(points, sw, sc, scale) {
+  function Polyline(points, strokeWidth, strokeColor, scale) {
     _classCallCheck(this, Polyline);
 
     var _this = _possibleConstructorReturn(this, (Polyline.__proto__ || Object.getPrototypeOf(Polyline)).call(this));
 
     _this.points = points;
-    _this.sw = parseInt(sw);
-    _this.sc = sc;
+    _this.strokeWidth = parseInt(strokeWidth);
+    _this.strokeColor = strokeColor;
 
     _this.scale = scale;
     return _this;
@@ -10568,7 +10658,7 @@ var Polyline = exports.Polyline = function (_Figure) {
   }, {
     key: 'generateFigureHTML',
     value: function generateFigureHTML() {
-      return '<polyline points="' + this.generatePoints(this.points) + '"\n                      stroke-width="' + this.sw + '"\n                      stroke="' + this.sc + '"\n                      fill="none">\n            </polyline>';
+      return '<polyline points="' + this.generatePoints(this.points) + '"\n                      stroke-width="' + this.strokeWidth + '"\n                      stroke="' + this.sc + '"\n                      fill="none">\n            </polyline>';
     }
   }, {
     key: 'drawFigure',
@@ -10612,7 +10702,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Line = exports.Line = function (_Figure) {
   _inherits(Line, _Figure);
 
-  function Line(x1, y1, x2, y2, sw, sc, scale) {
+  function Line(x1, y1, x2, y2, strokeWidth, strokeColor, scale) {
     _classCallCheck(this, Line);
 
     var _this = _possibleConstructorReturn(this, (Line.__proto__ || Object.getPrototypeOf(Line)).call(this));
@@ -10621,8 +10711,8 @@ var Line = exports.Line = function (_Figure) {
     _this.y1 = y1;
     _this.x2 = x2;
     _this.y2 = y2;
-    _this.sw = sw;
-    _this.sc = sc;
+    _this.strokeWidth = strokeWidth;
+    _this.strokeColor = strokeColor;
 
     _this.scale = scale;
     return _this;
@@ -10642,7 +10732,7 @@ var Line = exports.Line = function (_Figure) {
   }, {
     key: 'generateFigureHTML',
     value: function generateFigureHTML() {
-      return '<line x1="' + this.scaleForSvg(this.x1) + '"\n                  y1="' + this.scaleForSvg(this.y1) + '"\n                  x2="' + this.scaleForSvg(this.x2) + '"\n                  y2="' + this.scaleForSvg(this.y2) + '"\n                  stroke-width="' + this.sw + '"\n                  stroke="' + this.sc + '">\n            </line>';
+      return '<line x1="' + this.scaleForSvg(this.x1) + '"\n                  y1="' + this.scaleForSvg(this.y1) + '"\n                  x2="' + this.scaleForSvg(this.x2) + '"\n                  y2="' + this.scaleForSvg(this.y2) + '"\n                  stroke-width="' + this.strokeWidth + '"\n                  stroke="' + this.strokeColor + '">\n            </line>';
     }
   }, {
     key: 'drawFigure',
@@ -10680,7 +10770,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Curve = exports.Curve = function (_Figure) {
   _inherits(Curve, _Figure);
 
-  function Curve(x, y, x1, y1, x2, y2, sw, sc, scale, fc) {
+  function Curve(x, y, x1, y1, x2, y2, strokeWidth, strokeColor, scale, fillColor) {
     _classCallCheck(this, Curve);
 
     var _this = _possibleConstructorReturn(this, (Curve.__proto__ || Object.getPrototypeOf(Curve)).call(this));
@@ -10691,9 +10781,9 @@ var Curve = exports.Curve = function (_Figure) {
     _this.y1 = y1;
     _this.x2 = x2;
     _this.y2 = y2;
-    _this.sw = sw;
-    _this.sc = sc;
-    _this.fc = fc || 'transparent';
+    _this.strokeWidth = strokeWidth;
+    _this.strokeColor = strokeColor;
+    _this.fillColor = fillColor || 'transparent';
     _this.scale = scale;
     return _this;
   }
@@ -10714,7 +10804,7 @@ var Curve = exports.Curve = function (_Figure) {
   }, {
     key: 'generateFigureHTML',
     value: function generateFigureHTML() {
-      return '<path d="M' + this.scaleForSvg(this.x) + ' ' + this.scaleForSvg(this.y) + '\n                     Q' + this.scaleForSvg(this.x2) + '\n                      ' + this.scaleForSvg(this.y2) + '\n                      ' + this.scaleForSvg(this.x1) + '\n                      ' + this.scaleForSvg(this.y1) + '"\n                  stroke-width="' + this.sw + '"\n                  stroke="' + this.sc + '"\n                  fill="none">\n            </path>';
+      return '<path d="M' + this.scaleForSvg(this.x) + ' ' + this.scaleForSvg(this.y) + '\n                     Q' + this.scaleForSvg(this.x2) + '\n                      ' + this.scaleForSvg(this.y2) + '\n                      ' + this.scaleForSvg(this.x1) + '\n                      ' + this.scaleForSvg(this.y1) + '"\n                  stroke-width="' + this.strokeWidth + '"\n                  stroke="' + this.strokeColor + '"\n                  fill="none">\n            </path>';
     }
   }, {
     key: 'drawFigure',
@@ -10752,14 +10842,14 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var SCurve = exports.SCurve = function (_Figure) {
   _inherits(SCurve, _Figure);
 
-  function SCurve(points, sw, sc, scale) {
+  function SCurve(points, strokeWidth, strokeColor, scale) {
     _classCallCheck(this, SCurve);
 
     var _this = _possibleConstructorReturn(this, (SCurve.__proto__ || Object.getPrototypeOf(SCurve)).call(this));
 
     _this.points = points;
-    _this.sw = sw;
-    _this.sc = sc;
+    _this.strokeWidth = strokeWidth;
+    _this.strokeColor = strokeColor;
     _this.fc = 'transparent';
     _this.scale = scale;
     return _this;
@@ -10797,7 +10887,7 @@ var SCurve = exports.SCurve = function (_Figure) {
         }
       });
 
-      return '<path d="' + d + '"\n                  stroke-width="' + this.sw + '"\n                  stroke="' + this.sc + '"\n                  fill="none">\n            </path>';
+      return '<path d="' + d + '"\n                  stroke-width="' + this.strokeWidth + '"\n                  stroke="' + this.strokeColor + '"\n                  fill="none">\n            </path>';
     }
   }, {
     key: 'drawFigure',
@@ -10918,8 +11008,11 @@ var SizeIndicator = exports.SizeIndicator = function () {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.Modal = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _utility = __webpack_require__(53);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -10932,8 +11025,21 @@ var Modal = exports.Modal = function () {
   }
 
   _createClass(Modal, [{
+    key: 'positionModal',
+    value: function positionModal(trigger, modal) {
+      if (window.innerWidth > _utility.BREAKPOINTS.tablet) {
+        modal.style.top = trigger.offsetTop + 'px';
+        modal.style.left = trigger.offsetLeft + 10 + trigger.offsetWidth + 'px';
+      } else if (window.innerWidth <= _utility.BREAKPOINTS.tablet) {
+        modal.style.top = trigger.offsetTop + trigger.offsetHeight + 10 + 'px';
+        modal.style.left = trigger.offsetLeft + 'px';
+      }
+    }
+  }, {
     key: 'init',
     value: function init() {
+      var _this = this;
+
       this.modals.forEach(function (modal) {
         modal.querySelectorAll('.js-modal-close').forEach(function (modalClose) {
           modalClose.addEventListener('click', function (event) {
@@ -10946,7 +11052,11 @@ var Modal = exports.Modal = function () {
         trigger.addEventListener('click', function (event) {
           var modalID = trigger.dataset.modal;
           var modal = document.querySelector('.js-modal[data-modal="' + modalID + '"]');
-          modal.classList.remove('u-hidden');
+          modal.classList.toggle('u-hidden');
+
+          if (trigger.hasAttribute('data-modal-positioned')) {
+            _this.positionModal(trigger, modal);
+          }
         });
       });
     }

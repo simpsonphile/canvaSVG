@@ -10,7 +10,7 @@ export const DE = {
   colorBtns: document.querySelectorAll('.js-color-for'),
   canvasSizeInputs: document.querySelectorAll('.js-canvas-size'),
   canvas: document.querySelector('.js-canvas'),
-  canvasContainer: document.querySelector('js-canvas-container'),
+  canvasContainer: document.querySelector('.js-canvas-container'),
   cursorPosIndi: document.querySelector('.js-cursor-pos'),
   strokeWidthInput: document.querySelector('.js-stroke-width-input'),
   fillColorIndicator: document.querySelector('.js-color-fill-indicator'),
@@ -18,6 +18,24 @@ export const DE = {
   resetFigBtn: document.querySelector('.js-btn-reset-fig'),
   layFigBtn: document.querySelector('.js-btn-lay-fig'),
   closeFigBtn: document.querySelector('.js-btn-close-fig')
+}
+
+export function isTouchDevice () {
+  const prefixes = ' -webkit- -moz- -o- -ms- '.split(' ')
+  const mq = function (query) {
+    return window.matchMedia(query).matches
+  }
+
+  if (('ontouchstart' in window) ||
+      window.DocumentTouch &&
+      document instanceof DocumentTouch) {
+    return true
+  }
+
+  // include the 'heartz' as a way to have a non matching MQ to help terminate the join
+  // https://git.io/vznFH
+  var query = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join('')
+  return mq(query)
 }
 
 export function vectorLength (x1, y1, x2, y2) {
@@ -32,8 +50,8 @@ export const DATA = {
   scale: 1,
   keyMapDown: [],
   svg: {
-    width: 320,
-    height: 320
+    width: 750,
+    height: 750
   },
 
   strokeWidth: 1,
