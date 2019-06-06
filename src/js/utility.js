@@ -32,13 +32,13 @@ export const DATA = {
   scale: 1,
   keyMapDown: [],
   svg: {
-    width: 100,
-    height: 100
+    width: 320,
+    height: 320
   },
 
   strokeWidth: 1,
   strokeColor: '#ffffff',
-  fillColor: '#ffffff',
+  fillColor: '#FFFFFF0',
 
   mode: '',
   step: 0,

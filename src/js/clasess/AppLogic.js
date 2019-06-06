@@ -106,15 +106,15 @@ export class AppLogic {
 
   rescale () {
     DATA.figures.forEach(fig => {
-      fiDATA.rescale(DATA.scale)
+      fig.rescale(DATA.scale)
     })
   }
 
   updateDimensions (type, size) {
     if (type === 'width') {
-      DATA.svDATA.width = size
+      DATA.svg.width = size
     } else if (type === 'height') {
-      DATA.svDATA.height = size
+      DATA.svg.height = size
     }
   }
 
@@ -123,10 +123,10 @@ export class AppLogic {
   }
 
   generateSvg () {
-    let svgHTML = `<svg viewBox="0 0 ${DATA.svDATA.width} ${DATA.svDATA.height}">`
+    let svgHTML = `<svg viewBox="0 0 ${DATA.svg.width} ${DATA.svg.height}">`
 
     DATA.figures.forEach(fig => {
-      svgHTML += fiDATA.returnHTML()
+      svgHTML += fig.returnHTML()
     })
 
     svgHTML += '\n</svg>'

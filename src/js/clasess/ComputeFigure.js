@@ -189,7 +189,8 @@ export class ComputeFigure {
       DATA.shadowFig = new Polyline(
         points,
         DATA.strokeWidth,
-        DATA.sc
+        DATA.strokeColor,
+        DATA.scale
       )
     }
   }
