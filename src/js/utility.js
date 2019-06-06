@@ -17,7 +17,8 @@ export const DE = {
   strokeColorIndicator: document.querySelector('.js-color-stroke-indicator'),
   resetFigBtn: document.querySelector('.js-btn-reset-fig'),
   layFigBtn: document.querySelector('.js-btn-lay-fig'),
-  closeFigBtn: document.querySelector('.js-btn-close-fig')
+  closeFigBtn: document.querySelector('.js-btn-close-fig'),
+  menuBars: document.querySelectorAll('.js-menu-bar')
 }
 
 export function isTouchDevice () {

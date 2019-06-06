@@ -51,6 +51,10 @@
 
         margin: 0;
     }
+
+    &:hover {
+        color: currentColor;
+    }
 }
 
 .c-btn--primary {

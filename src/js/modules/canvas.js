@@ -1,4 +1,5 @@
 import { AppWindow } from '../clasess/AppWindow'
+import { MenuBar } from '../clasess/MenuBar'
 import { Toolkit } from '../clasess/Toolkit'
 import { AppLoop } from '../clasess/AppLoop'
 import { AppLogic } from '../clasess/AppLogic'
@@ -6,6 +7,8 @@ import { AppLogic } from '../clasess/AppLogic'
 import { Modal } from '../clasess/Modal'
 
 import { ColorWheel } from '../clasess/ColorWheel'
+
+import { DE } from '../utility'
 
 const appLogic = new AppLogic()
 
@@ -21,6 +24,13 @@ appLoop.start()
 const colorWheel = new ColorWheel(appLogic)
 colorWheel.init()
 
+/* Initialize menubar */
+const menuBars = []
+DE.menuBars.forEach(menu => {
+  const menuBar = new MenuBar(menu)
+  menuBar.init()
+  menuBars.push(menuBar)
+})
 /* Initialize toolkit */
 const toolkit = new Toolkit(appLogic, appWindow)
 toolkit.init()

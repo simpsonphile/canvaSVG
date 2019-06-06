@@ -10,6 +10,134 @@
 <link rel="icon" type="image/x-icon" href="./static/img/favicon.svg">    </head>
     <body>
         <main class="l-main">
+            <div class="c-menu-bar js-menu-bar">
+    <ul class="c-menu-bar__main">
+        <li class="c-menu-bar__el js-has-dropdown" data-lvl="1">
+            <span class="c-menu-bar__label js-label">Home</span>
+
+            <div class="c-menu-bar__dropdown js-dropdown">
+                <ul class="c-menu-bar__list">
+                    <li class="c-menu-bar__el">About canvaSVG</li>
+
+                    <li class="c-menu-bar__el">
+                        <a href="https://simpsonphile.github.io" class="c-btn">
+                            <span class="c-btn__wrap">
+                                <span class="c-btn__label">Author website</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="c-menu-bar__list">
+                    <li class="c-menu-bar__el">
+                        <button class="c-btn js-generate-svg js-modal-trigger" data-modal="generate-svg">
+                            <span class="c-btn__wrap">
+                                <span class="c-btn__label">Generate SVG code</span>
+                            </span>
+                        </button>
+
+                        <span class="c-menu-bar__hint">crtl + shift + g</span>
+                    </li>
+
+                    <li class="c-menu-bar__el">
+                        <span>Download SVG file</span>
+                        <span class="c-menu-bar__hint">crtl + shift + g</span>
+                    </li>
+                </ul>
+
+                <ul class="c-menu-bar__list">
+                    <li class="c-menu-bar__el">
+                        <button class="c-btn js-generate-svg js-modal-trigger" data-modal="svg-size"
+                            data-modal-positioned>
+                            <span class="c-btn__wrap">
+                                <span class="c-btn__label">Change SVG dimensions</span>
+                            </span>
+                        </button>
+
+                        <span class="c-menu-bar__hint">crtl + shift + g</span>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="c-menu-bar__el js-has-dropdown" data-lvl="1">
+            <span class="c-menu-bar__label js-label">Edit</span>
+
+            <div class="c-menu-bar__dropdown js-dropdown">
+                <ul class="c-menu-bar__list">
+                    <li class="c-menu-bar__el">
+                        <button class="c-btn js-generate-svg js-history-undo is-disabled">
+                            <span class="c-btn__wrap">
+                                <span class="c-btn__label">Undo</span>
+                            </span>
+                        </button>
+
+                        <span class="c-menu-bar__hint">crtl + z</span>
+                    </li>
+
+                    <li class="c-menu-bar__el">
+                        <button class="c-btn js-generate-svg js-history-redo is-disabled">
+                            <span class="c-btn__wrap">
+                                <span class="c-btn__label">Redo</span>
+                            </span>
+                        </button>
+
+                        <span class="c-menu-bar__hint">crtl + y</span>
+                    </li>
+                </ul>
+
+                <ul class="c-menu-bar__list">
+                    <li class="c-menu-bar__el">
+                        <button class="c-btn js-generate-svg js-reset-canvas">
+                            <span class="c-btn__wrap">
+                                <span class="c-btn__label">Reset Canvas</span>
+                            </span>
+                        </button>
+
+                        <span class="c-menu-bar__hint">crtl + shift + x</span>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="c-menu-bar__el js-has-dropdown" data-lvl="1">
+            <span class="c-menu-bar__label js-label">Actions</span>
+
+            <div class="c-menu-bar__dropdown">
+                <ul class="c-menu-bar__list">
+                    <li class="c-menu-bar__el">
+                        <button class="c-btn js-generate-svg js-btn-reset-fig">
+                            <span class="c-btn__wrap">
+                                <span class="c-btn__label">Reset current figure</span>
+                            </span>
+                        </button>
+                    </li>
+
+                    <li class="c-menu-bar__el">
+                        <button class="c-btn js-generate-svg js-btn-lay-fig">
+                            <span class="c-btn__wrap">
+                                <span class="c-btn__label">Lay current figure</span>
+                            </span>
+                        </button>
+                    </li>
+
+                    <li class="c-menu-bar__el">
+                        <button class="c-btn js-generate-svg js-btn-close-fig">
+                            <span class="c-btn__wrap">
+                                <span class="c-btn__label">Close current figure</span>
+                            </span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="c-menu-bar__el">
+            <span class="c-menu-bar__label">Help</span>
+        </li>
+    </ul>
+</div>
+
             <div class="l-app">
                 <div class="l-app__sidebar">
                      <nav class="c-toolkit">
@@ -42,16 +170,6 @@
             <span class="c-btn__ico c-btn__ico--solo">
                 <svg class="o-ico o-ico--tool">
                     <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#width"></use>
-                </svg>
-            </span>
-        </span>
-    </button>
-
-    <button class="c-btn c-btn--toolkit c-btn--t3 c-hint js-modal-trigger" data-hint-txt="Change svg Dimensions" data-modal="svg-size" data-modal-positioned>
-        <span class="c-btn__wrap">
-            <span class="c-btn__ico c-btn__ico--solo">
-                <svg class="o-ico o-ico--tool">
-                    <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#svgSize"></use>
                 </svg>
             </span>
         </span>
@@ -112,46 +230,6 @@
             <span class="c-btn__ico c-btn__ico--solo">
                 <svg class="o-ico o-ico--tool">
                     <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#scribble"></use>
-                </svg>
-            </span>
-        </span>
-    </button>
-
-    <button class="c-btn c-btn--toolkit c-btn--t3 c-hint js-generate-svg js-modal-trigger" data-modal="generate-svg" data-hint-txt="Generate svg code">
-        <span class="c-btn__wrap">
-            <span class="c-btn__ico c-btn__ico--solo">
-                <svg class="o-ico o-ico--tool">
-                    <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#code"></use>
-                </svg>
-            </span>
-        </span>
-    </button>
-
-    <button class="c-btn c-btn--toolkit c-btn--t3 c-hint js-reset-canvas" data-hint-txt="Clear canvas">
-        <span class="c-btn__wrap">
-            <span class="c-btn__ico c-btn__ico--solo">
-                <svg class="o-ico o-ico--tool">
-                    <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#delete"></use>
-                </svg>
-            </span>
-        </span>
-    </button>
-
-    <button class="c-btn c-btn--toolkit c-btn--t3 c-hint js-history-undo is-disabled" data-hint-txt="Undo last figure">
-        <span class="c-btn__wrap">
-            <span class="c-btn__ico c-btn__ico--solo">
-                <svg class="o-ico o-ico--tool">
-                    <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#undo"></use>
-                </svg>
-            </span>
-        </span>
-    </button>
-
-    <button class="c-btn c-btn--toolkit c-btn--t3 c-hint js-history-redo is-disabled" data-hint-txt="Redo last undone figure">
-        <span class="c-btn__wrap">
-            <span class="c-btn__ico c-btn__ico--solo">
-                <svg class="o-ico o-ico--tool">
-                    <use xlink:href="static/img/symbol/svg/sprite.symbol.svg#redo"></use>
                 </svg>
             </span>
         </span>
