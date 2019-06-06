@@ -28,6 +28,10 @@
   padding: .5rem;
 
   cursor: pointer;
+
+  &:hover {
+    background: darken($color_blue_2, 5);
+  }
 }
 
 .c-menu-bar__hint {
