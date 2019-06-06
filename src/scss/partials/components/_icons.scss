@@ -19,6 +19,11 @@
 .o-ico--tool {
     width: 2.4rem;
     height: 2.4rem;
+
+    @include media('<=t') {
+        width: 2rem;
+        height: 2rem;
+    }
 }
 
 /**
