@@ -27,13 +27,13 @@ export class PickFig {
 
   pick (click) {
     let figSelected = false
+    this.unselectFigures()
 
     //  loop from the newest figure and check if the figure is clicked
     //  if the figure is clicked select it and stop looping so only one figure is selected
     for (let i = DATA.figures.length - 1; i >= 0; i--) {
       const fig = DATA.figures[i]
       if (fig.isClicked(click)) {
-        this.unselectFigures()
         fig.isSelected = true
         figSelected = true
         this.positionContextMenu(click)
