@@ -31,12 +31,15 @@ export class ComputeFigure {
     }
 
     if (stop && DATA.step > 2) {
+      const name = `rec-${DATA.figures.length}`
+
       DATA.figures.push(
         new SCurve(
           DATA.clicks,
           DATA.strokeWidth,
           DATA.strokeColor,
-          DATA.scale
+          DATA.scale,
+          name
         )
       )
 
@@ -80,6 +83,8 @@ export class ComputeFigure {
     }
 
     if (DATA.step === 3) {
+      const name = `curve-${DATA.figures.length}`
+
       DATA.figures.push(
         new Curve(
           DATA.clicks[0].x,
@@ -90,7 +95,8 @@ export class ComputeFigure {
           DATA.clicks[2].y,
           DATA.strokeWidth,
           DATA.strokeColor,
-          DATA.scale
+          DATA.scale,
+          name
         )
       )
 
@@ -127,6 +133,8 @@ export class ComputeFigure {
     }
 
     if (DATA.step === 2) {
+      const name = `line-${DATA.figures.length}`
+
       DATA.figures.push(
         new Line(
           DATA.clicks[0].x,
@@ -135,7 +143,8 @@ export class ComputeFigure {
           DATA.clicks[1].y,
           DATA.strokeWidth,
           DATA.strokeColor,
-          DATA.scale
+          DATA.scale,
+          name
         )
       )
 
@@ -163,12 +172,15 @@ export class ComputeFigure {
     if (stop && DATA.step > 1) {
       if (close) DATA.clicks.push(DATA.clicks[0])
 
+      const name = `poly-${DATA.figures.length}`
+
       DATA.figures.push(
         new Polyline(
           DATA.clicks,
           DATA.strokeWidth,
           DATA.strokeColor,
-          DATA.scale
+          DATA.scale,
+          name
         )
       )
 
@@ -225,6 +237,8 @@ export class ComputeFigure {
         DATA.clicks[1].y
       )
 
+      const name = `ellipse-${DATA.figures.length}`
+
       if (DATA.keyMapDown[16]) {
         DATA.figures.push(
           new Ellipse(
@@ -235,7 +249,8 @@ export class ComputeFigure {
             DATA.strokeWidth,
             DATA.strokeColor,
             DATA.fillColor,
-            DATA.scale
+            DATA.scale,
+            name
           )
         )
       } else {
@@ -248,7 +263,8 @@ export class ComputeFigure {
             DATA.strokeWidth,
             DATA.strokeColor,
             DATA.fillColor,
-            DATA.scale
+            DATA.scale,
+            name
           )
         )
       }
@@ -364,6 +380,8 @@ export class ComputeFigure {
         DATA.clicks[1].y
       )
 
+      const name = `rec-${DATA.figures.length}`
+
       if (DATA.keyMapDown[16]) {
         DATA.figures.push(
           new Rectangle(
@@ -374,7 +392,8 @@ export class ComputeFigure {
             DATA.strokeWidth,
             DATA.strokeColor,
             DATA.fillColor,
-            DATA.scale
+            DATA.scale,
+            name
           )
         )
       } else {
@@ -387,7 +406,8 @@ export class ComputeFigure {
             DATA.strokeWidth,
             DATA.strokeColor,
             DATA.fillColor,
-            DATA.scale
+            DATA.scale,
+            name
           )
         )
       }

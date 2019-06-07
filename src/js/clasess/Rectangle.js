@@ -2,7 +2,7 @@ import { Figure } from './Figure'
 import { triangleArea } from '../utility'
 
 export class Rectangle extends Figure {
-  constructor (x, y, w, h, strokeWidth, strokeColor, fillColor, scale) {
+  constructor (x, y, w, h, strokeWidth, strokeColor, fillColor, scale, name) {
     super()
     this.x = x
     this.y = y
@@ -13,6 +13,8 @@ export class Rectangle extends Figure {
     this.fillColor = fillColor
 
     this.scale = scale
+
+    this.name = name
   }
 
   rescale (nScale) {

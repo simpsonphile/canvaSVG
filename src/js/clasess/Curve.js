@@ -1,7 +1,7 @@
 import { Figure } from './Figure'
 
 export class Curve extends Figure {
-  constructor (x, y, x1, y1, x2, y2, strokeWidth, strokeColor, scale, fillColor) {
+  constructor (x, y, x1, y1, x2, y2, strokeWidth, strokeColor, scale, fillColor, name) {
     super()
     this.x = x
     this.y = y
@@ -13,6 +13,7 @@ export class Curve extends Figure {
     this.strokeColor = strokeColor
     this.fillColor = fillColor || 'transparent'
     this.scale = scale
+    this.name = name
   }
 
   rescale (nScale) {

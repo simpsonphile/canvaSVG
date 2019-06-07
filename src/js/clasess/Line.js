@@ -1,7 +1,7 @@
 import { Figure } from './Figure'
 
 export class Line extends Figure {
-  constructor (x1, y1, x2, y2, strokeWidth, strokeColor, scale) {
+  constructor (x1, y1, x2, y2, strokeWidth, strokeColor, scale, name) {
     super()
     this.x1 = x1
     this.y1 = y1
@@ -11,6 +11,8 @@ export class Line extends Figure {
     this.strokeColor = strokeColor
 
     this.scale = scale
+
+    this.name = name
   }
 
   rescale (nScale) {

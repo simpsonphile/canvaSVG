@@ -23,7 +23,8 @@ export const DE = {
   currentFigFcBtn: document.querySelector('.js-current-fig-fc'),
   currentFigScBtn: document.querySelector('.js-current-fig-sc'),
   currentFigSwBtn: document.querySelector('.js-current-fig-sw'),
-  currentFigDelBtn: document.querySelector('.js-current-fig-del')
+  currentFigDelBtn: document.querySelector('.js-current-fig-del'),
+  contextMenuFigName: document.querySelector('.js-context-menu-fig-name')
 }
 
 export function isTouchDevice () {

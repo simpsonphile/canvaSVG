@@ -25,6 +25,10 @@ export class PickFig {
     })
   }
 
+  updateContextMenu (name) {
+    DE.contextMenuFigName.innerHTML = name
+  }
+
   pick (click) {
     let figSelected = false
     this.unselectFigures()
@@ -36,6 +40,7 @@ export class PickFig {
       if (fig.isClicked(click)) {
         fig.isSelected = true
         figSelected = true
+        this.updateContextMenu(fig.name)
         this.positionContextMenu(click)
         break
       }

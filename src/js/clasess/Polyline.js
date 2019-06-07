@@ -1,13 +1,15 @@
 import { Figure } from './Figure'
 
 export class Polyline extends Figure {
-  constructor (points, strokeWidth, strokeColor, scale) {
+  constructor (points, strokeWidth, strokeColor, scale, name) {
     super()
     this.points = points
     this.strokeWidth = parseInt(strokeWidth)
     this.strokeColor = strokeColor
 
     this.scale = scale
+
+    this.name = name
   }
 
   rescale (nScale) {

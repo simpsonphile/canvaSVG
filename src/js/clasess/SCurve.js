@@ -1,13 +1,14 @@
 import { Figure } from './Figure'
 
 export class SCurve extends Figure {
-  constructor (points, strokeWidth, strokeColor, scale) {
+  constructor (points, strokeWidth, strokeColor, scale, name) {
     super()
     this.points = points
     this.strokeWidth = strokeWidth
     this.strokeColor = strokeColor
     this.fc = 'transparent'
     this.scale = scale
+    this.name = name
   }
 
   rescale (nScale) {

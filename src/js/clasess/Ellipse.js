@@ -1,7 +1,7 @@
 import { Figure } from './Figure'
 
 export class Ellipse extends Figure {
-  constructor (cx, cy, rx, ry, strokeWidth, strokeColor, fillColor, scale) {
+  constructor (cx, cy, rx, ry, strokeWidth, strokeColor, fillColor, scale, name) {
     super()
     this.cx = cx
     this.cy = cy
@@ -11,6 +11,7 @@ export class Ellipse extends Figure {
     this.strokeColor = strokeColor
     this.fillColor = fillColor
     this.scale = scale
+    this.name = name
   }
 
   rescale (nScale) {
