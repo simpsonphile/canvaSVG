@@ -1,7 +1,8 @@
 export class Figure {
   constructor () {
-    this.svg = {}
     this.scale = 1
+
+    this.selected = false
   }
 
   generateFigureHTML () {}
