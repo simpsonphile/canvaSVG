@@ -21,16 +21,21 @@ export class Figure {
 
   drawFigure (ctx) {}
 
-  draw (ctx) {
-    ctx.save()
-    ctx.fillStyle = 'transparent'
-    ctx.lineWidth = this.strokeWidth * this.scale
-    ctx.strokeStyle = this.strokeColor
+  strokeIfSelected (ctx) {
     if (this.isSelected) {
       ctx.setLineDash([5])
     } else {
       ctx.setLineDash([])
     }
+  }
+
+  draw (ctx) {
+    ctx.save()
+    ctx.fillStyle = 'transparent'
+    ctx.lineWidth = this.strokeWidth * this.scale
+    ctx.strokeStyle = this.strokeColor
+
+    this.strokeIfSelected(ctx)
 
     ctx.beginPath()
     this.drawFigure(ctx)
