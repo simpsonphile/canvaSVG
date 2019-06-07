@@ -18,7 +18,12 @@ export const DE = {
   resetFigBtn: document.querySelector('.js-btn-reset-fig'),
   layFigBtn: document.querySelector('.js-btn-lay-fig'),
   closeFigBtn: document.querySelector('.js-btn-close-fig'),
-  menuBars: document.querySelectorAll('.js-menu-bar')
+  menuBars: document.querySelectorAll('.js-menu-bar'),
+  contextMenu: document.querySelector('.js-context-menu'),
+  currentFigFcBtn: document.querySelector('.js-current-fig-fc'),
+  currentFigScBtn: document.querySelector('.js-current-fig-sc'),
+  currentFigSwBtn: document.querySelector('.js-current-fig-sw'),
+  currentFigDelBtn: document.querySelector('.js-current-fig-del')
 }
 
 export function isTouchDevice () {

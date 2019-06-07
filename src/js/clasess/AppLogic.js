@@ -156,6 +156,15 @@ export class AppLogic {
     DATA.strokeWidth = size
   }
 
+  delCurrentFig () {
+    DATA.figures.forEach((fig, index) => {
+      if (fig.isSelected) {
+        delete DATA.figures[index]
+        DATA.figures.splice(index, 1)
+      }
+    })
+  }
+
   generateSvg () {
     let svgHTML = `<svg viewBox="0 0 ${DATA.svg.width} ${DATA.svg.height}">`
 

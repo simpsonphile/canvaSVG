@@ -2,7 +2,7 @@ export class Figure {
   constructor () {
     this.scale = 1
 
-    this.selected = false
+    this.isSelected = false
   }
 
   generateFigureHTML () {}

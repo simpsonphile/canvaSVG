@@ -1,0 +1,45 @@
+.c-context-menu {
+  position: absolute;
+  z-index: 20;
+
+  display: none;
+
+  min-width: 15rem;
+  min-height: 15rem;
+
+  background: $color_blue_2;
+  border-radius: .4rem;
+
+  &.is-active {
+    display: block;
+  }
+}
+
+.c-context-menu__name {
+  margin-bottom: .5rem;
+  padding: .5rem;
+  font-weight: 700;
+}
+
+.c-context-menu__options {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.c-context-menu__option {
+  padding: .5rem;
+
+  background: $color_blue_2;
+
+  &:hover {
+    background: darken($color_blue_2, 5);
+  }
+}
+
+.c-context-menu__btn {
+  display: block;
+
+  width: 100%;
+}

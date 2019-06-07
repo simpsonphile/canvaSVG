@@ -64,5 +64,10 @@ export class Toolkit {
     DE.closeFigBtn.addEventListener('click', event => {
       this.app.layFigure(true)
     })
+
+    DE.currentFigDelBtn.addEventListener('click', event => {
+      this.app.delCurrentFig()
+      this.app.picker.hideContextMenu()
+    })
   }
 }
