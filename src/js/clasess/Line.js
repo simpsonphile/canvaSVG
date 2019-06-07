@@ -39,4 +39,14 @@ export class Line extends Figure {
     ctx.moveTo(parseInt(this.x1), parseInt(this.y1))
     ctx.lineTo(parseInt(this.x2), parseInt(this.y2))
   }
+
+  isClicked (point) {
+    const x = point.x
+    const y = point.y
+    const x1 = this.x1
+    const x2 = this.x2
+    const y1 = this.y1
+    const y2 = this.y2
+    return (Math.abs((y - y1) * (x2 - x1) - (y2 - y1) * (x - x1)) < 1000)
+  }
 }
