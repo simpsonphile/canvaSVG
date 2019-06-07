@@ -69,6 +69,16 @@
     }
 }
 
+.c-btn--menu-bar {
+    display: block;
+
+    width: 100%;
+
+    .c-btn__wrap {
+        justify-content: flex-start;
+    }
+}
+
 .c-btn--toolkit {
     width: 4.5rem;
     height: 4.5rem;

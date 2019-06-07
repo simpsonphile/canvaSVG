@@ -47,11 +47,22 @@
   }
 }
 
+.c-menu-bar__btn {
+  display: block;
+
+  width: 100%;
+}
+
 .c-menu-bar__hint {
+  position: absolute;
+  right: .5rem;
+
   font-size: 1rem;
   font-weight: 700;
 
   color: silver;
+
+  pointer-events: none;
 }
 
 .c-menu-bar__dropdown {

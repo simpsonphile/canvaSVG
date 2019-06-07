@@ -4,6 +4,12 @@ export class MenuBar {
     this.triggers = this.context.querySelectorAll('.js-has-dropdown')
   }
 
+  closeMenu () {
+    this.triggers.forEach(trigger => {
+      trigger.classList.remove('is-active')
+    })
+  }
+
   closeSiblingDropdowns (lvl) {
     this.triggers.forEach(trigger => {
       if (trigger.dataset.lvl === lvl) {
@@ -22,6 +28,18 @@ export class MenuBar {
           trigger.classList.add('is-active')
         }
       })
+    })
+
+    document.addEventListener('click', event => {
+      let isMenuClicked = false
+      event.path.forEach(el => {
+        if (el === this.context) {
+          isMenuClicked = true
+        }
+      })
+      if (!isMenuClicked) {
+        this.closeMenu()
+      }
     })
   }
 }
