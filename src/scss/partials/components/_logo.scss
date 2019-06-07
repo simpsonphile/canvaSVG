@@ -1,0 +1,12 @@
+.c-logo {
+  margin-top: 0;
+  margin-bottom: 0;
+
+  font-size: 1.8rem;
+
+  cursor: default;
+
+  @include media('<=m') {
+    font-size: 1.6rem;
+  }
+}
