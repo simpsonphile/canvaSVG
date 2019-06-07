@@ -43,8 +43,8 @@ export class AppWindow {
     DE.cursorPosIndi.style.left = `${event.layerX}px`
     DE.cursorPosIndi.style.top = `${event.layerY}px`
 
-    const x = Math.floor(event.layerX / DATA.scale)
-    const y = Math.floor(event.layerY / DATA.scale)
+    const x = Math.round(event.layerX / DATA.scale)
+    const y = Math.round(event.layerY / DATA.scale)
 
     DE.cursorPosIndi.innerHTML = `(${x}, ${y})`
   }

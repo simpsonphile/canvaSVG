@@ -31,4 +31,6 @@ export class Figure {
     ctx.fill()
     ctx.restore()
   }
+
+  isClicked () {}
 }

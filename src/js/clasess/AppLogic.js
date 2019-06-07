@@ -1,10 +1,12 @@
 import { ComputeFigure } from './ComputeFigure'
+import { PickFig } from './PickFig'
 
 import { DE, DATA } from '../utility'
 
 export class AppLogic {
   constructor () {
     this.compute = new ComputeFigure()
+    this.picker = new PickFig()
     this.init()
   }
 
@@ -33,6 +35,7 @@ export class AppLogic {
     if (DATA.mode === 'line') this.compute.computeLine()
     if (DATA.mode === 'curve') this.compute.computeCurve()
     if (DATA.mode === 'scurve') this.compute.computeSCurve()
+    if (DATA.mode === 'pick') this.picker.pick(click)
 
     this.manageHistoryBtns()
   }

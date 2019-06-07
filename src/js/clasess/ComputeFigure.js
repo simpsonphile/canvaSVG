@@ -416,7 +416,7 @@ export class ComputeFigure {
       DATA.sizeIndicators[0] = new SizeIndicator(
         DATA.clicks[0].x + parseInt(w / 2),
         DATA.clicks[0].y - 5,
-        Math.floor(w / DATA.scale),
+        w,
         DATA.fillColor
       )
 
@@ -426,7 +426,7 @@ export class ComputeFigure {
         DATA.sizeIndicators[1] = new SizeIndicator(
           DATA.clicks[0].x + 5,
           DATA.clicks[0].y + parseInt(h / 2),
-          Math.floor(h / DATA.scale),
+          h,
           DATA.fillColor
         )
       }
