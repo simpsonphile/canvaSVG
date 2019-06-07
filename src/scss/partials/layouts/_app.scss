@@ -13,7 +13,7 @@
   z-index: 2;
 
   @include media('<=t') {
-    padding-bottom: 1rem;
+    padding: 1rem 0;
   }
 }
 
@@ -31,7 +31,7 @@
 
 .l-app__mobile-toolkit {
   display: none;
-  
+
   @include media('<=t') {
     display: block;
   }

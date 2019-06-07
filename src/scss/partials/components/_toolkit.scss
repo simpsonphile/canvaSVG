@@ -4,6 +4,7 @@
 
   display: flex;
 
+  margin: -0.25rem;
   max-height: 100%;
   width: 100%;
 
@@ -13,4 +14,13 @@
 
     max-height: unset;
   }
+
+  @include media('<=m-s') {
+    margin: 0 auto;
+    max-width: 24rem;
+  }
+}
+
+.c-toolkit__btn {
+  margin: .25rem;
 }

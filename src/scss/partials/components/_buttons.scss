@@ -70,17 +70,13 @@
 }
 
 .c-btn--toolkit {
-    margin: .25rem;
-
     width: 4.5rem;
     height: 4.5rem;
-    min-height: 4.5rem;
     border-radius: .4rem;
 
     @include media('<=t') {
         width: 4rem;
         height: 4rem;
-        min-height: 4rem;
     }
 }
 
