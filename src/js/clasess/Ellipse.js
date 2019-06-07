@@ -40,4 +40,14 @@ export class Ellipse extends Figure {
     ctx.ellipse(parseInt(this.cx), parseInt(this.cy), parseInt(this.rx), parseInt(this.ry), 0, 0, 2 * Math.PI)
     ctx.fillStyle = this.fillColor
   }
+
+  isClicked (point) {
+    const x = point.x
+    const y = point.y
+    const h = this.cx
+    const k = this.cy
+    const a = this.rx
+    const b = this.ry
+    return (x - h) * (x - h) / (a * a) + (y - k) * (y - k) / (b * b) <= 1
+  }
 }
