@@ -26,6 +26,12 @@ export class Figure {
     ctx.fillStyle = 'transparent'
     ctx.lineWidth = this.strokeWidth * this.scale
     ctx.strokeStyle = this.strokeColor
+    if (this.isSelected) {
+      ctx.setLineDash([5])
+    } else {
+      ctx.setLineDash([])
+    }
+
     ctx.beginPath()
     this.drawFigure(ctx)
     ctx.stroke()
